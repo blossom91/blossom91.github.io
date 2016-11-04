@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>第十五次作业</title>
+        <style>
+            label {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <button class='button-save' type='text'>储存</button>
+            <button class='button-load' type='text'>读取</button>
+        </div>
+        <div>
+            <button class='button-word' type='text'>全选</button>
+            <button class='button-noword' type='text'>反选</button>
+            <button class='button-newword' type='text'>初始化</button>
+        </div>
+        <div><h1>今天想吃点什么？</h1></div>
+    </body>
+    <script>
+    var addInput = function(r) {
+        var t = `<label><input class='zh-input' type="checkbox" value="" />${r}</label>`
+        return t
+    }
+    var addInputTrue = function(r) {
+        var t = `<label><input class='zh-input' type="checkbox" checked="checked" value="" />${r}</label>`
+        return t
+    }
+    // var GuaOptions1 = function(options) {
+    //     var s = []
+    //     for (var i = 0; i < options.length; i++) {
+    //         s.push(addInput(options[i]))
+    //     }
+    //     s = s.join('')
+    //     var body = document.querySelector( 'body' )
+    //     body.insertAdjacentHTML( 'beforeend', s )
+    //     var word = document.querySelector('.button-word')
+    //     word.addEventListener('click', function(event){
+    //         var inputs = document.querySelectorAll('.zh-input')
+    //         for (var i = 0; i < inputs.length; i++) {
+    //             inputs[i].checked = true
+    //         }
+    //     })
+    //     var noword = document.querySelector('.button-noword')
+    //     noword.addEventListener('click', function(event){
+    //         var inputs = document.querySelectorAll('.zh-input')
+    //         for (var i = 0; i < inputs.length; i++) {
+    //             inputs[i].checked = false
+    //         }
+    //     })
+    // }
+    // var options = ['花生', '炸鸡', '爆米花', '啤酒']
+    // GuaOptions1(options)
+
+
+    //
+    // var GuaOptions3 = function(options) {
+    //     var s = []
+    //     for (var i = 0; i < options.length; i++) {
+    //         if (options[i].checked) {
+    //             s.push(addInputTrue(options[i].text))
+    //         } else {
+    //             s.push(addInput(options[i].text))
+    //         }
+    //     }
+    //     s = s.join('')
+    //     var body = document.querySelector( 'body' )
+    //     body.insertAdjacentHTML( 'beforeend', s )
+    //     var word = document.querySelector('.button-word')
+    //     word.addEventListener('click', function(event){
+    //         var inputs = document.querySelectorAll('.zh-input')
+    //         for (var i = 0; i < inputs.length; i++) {
+    //             inputs[i].checked = true
+    //         }
+    //     })
+    //     var noword = document.querySelector('.button-noword')
+    //     noword.addEventListener('click', function(event){
+    //         var inputs = document.querySelectorAll('.zh-input')
+    //         for (var i = 0; i < inputs.length; i++) {
+    //             inputs[i].checked = false
+    //         }
+    //     })
+    //     var newword = document.querySelector('.button-newword')
+    //     newword.addEventListener('click', function(event){
+    //         var labels = document.querySelectorAll('label')
+    //         for (var i = 0; i < labels.length; i++) {
+    //             labels[i].remove()
+    //         }
+    //         body.insertAdjacentHTML('beforeend', s )
+    //     })
+    // }
+    // var options = [    {
+    //     	'text': '花生',
+    //         'checked': true,
+    //     },     {
+    //         	'text': '炸鸡',
+    //             'checked': false,
+    //         },    {
+    //             	'text': '爆米花',
+    //                 'checked': false,
+    //             },     {
+    //                 	'text': '啤酒',
+    //                     'checked': true,
+    //                 }]
+    // GuaOptions3(options)
+
+
+    var newlist = function() {
+        var list = []
+        var labels = document.querySelectorAll('label')
+        var inputs = document.querySelectorAll('.zh-input')
+        for (var i = 0; i < labels.length; i++) {
+            var zhlist = {
+                'text' : labels[i].innerText
+            }
+            list.push(zhlist)
+        }
+        for (var i = 0; i < inputs.length; i++) {
+            list[i]['checked'] = inputs[i].checked
+        }
+        return list
+    }
+    var GuaOptions4 = function(options) {
+        var s = []
+        for (var i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                s.push(addInputTrue(options[i].text))
+            } else {
+                s.push(addInput(options[i].text))
+            }
+        }
+        s = s.join('')
+        var body = document.querySelector( 'body' )
+        body.insertAdjacentHTML( 'beforeend', s )
+        var word = document.querySelector('.button-word')
+        word.addEventListener('click', function(event){
+            var inputs = document.querySelectorAll('.zh-input')
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].checked = true
+            }
+        })
+        var noword = document.querySelector('.button-noword')
+        noword.addEventListener('click', function(event){
+            var inputs = document.querySelectorAll('.zh-input')
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].checked = false
+            }
+        })
+        var newword = document.querySelector('.button-newword')
+        newword.addEventListener('click', function(event){
+            var labels = document.querySelectorAll('label')
+            for (var i = 0; i < labels.length; i++) {
+                labels[i].remove()
+            }
+            body.insertAdjacentHTML('beforeend', s )
+        })
+        var save = document.querySelector('.button-save')
+        save.addEventListener('click', function() {
+            var list = newlist()
+            var t = JSON.stringify(list)
+            localStorage.list = t
+        })
+        var load = document.querySelector('.button-load')
+        load.addEventListener('click', function() {
+            t = JSON.parse(localStorage.list)
+            var ss = []
+            for (var i = 0; i < t.length; i++) {
+                if (t[i].checked) {
+                        ss.push(addInputTrue(t[i].text))
+                    } else {
+                        ss.push(addInput(t[i].text))
+                    }
+                }
+                ss = ss.join('')
+                var body = document.querySelector( 'body' )
+                body.insertAdjacentHTML( 'beforeend', ss )
+        })
+    }
+    var options = [    {
+            'text': '花生',
+            'checked': true,
+        },     {
+                'text': '炸鸡',
+                'checked': false,
+            },    {
+                    'text': '爆米花',
+                    'checked': false,
+                },     {
+                        'text': '啤酒',
+                        'checked': true,
+                    }]
+    GuaOptions4(options)
+
+
+
+
+        /*
+        options 是一个包含如下 object 的数组
+        text 是文本描述
+        checked 是布尔值, 表示是否打勾
+        {
+        	'text': 'string',
+            'checked': true,
+        }
+    	本题和作业 2 一样的功能, 但是参数变了
+    	并且要求在初始化的时候要按照相应的值对相应的复选框打勾
+        */
+
+    </script>
+</html>
