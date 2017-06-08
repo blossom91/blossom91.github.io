@@ -240,6 +240,7 @@ var isgameover = function(board) {
     if (nospace(board) && nomove(board)) {
         swal("GAMEOVER!", "再来一次吧")
     }
+}
 
 $('body').on('touchmove', function (event) {
     event.preventDefault();
