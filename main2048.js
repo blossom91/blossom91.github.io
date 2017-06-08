@@ -238,7 +238,7 @@ var moveDown = function() {
 //游戏结束判断
 var isgameover = function(board) {
     if (nospace(board) && nomove(board)) {
-        swal("GAMEOVER!", "再来一次吧")
+        swal("GAME OVER!", "再来一次吧")
     }
 }
 
@@ -276,13 +276,13 @@ $(document).keydown(function(event) {
     }
 })
 
-$('body').on('touchmove', function (event) {
-    event.preventDefault();
-});
+// $('body').on('touchmove', function (event) {
+//     event.preventDefault();
+// });
 
 
 document.addEventListener('touchstart',function(event){
-    // event.preventDefault()  //阻止按键默认动作
+    event.preventDefault()  //阻止按键默认动作
     startx = event.touches[0].pageX
     starty = event.touches[0].pageY
 })
