@@ -279,7 +279,7 @@ $(document).keydown(function(event) {
 
 
 document.addEventListener('touchstart',function(event){
-    event.preventDefault()  //阻止按键默认动作
+    // event.preventDefault()  //阻止按键默认动作
     startx = event.touches[0].pageX
     starty = event.touches[0].pageY
 })
