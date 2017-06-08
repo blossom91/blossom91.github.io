@@ -288,7 +288,7 @@ document.addEventListener('touchstart',function(event){
 })
 
 document.addEventListener('touchend',function(event){
-    event.preventDefault()  //阻止按键默认动作
+    // event.preventDefault()  //阻止按键默认动作
     endx = event.changedTouches[0].pageX
     endy = event.changedTouches[0].pageY
     var changex = endx - startx
