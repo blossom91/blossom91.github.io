@@ -276,11 +276,20 @@ $(document).keydown(function(event) {
 })
 
 document.addEventListener('touchstart',function(event){
+    if(event.touches.length>1){
+        event.preventDefault();
+    }
     startx = event.touches[0].pageX
     starty = event.touches[0].pageY
 })
 
+var lastTouchEnd=0;
 document.addEventListener('touchend',function(event){
+    var now=(new Date()).getTime();
+    if(now-lastTouchEnd<=300){
+        event.preventDefault();
+    }
+    lastTouchEnd=now
     endx = event.changedTouches[0].pageX
     endy = event.changedTouches[0].pageY
     var changex = endx - startx
@@ -322,4 +331,4 @@ document.addEventListener('touchend',function(event){
             }
         }
     }
-})
+},false)
