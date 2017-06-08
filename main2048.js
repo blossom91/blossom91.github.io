@@ -242,9 +242,6 @@ var isgameover = function(board) {
     }
 }
 
-$('body').on('touchmove', function (event) {
-    event.preventDefault();
-});
 
 $(document).keydown(function(event) {
     switch (event.keyCode) {
@@ -279,12 +276,19 @@ $(document).keydown(function(event) {
     }
 })
 
+$('body').on('touchmove', function (event) {
+    event.preventDefault();
+});
+
+
 document.addEventListener('touchstart',function(event){
+    event.preventDefault()  //阻止按键默认动作
     startx = event.touches[0].pageX
     starty = event.touches[0].pageY
 })
 
 document.addEventListener('touchend',function(event){
+    event.preventDefault()  //阻止按键默认动作
     endx = event.changedTouches[0].pageX
     endy = event.changedTouches[0].pageY
     var changex = endx - startx
