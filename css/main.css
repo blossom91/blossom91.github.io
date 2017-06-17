@@ -1,0 +1,312 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+body, input, textarea, select {
+    font-family: "Source Sans Pro", "sans-serif";
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.75em;
+    color: #39454b;
+    letter-spacing: 0.025em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 900;
+    color: inherit;
+    letter-spacing: -0.0325em;
+}
+
+.header {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: rgba(66, 71, 75, 0.95);
+    height: 3em;
+    line-height: 3em;
+    box-shadow: 0 0 0.15em 0 rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+.header h1 {
+    position: absolute;
+    left: 1em;
+    top: 0;
+    height: 3em;
+    line-height: 3em;
+}
+
+
+.header nav {
+    position: absolute;
+    right: 0.5em;
+    top: 0;
+    height: 3em;
+    line-height: 3em;
+}
+
+
+.header nav ul li {
+    display: inline-block;
+    margin-left: 0.5em;
+    font-size: 0.9em;
+}
+
+.header nav ul li a {
+    display: block;
+    height: 3em;
+    line-height: 3em;
+    padding: 0 0.5em 0 0.5em;
+    color: inherit;
+}
+.header nav ul li a:hover {
+    color: #8e8e8e;
+}
+
+#sectionOne {
+    background: url("../images/0.png"),url(../images/1.jpg);
+}
+
+
+.contentOne header {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: url(../images/touxiang.jpg) center center no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+    transition: box-shadow .5s linear
+}
+
+.contentOne p {
+    margin-top: 2em;
+    font-size: 1.3em;
+    text-align: center;
+    color: #fff;
+}
+
+.contentOne p:last-child {
+    margin-top: 60px;
+    font-size: 1.1em;
+    line-height: 2.2em;
+}
+
+.contentOne .line {
+    margin: 0 auto;
+    height: 0.5px;
+    width: 900px;
+    margin-top: 20px;
+    background: #fff;
+}
+
+#sectionTwo {
+    background: url("../images/0.png"),url(../images/2.jpg);
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.2, 1.2, 1.2);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+    animation: 1s pulse;
+    animation-timing-function: linear;
+}
+
+#sectionTwo header,#sectionThree header {
+    color: #fff;
+    text-align: center;
+}
+
+#sectionTwo header ul {
+    margin-left: 25%;
+    margin-top: -150px;
+}
+
+#sectionTwo header ul li {
+    font-size: 1.1em;
+    float: left;
+    margin: 0 40px;
+    color: black;
+    margin-bottom: 30px;
+}
+
+#sectionTwo header ul li img {
+    width: 60px;
+    height: 60px;
+}
+
+.contentTwo header .line {
+    margin: 0 auto;
+    height: 0.5px;
+    width: 900px;
+    margin-top: -70px;
+    background: #000;
+}
+
+.contentTwo footer {
+    position: absolute;
+    clear: both;
+    width: 1000px;
+    height: 500px;
+    top: 45%;
+    left: 11%;
+    color: #000;
+    /*border: 1px solid black;*/
+}
+.contentTwo footer .contentTwoLeft {
+    float: left;
+}
+
+.contentTwoLeft li {
+    margin-bottom: 12px;
+}
+
+.contentTwoLeft span {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.contentTwoLeft a {
+    color: #000;
+}
+
+.contentTwoLeft a:hover {
+    color: #ccc;
+}
+
+.contentTwoLeft img {
+    vertical-align: middle;
+}
+
+.contentTwo footer .contentTwoRight {
+    float: left;
+    margin-left: 100px;
+}
+
+.contentTwoRight h1 {
+    margin-bottom: 20px;
+}
+
+.contentTwoRight span {
+    font-size: 1.3em;
+    margin-left: 20px;
+}
+
+.contentTwoRight p {
+    line-height: 2.1em;
+}
+
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.contentTwoRight img {
+    vertical-align: middle;
+    animation: 2s rotate infinite;
+    animation-timing-function: linear;
+}
+
+
+#sectionThree {
+    background: url("../images/0.png"),url(../images/3.jpg);
+}
+
+.contentThreeText {
+    text-align: center;
+    color: #000;
+    width: 600px;
+    line-height: 2em;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background: #F2F4F5;
+    font-size: 0.9em;
+}
+
+.contentThreeText h3 {
+    font-size: 1.2em;
+}
+
+.contentThreeText span {
+    font-weight: bold;
+    font-size: 1em;
+    color: blue;
+}
+
+.contentFour {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.contentFourLeft {
+    margin-top: 50px;
+    float: left;
+}
+
+.contentFourRight {
+    margin-top: 50px;
+    float:right;
+}
+
+.contentFourLeft li,.contentFourRight li {
+    width: 370px;
+    height: 180px;
+    padding: 15px;
+    overflow: hidden;
+    color: #fff;
+    border-radius: 10px;
+    margin: 10px
+}
+
+.contentFourLeft li h3,.contentFourRight li h3{
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+}
+
+.contentFourLeft li p,.contentFourRight li p {
+    font-size: 0.9em;
+    margin-bottom: 0.7em;
+}
+
+.contentFourLeft li button,.contentFourRight li button {
+    line-height: 1.5em;
+    width: 200px;
+    background-color: transparent;
+    border: 0.5px solid #E6E6E6;
+    border-radius: 4px;
+    color: #8e8e8e;
+}
+
+.contentFourLeft li button:hover,.contentFourRight li button:hover {
+    color: #fff;
+}

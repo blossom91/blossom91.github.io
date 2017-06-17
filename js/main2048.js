@@ -5,6 +5,21 @@ var startx = 0
 var starty = 0
 var endx = 0
 var endy = 0
+var a = function() {
+    var i = 0
+    return function() {
+        i++
+        return i
+    }
+}
+var b = a()
+b()
+
+var c = function() {
+    i++
+    return i
+}
+c()
 //更新每个格子数据
 var updateBoardView = function() {
     $('.number-cell').remove()

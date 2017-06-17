@@ -1,336 +1,179 @@
-<!-- <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>2048</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="css/2048.css" media="screen" title="no title">
-        <link href="css/sweetalert.min.css" rel="stylesheet">
-        <script src="jss/sweetalert.min.js"></script>
-        <script src="jss/jquery.min.js"></script>
-        <script src="jss/countUp.min.js"></script>
-        <script src='js/2048.js'></script>
-        <script src='js/show2048.js'></script>
-        <script src='js/main2048.js'></script>
-    </head>
-    <body>
-        <header>
-            <h1>2048</h1>
-            <a href="javascript:newgame()" id="newgame">New Game</a>
-            <p>
-                score: <span id="score">0</span><br>
-            </p>
-        </header>
-        <div id="container">
-            <div class="grid-cell" id="cell-0-0"></div>
-            <div class="grid-cell" id="cell-0-1"></div>
-            <div class="grid-cell" id="cell-0-2"></div>
-            <div class="grid-cell" id="cell-0-3"></div>
-
-            <div class="grid-cell" id="cell-1-0"></div>
-            <div class="grid-cell" id="cell-1-1"></div>
-            <div class="grid-cell" id="cell-1-2"></div>
-            <div class="grid-cell" id="cell-1-3"></div>
-
-            <div class="grid-cell" id="cell-2-0"></div>
-            <div class="grid-cell" id="cell-2-1"></div>
-            <div class="grid-cell" id="cell-2-2"></div>
-            <div class="grid-cell" id="cell-2-3"></div>
-
-            <div class="grid-cell" id="cell-3-0"></div>
-            <div class="grid-cell" id="cell-3-1"></div>
-            <div class="grid-cell" id="cell-3-2"></div>
-            <div class="grid-cell" id="cell-3-3"></div>
-        </div>
-    </body>
-</html> -->
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <title>天气预报</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <style media="screen">
-            .tq {
-                display: none;
-            }
-        </style>
-        <script src="jss/echarts.min.js"></script>
-        <script src='jss/jquery.min.js'></script>
+        <title>赵航的简历(web前端工程师)</title>
+        <link rel="stylesheet" href="css/jquery.fullPage.css">
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-5 col-md-offset-3 col-xs-8 col-xs-offset-1" >
-                    <input id="city" type="text" class="form-control" placeholder="城市名">
+        <header class="header">
+            <h1>赵航的web简历</h1>
+            <nav>
+                <ul>
+                    <li><a href="#page1">首页</a></li>
+                    <li><a href="#page2">关于我</a></li>
+                    <li><a href="#page3">技能栈</a></li>
+                    <li><a href="#page4">作品集</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div id="fullpage">
+            <div class="section" id="sectionOne">
+                <div class="contentOne">
+                    <header></header>
+                    <p>
+                        如果有人不相信编程是简单的，那是因为他们没有意识到人生有多复杂
+                        <div class="line"></div>
+                    </p>
+                    <footer>
+                        <p>
+                            我叫赵航 <br>
+                            一名前端工程师<br>
+                            感谢您阅读我的简历
+                        </p>
+                    </footer>
                 </div>
-
-                <button id='cx' type="button" class="btn btn-primary active col-md-1 col-xs-2">提交</button>
             </div>
-        </div>
-        <div class="tq"></div>
-        <script>
-        const documentWidth = window.screen.availWidth
-        const documentHeight = window.screen.availHeight
 
-        var automargin = function() {
-            if (documentWidth >= 960) {
-                $('.container-fluid').css('margin-top','90px')
-            } else {
-                $('.container-fluid').css('margin-top','60px')
-            }
-        }
+            <div class="section" id="sectionTwo">
+                <div class="contentTwo">
+                    <header>
+                        <div class="line"></div>
+                        <ul>
+                            <li><img src="images/年龄.png" alt="" /><br>年龄:26岁</li>
+                            <li><img src="images/学历.png" alt="" /><br>学历:本科</li>
+                            <li><img src="images/坐标.png" alt="" /><br>坐标:北京</li>
+                            <li><img src="images/状态.png" alt="" /><br>状态:求职</li>
+                        </ul>
+                    </header>
+                    <footer>
+                        <div class="contentTwoLeft">
+                            <ul>
+                                <li><a target="_blank" href="https://www.zybuluo.com/mantou1229/note/535970"><img src="images/Markdown.png" alt="" /><span>日常使用</span><br>CMD MarkDown 编写学习手册</a></li>
+                                <li><a target="_blank" href="https://github.com/mantou1229/mantou1229.github.io"><img src="images/git.png" alt="" /><span>管理代码</span><br>使用 GitHub 管理方便安全</a></li>
+                                <li><img src="images/毕业学校.png" alt="" /><span>毕业院校</span><br>河南大学民生学院</li>
+                                <li><img src="images/电话.png" alt="" /><span>联系我</span><br>15039091229</li>
+                                <li><img src="images/邮箱.png" alt="" /><span>联系我</span><br>zhaohang1229@foxmail.com</li>
+                           </ul>
+                        </div>
+                        <div class="contentTwoRight">
+                            <h1><img src="images/齿轮.png" alt=""><span>我  工作  前端</span></h1>
+                            <p>
+                                2014 - 2016年 <span>河南国基设计院  结构工程师</span><br>
+                                2016年中女朋友校签到北京,我开始网投北京本职业工作,月余---猝!<br>
+                                考虑之后,2016年末放弃工作,在家自学前端!加油~~<br>
+                                越学越有意思,跟代码打交道简直打开了我新世界的大门! <br>
+                                经过好痛苦,学不下去了~~~这真有意思,你快看我做的~~无限循环 <br>
+                                终于鼓起勇气开始找工作~~~  <br>
+                                感谢每一个给机会面试的人! <br>
+                                谢谢 ! 祝好!☺  <br>
+                            </p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
 
-        var getFormax = function(city) {
-            var a = []
-            var request = {
-                type : "get",
-                async : false,
-                url : `https://free-api.heweather.com/v5/forecast?city=${city}&key=30673095b0f647e2992f5c3b5e606371`,
-                success : function(r){
-                  a.push(Number(r.HeWeather5[0].daily_forecast[0].tmp.max))
-                  a.push(Number(r.HeWeather5[0].daily_forecast[1].tmp.max))
-                  a.push(Number(r.HeWeather5[0].daily_forecast[2].tmp.max))
-              }
-            }
-            $.ajax(request)
-            return a
-        }
+            <div class="section" id="sectionThree">
+                <div class="contentThree">
+                        <div class="slide">
+                            <div class="contentThreeText">
+                                <dl>
+                                    <dt><h3>HTML5 / CSS3</h3></dt>
+                                        <dd>能够编写语义化 <span>HTML</span>，模块化<span>CSS</span>，并实现复杂的布局与动画<br>
+                                            熟悉已标准化的 HTML/CSS 新特性并使用  <br>
+                                            熟悉利用盒模型、栅格、浮动定位、@media 设计 <span>响应式布局</span><br>
+                                            使用 HTML/CSS 熟练解决兼容问题,开发符合 W3C 标准的页面
+                                        </dd>
+                                    <dt><h3>JavaScript</h3></dt>
+                                        <dd>
+                                            了解 <span>ES6</span> 相关标准,并能在项目中使用 <br>
+                                            熟练掌握程序调试的方法，能快速定位分析解决 bug<br>
+                                            习惯注释 / 缩进，增强代码可读性<br>
+                                        </dd>
+                                    <dt><h3>DOM / BOM 及常见 Web API</h3></dt>
+                                        <dd>
+                                            熟悉原生<span>DOM / BOM</span>的使用,能利用其开发<span>桌面/移动端</span>前端组件<br>
+                                            熟练使用javascript对DOM对象进行操作,实现事件绑定,委托等功能<br>
+                                            了解主流游览器相关内核引擎
+                                        </dd>
+                                 </dl>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="contentThreeText">
+                                 <dl>
+                                     <dt><h3>jQuery / Bootstrap / Echarts</h3></dt>
+                                         <dd>
+                                             熟练<span>jQuery</span>的使用,能够利用jQuery库与插件实现DOM操作与完成复杂页面 <br>
+                                             熟悉 <span>Bootstrap</span> CSS 模块,可用其完成 HTML 网页的响应式开发<br>
+                                             熟悉 <span>Echarts</span> 的使用,可实现动态视图生成   <br>
+                                         </dd>
+                                     <dt><h3>Ajax / Node.js / Express 框架</h3></dt>
+                                         <dd>
+                                             了解<span>Node.js/Express</span>的使用,可进行简单的后端开发,方便与后端交流 <br>
+                                             熟练使用<span>Ajax</span>技术,进行前后端交互
+                                         </dd>
+                                     <dt><h3>其他技能</h3></dt>
+                                         <dd>
+                                             使用 Markdown编写得体的文档,具备良好的技术交流能力 <br>
+                                             日常使用Git管理代码,使用<span>Atom/WebStorm</span>编辑器<br>
+                                             熟练使用<span>PS</span>等图像处理工具,进行简单的图像处理<br>
+                                             熟练使用AutoCAD绘制设计图纸    <br>
+                                             <br>
+                                         </dd>
+                                 </dl>
+                             </div>
+                        </div>
+                </div>
+            </div>
 
-        var getFormin = function(city) {
-            var a = []
-            var request = {
-                type : "get",
-                async : false,
-                url : `https://free-api.heweather.com/v5/forecast?city=${city}&key=30673095b0f647e2992f5c3b5e606371`,
-                success : function(r){
-                  a.push(Number(r.HeWeather5[0].daily_forecast[0].tmp.min))
-                  a.push(Number(r.HeWeather5[0].daily_forecast[1].tmp.min))
-                  a.push(Number(r.HeWeather5[0].daily_forecast[2].tmp.min))
-              }
-            }
-            $.ajax(request)
-            return a
-        }
-
-        var chartForWeather = function(city) {
-            var myChart = echarts.init(document.querySelector('.tq'))
-            var options = function() {
-                option = {
-                    title: {
-                        text: `${city}未来三天气温变化`,
-                        subtext: ''
-                    },
-                    tooltip: {
-                        trigger: 'axis'
-                    },
-                    legend: {
-                        data:['最高气温','最低气温']
-                    },
-                    toolbox: {
-                        show: true,
-                        feature: {
-                            dataZoom: {
-                                yAxisIndex: 'none'
-                            },
-                            dataView: {readOnly: false},
-                            magicType: {type: ['line', 'bar']},
-                            restore: {},
-                            saveAsImage: {}
-                        }
-                    },
-                    xAxis:  {
-                        type: 'category',
-                        boundaryGap: false,
-                        data: ['今天','明天','后天']
-                    },
-                    yAxis: {
-                        type: 'value',
-                        axisLabel: {
-                            formatter: '{value} °C'
-                        }
-                    },
-                    series: [
-                        {
-                            name:'最高气温',
-                            type:'line',
-                            data:getFormax(city),
-                            markPoint: {
-                                data: [
-                                    {type: 'max', name: '最大值'},
-                                    // {type: 'min', name: '最小值'}
-                                ]
-                            },
-                            markLine: {
-                                data: [
-                                    {type: 'average', name: '平均值'}
-                                ]
-                            }
-                        },
-                        {
-                            name:'最低气温',
-                            type:'line',
-                            data:getFormin(city),
-                            markPoint: {
-                                // data: [
-                                //     {name: '周最低', value: -2, xAxis: 1, yAxis: -2}
-                                // ]
-                                data: [
-                                    // {type: 'max', name: '最大值'},
-                                    {type: 'min', name: '最小值'}
-                                ]
-                            },
-                            markLine: {
-                                data: [
-                                    {type: 'average', name: '平均值'},
-                                    // [{
-                                    //     symbol: 'none',
-                                    //     x: '90%',
-                                    //     yAxis: 'max'
-                                    // }, {
-                                    //     symbol: 'circle',
-                                    //     label: {
-                                    //         normal: {
-                                    //             position: 'start',
-                                    //             formatter: '最大值'
-                                    //         }
-                                    //     },
-                                    //     type: 'max',
-                                    //     name: '最高点'
-                                    // }]
-                                ]
-                            }
-                        }
-                    ]
-                };
-                return option
-            }
-
-            myChart.setOption(options())
-            window.onresize = myChart.resize
-        }
-
-        var chartForWeathermin = function(city) {
-            var myChart = echarts.init(document.querySelector('.tq'))
-            var options = function() {
-                option = {
-                    title: {
-                        text: `${city}未来三天气温变化`,
-                        subtext: ''
-                    },
-                    tooltip: {
-                        trigger: 'axis'
-                    },
-                    // legend: {
-                    //     data:['最高气温','最低气温']
-                    // },
-                    toolbox: {
-                        show: true,
-                        feature: {
-                            // dataZoom: {
-                            //     yAxisIndex: 'none'
-                            // },
-                            // dataView: {readOnly: false},
-                            magicType: {type: ['line', 'bar']},
-                            // restore: {},
-                            // saveAsImage: {}
-                        }
-                    },
-                    xAxis:  {
-                        type: 'category',
-                        boundaryGap: false,
-                        data: ['今天','明天','后天']
-                    },
-                    yAxis: {
-                        type: 'value',
-                        axisLabel: {
-                            formatter: '{value} °C'
-                        }
-                    },
-                    series: [
-                        {
-                            name:'最高气温',
-                            type:'line',
-                            data:getFormax(city),
-                            markPoint: {
-                                data: [
-                                    {type: 'max', name: '最大值'},
-                                    // {type: 'min', name: '最小值'}
-                                ]
-                            },
-                            markLine: {
-                                data: [
-                                    {type: 'average', name: '平均值'}
-                                ]
-                            }
-                        },
-                        {
-                            name:'最低气温',
-                            type:'line',
-                            data:getFormin(city),
-                            markPoint: {
-                                // data: [
-                                //     {name: '周最低', value: -2, xAxis: 1, yAxis: -2}
-                                // ]
-                                data: [
-                                    // {type: 'max', name: '最大值'},
-                                    {type: 'min', name: '最小值'}
-                                ]
-                            },
-                            markLine: {
-                                data: [
-                                    {type: 'average', name: '平均值'},
-                                    // [{
-                                    //     symbol: 'none',
-                                    //     x: '90%',
-                                    //     yAxis: 'max'
-                                    // }, {
-                                    //     symbol: 'circle',
-                                    //     label: {
-                                    //         normal: {
-                                    //             position: 'start',
-                                    //             formatter: '最大值'
-                                    //         }
-                                    //     },
-                                    //     type: 'max',
-                                    //     name: '最高点'
-                                    // }]
-                                ]
-                            }
-                        }
-                    ]
-                };
-                return option
-            }
-
-            myChart.setOption(options())
-            window.onresize = myChart.resize
-        }
-
-        var cityWeather = function() {
-            $('#cx').click(function() {
-                var map = $('#city').val()
-                if (!map) {
-                    alert('请输入正确的城市名')
-                } else {
-                    if (documentWidth >= 960) {
-                        $('.tq').css('display','block').css('height',documentHeight*0.5).css('margin',documentWidth*0.07)
-                        chartForWeather(map)
-                    } else {
-                        $('.tq').css('display','block').css('height',documentHeight*0.5).css('margin-top',documentWidth*0.3)
-                        chartForWeathermin(map)
-                    }
-                }
-            })
-        }
-
-        var _main = function() {
-             automargin()
-             cityWeather()
-        }
-
-        _main()
-        </script>
+            <div class="section" id="sectionFour">
+                <div class="contentFour">
+                    <div class="contentFourLeft">
+                        <ul>
+                            <li>
+                                <h3>音频播放器</h3>
+                                <p>使用原生JS代码实现一个音频播放器,实现播放暂停,拖动快进,切歌,调整音量,单曲列表循环,随机播放等功能</p>
+                                <button>demo</button>
+                            </li>
+                            <li>
+                                <h3>2048 小游戏</h3>
+                                <p>使用JQ库实现一个2048小游戏,游戏具有基本的功能,例如记录分数,判断结束等,此游戏做了响应式开发,可以适配手机游玩</p>
+                                <button>demo</button>
+                            </li>
+                            <li>
+                                <h3>城市天气预报查询</h3>
+                                <p>通过Ajax请求获取城市天气情况,并通过可视化渲染动态反应天气,响应式开发,可手机使用(因为免费api限制,目前只能显示3天温度变化情况)</p>
+                                <button>demo</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="contentFourRight">
+                        <ul>
+                            <li>
+                                <h3>待办事项便签</h3>
+                                <p>使用原生JS代码实现一个待办事项便签,便签具有添加,删除,记录时间,完成,编辑等功能,利用了本地储存,所以刷新可以保留数据</p>
+                                <button>demo</button>
+                            </li>
+                            <li>
+                                <h3>豆瓣电影爬虫</h3>
+                                <p>通过nodo.js与express爬取了豆瓣电影top250的相关数据,例如排名,图片,评价等.并通过echarts完成了几种简单的可视化数据渲染</p>
+                                <button>demo</button>
+                            </li>
+                            <li>
+                                <h3>全国每日温度图</h3>
+                                <p>仍旧是通过ajax获取相关城市温度情况,并通过echarts渲染出全国主要城市每日温度(因为免费API限制,当日多次登录查询有可能导致数据不准确)</p>
+                                <button>demo</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        <script src='js/jquery.min.js'></script>
+        <script src='js/jquery.fullPage.min.js'></script>
+        <script src='js/main.js'></script>
     </body>
 </html>
