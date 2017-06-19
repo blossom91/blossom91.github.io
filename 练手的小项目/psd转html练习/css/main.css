@@ -1,0 +1,297 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+ol,ul,li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.public-header {
+    width: 100%;
+    height: 110px;
+}
+
+.public-container {
+    margin: 0 auto;
+    width: 1100px;
+}
+
+.header-logo {
+    margin-top: 40px;
+    float: left;
+}
+
+.header-nav li {
+    float: right;
+    line-height: 28px;
+    font-size: 14px;
+    margin-top: 40px;
+    margin-left: 48px;
+}
+
+.header-nav a {
+    color: #3b3b3b;
+}
+
+.public-footer {
+    width: 100%;
+    height: 317px;
+    background: #3b3b3b;
+    clear: both;
+}
+
+.footer {
+    width: 230px;
+    font-size: 16px;
+    margin-top: 100px;
+    float: left;
+    margin-right: 60px;
+    line-height: 30px;
+    color: #ebebeb;
+}
+
+.footer a {
+    color: #ebebeb;
+}
+
+.footer a:hover {
+    color: #9b9b9b;
+}
+
+.footer:last-child {
+    margin-top: 85px;
+    margin-right: 0;
+    font-size: 14px;
+}
+
+.footer:last-child li {
+    position: relative;
+    top: 10px;
+}
+
+
+.index-banner {
+    width: 100%;
+    height: 645px;
+}
+
+.index-banner-bg {
+    height: 574px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.index-banner-text {
+    position:relative;
+    width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    top: -364px;
+}
+
+.index-banner-text p {
+    margin-top: 17px;
+    color: #fff;
+}
+
+.index-banner-text p img {
+    margin: 0 35px;
+    vertical-align: middle;
+}
+
+.text-logo2 {
+    position:relative;
+    width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    top: -161px;
+}
+
+.text-logo2 span {
+    position:relative;
+    color: #fff;
+    top:-60px;
+}
+
+.index-list {
+    margin: 0 auto;
+    width: 1100px;
+    margin-top: 150px;
+    /*float: left;*/
+}
+
+.index-list-menu {
+    width: 520px;
+    height: 95px;
+}
+
+.index-list-menu h4 {
+    float: left;
+    width: 230px;
+    font-size: 16px;
+    color: #555;
+}
+
+.menu-explain {
+    width: 230px;
+    font-size: 12px;
+    color: #b7b7b7;
+}
+
+.menu-line {
+    float: left;
+    width: 190px;
+    height: 14px;
+    border-bottom: 1px solid #e3e1e1;
+    margin-right: 45px;
+}
+
+.menu-money {
+    font-size: 16px;
+    color: #818181;
+}
+
+.index-left {
+    float: left;
+    margin-right: 60px;
+}
+
+.index-right {
+    float: left;
+}
+
+.index-button {
+    position: relative;
+    clear: both;
+    width: 133px;
+    height: 34px;
+    margin: 0 auto;
+    border: 1px solid #d7d5d5;
+    top: 35px;
+}
+
+.index-button {
+    line-height: 34px;
+    text-align: center;
+}
+
+.index-button span {
+    color: #b7b7b7;
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.index-panel {
+    width: 1100px;
+    margin: 0 auto;
+    clear: both;
+    margin-top: 200px;
+}
+
+.index-panel-header {
+    height: 95px;
+}
+
+.index-panel-text {
+    float: left;
+    font-size: 20px;
+    margin-right: 45px;
+}
+
+.index-panel-line {
+    float: left;
+    width: 200px;
+    height: 12px;
+    border-bottom: 1px solid #e5e3e3;
+    margin-right: 608px;
+}
+
+.index-panel-dian div {
+    width: 9px;
+    height: 9px;
+    float: right;
+    margin-left: 10px;
+    border-radius: 50%;
+    background: #dedede;
+}
+
+.index-panel-dian div:nth-child(3) {
+    background:#9b9b9b;
+}
+
+.index-panel-imgs {
+    width: 230px;
+    float: left;
+    margin-right: 60px;
+}
+
+.index-panel-imgs:last-child {
+    margin-right: 0;
+}
+
+.index-panel-img {
+    height: 202px;
+    overflow: hidden;
+}
+
+.index-panel-imgs-text {
+    margin-top: 29px;
+    font-size: 16px;
+    color: #555;
+}
+
+.index-panel-imgs-text span:last-child {
+    float: right;
+}
+
+.index-panel-imgs-star div {
+    margin: 10px 6px 200px 0;
+    width: 12px;
+    height: 12px;
+    float: left;
+    background: url(../images/star.png) no-repeat;
+}
+
+.index-panel-imgs-star div:last-child {
+    margin-top: 11px;
+    background: url(../images/star.png) no-repeat bottom;
+}
+
+.index-panel-next {
+    margin: 0 auto;
+    width: 1100px;
+    clear: both;
+}
+
+.index-panel-next-header {
+    height: 147px;
+}
+
+.index-panel-next-footer {
+    height: 380px;
+    overflow: hidden;
+    margin-bottom: 200px;
+}
+
+.index-panel-next-footer-1 {
+    width: 353px;
+    overflow: hidden;
+    float: left;
+}
+
+.index-panel-next-footer-2 {
+    width: 287px;
+    overflow: hidden;
+    float: left;
+    font-size: 0;
+}
+
+.index-panel-next-footer-3 {
+    float: left;
+}

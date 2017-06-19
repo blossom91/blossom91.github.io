@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>播放器</title>
+        <style>
+            .show {
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="mulu" data-mulu=4 data-run=0>
+            <div class="mp3-0" data-path=1.mp3></div>
+            <div class="mp3-1" data-path=2.mp3></div>
+            <div class='mp3-2' data-path=3.mp3></div>
+            <div class="mp3-3" data-path=4.mp3></div>
+        </div>
+        <audio id="id-audio-player" controls="">
+            <source src="">
+        </audio>
+        <div class="">
+            <span class="player-time-current"></span>
+            <span class="player-time-duration"></span>
+            <br>
+            <button class='play-play'>播放</button>
+            <button class="play-pause">暂停</button>
+            <br>
+            <button class="left" data-run='-1'><</button>
+            <button class="right" data-run='1'>></button>
+            <br>
+            <div class="bf">
+                <button class="bf1 show">单曲循环</button>
+                <button class="bf2">列表循环</button>
+                <button class="bf3">随机播放</button>
+            </div>
+        </div>
+        <script>
+        var e = function(element) {
+            return document.querySelector(element)
+        }
+        var bindEvent = function(element, eventName, callback) {
+            element.addEventListener(eventName, callback)
+        }
+        var a = e('#id-audio-player')
+        var b = e('.play-play')
+        var b1 = e('.play-pause')
+        bindEvent(b, 'click', function() {
+            a.play()
+        })
+        bindEvent(b1, 'click', function() {
+            a.pause()
+        })
+        var c = e('.player-time-current')
+        var c1 = e('.player-time-duration')
+        a.addEventListener('canplay', function() {
+            c1.innerHTML = '/' + a.duration
+        })
+        a.addEventListener('timeupdate', function() {
+            c.innerHTML = a.currentTime
+        })
+        var d = e('.left')
+        var d1 = e('.right')
+        var z = e('.mulu')
+        a.src = e('.mp3-' + z.dataset.run).dataset.path
+        a.addEventListener('canplay', function() {
+            a.play()
+        })
+        bindEvent(d, 'click', function() {
+            var n = (parseInt(z.dataset.run) + parseInt(z.dataset.mulu) + parseInt(d.dataset.run)) % parseInt(z.dataset.mulu)
+            z.dataset.run = n
+            a.src = e('.mp3-' + n).dataset.path
+            a.addEventListener('canplay', function(){
+                a.play()
+            })
+        })
+        bindEvent(d1, 'click', function() {
+            var n = (parseInt(z.dataset.run) + parseInt(z.dataset.mulu) + parseInt(d1.dataset.run)) % parseInt(z.dataset.mulu)
+            z.dataset.run = n
+            a.src = e('.mp3-' + n).dataset.path
+            a.addEventListener('canplay', function() {
+                a.play()
+            })
+        })
+        var q = e('.bf')
+        var q1 = e('.bf1')
+        var q2 = e('.bf2')
+        var q3 = e('.bf3')
+        bindEvent(q,'click', function(event) {
+            var a = event.target
+            var b = e('.show')
+            b.classList.remove('show')
+            a.classList.add('show')
+        })
+        bindEvent(q1, 'click', function() {
+            console.log('单曲循环')
+            bindEvent(a, 'ended', function() {
+                console.log('播完了');
+                a.play()
+            })
+        })
+        // bindEvent(q2, 'click', function() {
+        //     console.log('列表循环')
+        //     bindEvent(a, 'ended', function() {
+        //         console.log('播完了');
+        //         d1.click()
+        //     })
+        // })
+        // bindEvent(q3, 'click', function() {
+        //     console.log('随机循环')
+        //     bindEvent(a, 'ended', function() {
+        //         var n = parseInt(Math.random() * parseInt(z.dataset.mulu))
+        //         console.log(n);
+        //         z.dataset.run = n
+        //         a.src = e('.mp3-' + n).dataset.path
+        //         a.addEventListener('canplay', function(){
+        //             a.play()
+        //         })
+        //     })
+        // })
+        //应该做一个列表
+        // var songs = [
+        //     '1.mp3',
+        //     '2.mp3',
+        //     '3.mp3',
+        // ]
+        // 这样的来操作播放器  我的思路是不对的
+        </script>
+    </body>
+</html>

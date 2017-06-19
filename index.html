@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
+
         <header class="header">
             <h1>赵航的web简历</h1>
             <nav>
@@ -69,7 +70,7 @@
                                 经过好痛苦,学不下去了~~~这真有意思,你快看我做的~~无限循环 <br>
                                 终于鼓起勇气开始找工作~~~  <br>
                                 感谢每一个给机会面试的人! <br>
-                                谢谢 ! 祝好!☺  <br>
+                                谢谢 ! 祝好!<span style="font-size:1.5em">☺</span>  <br>
                             </p>
                         </div>
                     </footer>
@@ -122,7 +123,7 @@
                                              日常使用Git管理代码,使用<span>Atom/WebStorm</span>编辑器<br>
                                              熟练使用<span>PS</span>等图像处理工具,进行简单的图像处理<br>
                                              熟练使用AutoCAD绘制设计图纸    <br>
-                                             <br>
+                                             b站爱好者 / dota2热爱者.....    <br>
                                          </dd>
                                  </dl>
                              </div>
@@ -134,17 +135,17 @@
                 <div class="contentFour">
                     <div class="contentFourLeft">
                         <ul>
-                            <li>
+                            <li id='demo1'>
+                                <h3>仿京东轮播图</h3>
+                                <p>使用原生JS代码实现的轮播图效果,包括自动播放,左右切换,小圆点对应图片等主流功能,学习路上做出来的第一个小模块</p>
+                                <button>demo</button>
+                            </li>
+                            <li id='demo3'>
                                 <h3>音频播放器</h3>
-                                <p>使用原生JS代码实现一个音频播放器,实现播放暂停,拖动快进,切歌,调整音量,单曲列表循环,随机播放等功能</p>
+                                <p>使用原生JS代码做出的一个音频播放器,实现播放暂停,拖动快进,切歌,调整音量,单曲列表循环,随机播放等功能</p>
                                 <button>demo</button>
                             </li>
-                            <li>
-                                <h3>2048 小游戏</h3>
-                                <p>使用JQ库实现一个2048小游戏,游戏具有基本的功能,例如记录分数,判断结束等,此游戏做了响应式开发,可以适配手机游玩</p>
-                                <button>demo</button>
-                            </li>
-                            <li>
+                            <li id='demo5'>
                                 <h3>城市天气预报查询</h3>
                                 <p>通过Ajax请求获取城市天气情况,并通过可视化渲染动态反应天气,响应式开发,可手机使用(因为免费api限制,目前只能显示3天温度变化情况)</p>
                                 <button>demo</button>
@@ -153,27 +154,40 @@
                     </div>
                     <div class="contentFourRight">
                         <ul>
-                            <li>
+                            <li id='demo2'>
                                 <h3>待办事项便签</h3>
                                 <p>使用原生JS代码实现一个待办事项便签,便签具有添加,删除,记录时间,完成,编辑等功能,利用了本地储存,所以刷新可以保留数据</p>
                                 <button>demo</button>
                             </li>
-                            <li>
-                                <h3>豆瓣电影爬虫</h3>
-                                <p>通过nodo.js与express爬取了豆瓣电影top250的相关数据,例如排名,图片,评价等.并通过echarts完成了几种简单的可视化数据渲染</p>
+                            <li id='demo4'>
+                                <h3>2048 小游戏</h3>
+                                <p>使用JQ库实现一个2048小游戏,游戏具有基本的功能,例如记录分数,判断结束等,此游戏做了响应式开发,可以适配手机游玩</p>
                                 <button>demo</button>
                             </li>
-                            <li>
-                                <h3>全国每日温度图</h3>
-                                <p>仍旧是通过ajax获取相关城市温度情况,并通过echarts渲染出全国主要城市每日温度(因为免费API限制,当日多次登录查询有可能导致数据不准确)</p>
+                            <li id='demo6'>
+                                <h3>豆瓣电影爬虫</h3>
+                                <p>通过nodo.js与express爬取了豆瓣电影top250的相关数据,用lodash库处理了数据,最终使用echarts完成了几种简单的可视化视图渲染</p>
                                 <button>demo</button>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-        <script src='js/jquery.min.js'></script>
-        <script src='js/jquery.fullPage.min.js'></script>
+        </div>
+
+        <div class="popUp">
+            <div class="popcontent">
+                <img class="closePop" src="images/关闭.png" alt="">
+                <div class="demoContainer"></div>
+            </div>
+        </div>
+        <div class="overspread"></div>
+
+        <script src='js/lib/jquery.min.js'></script>
+        <script src='js/lib/jquery.fullPage.min.js'></script>
+        <script src='js/lib/echarts.min.js'></script>
+        <script src="js/lib/lodash.min.js"></script>
+        <script src='js/2048movies.js'></script>
         <script src='js/main.js'></script>
     </body>
 </html>

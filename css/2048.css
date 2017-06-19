@@ -1,17 +1,17 @@
-header {
+.game2048 {
     display: block;
     margin: 0 auto;
     width: 100%;
     text-align: center;
 }
 
-header h1 {
+.game2048 h1 {
     font-family: Arial;
     font-size: 40px;
     font-weight: bold;
 }
 
-header #newgame {
+.game2048 #newgame {
     display: block;
     margin: 20px auto;
     width: 100px;
@@ -23,16 +23,16 @@ header #newgame {
     text-decoration: none;
 }
 
-header #newgame:hover {
+.game2048 #newgame:hover {
     background-color: #9f8b77;
 }
 
-header p {
+.game2048 p {
     font-family: Arial;
     font-size: 25px;
     margin: 20px auto;
 }
-#container {
+#container2048 {
     width: 460px;
     height: 460px;
     padding: 20px;
