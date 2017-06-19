@@ -4,127 +4,190 @@
         <meta charset="utf-8">
         <title>播放器</title>
         <style>
-            .show {
-                background-color: red;
+            .songListShow {
+                color: blue;
             }
         </style>
     </head>
     <body>
-        <div class="mulu" data-mulu=4 data-run=0>
-            <div class="mp3-0" data-path=1.mp3></div>
-            <div class="mp3-1" data-path=2.mp3></div>
-            <div class='mp3-2' data-path=3.mp3></div>
-            <div class="mp3-3" data-path=4.mp3></div>
+        <div class="songList" >
+            <ul>
+
+            </ul>
         </div>
-        <audio id="id-audio-player" controls="">
+        <audio id="audio">
             <source src="">
         </audio>
-        <div class="">
-            <span class="player-time-current"></span>
-            <span class="player-time-duration"></span>
+        <div>
+            <span class="currentTime"></span>
+            <span class="durationTime"></span>
+             进度条<input id="progress" type="range" min="0" step="0.5">
             <br>
-            <button class='play-play'>播放</button>
-            <button class="play-pause">暂停</button>
+            <button class='musicPlay'>播放</button>
+            <button class="musicPause">暂停</button>
             <br>
-            <button class="left" data-run='-1'><</button>
-            <button class="right" data-run='1'>></button>
+            <button class="musicLeft"><</button>
+            <button class="musicRight">></button>
             <br>
-            <div class="bf">
-                <button class="bf1 show">单曲循环</button>
-                <button class="bf2">列表循环</button>
-                <button class="bf3">随机播放</button>
-            </div>
+            <button class="playWay" type="button" name="button">列表循环</button>
+            音量<input id="musicVolume" type="range" max='1' min="0" step="0.0002" value="0.5">
         </div>
         <script>
+        //常用函数
         var e = function(element) {
             return document.querySelector(element)
         }
+
+        var es = function(element) {
+            return document.querySelectorAll(element)
+        }
+
         var bindEvent = function(element, eventName, callback) {
             element.addEventListener(eventName, callback)
         }
-        var a = e('#id-audio-player')
-        var b = e('.play-play')
-        var b1 = e('.play-pause')
-        bindEvent(b, 'click', function() {
-            a.play()
-        })
-        bindEvent(b1, 'click', function() {
-            a.pause()
-        })
-        var c = e('.player-time-current')
-        var c1 = e('.player-time-duration')
-        a.addEventListener('canplay', function() {
-            c1.innerHTML = '/' + a.duration
-        })
-        a.addEventListener('timeupdate', function() {
-            c.innerHTML = a.currentTime
-        })
-        var d = e('.left')
-        var d1 = e('.right')
-        var z = e('.mulu')
-        a.src = e('.mp3-' + z.dataset.run).dataset.path
-        a.addEventListener('canplay', function() {
-            a.play()
-        })
-        bindEvent(d, 'click', function() {
-            var n = (parseInt(z.dataset.run) + parseInt(z.dataset.mulu) + parseInt(d.dataset.run)) % parseInt(z.dataset.mulu)
-            z.dataset.run = n
-            a.src = e('.mp3-' + n).dataset.path
-            a.addEventListener('canplay', function(){
-                a.play()
+
+        var bindAll = function(selector, eventName, callback) {
+            var elements = document.querySelectorAll(selector)
+            for(var i = 0; i < elements.length; i++) {
+                var e = elements[i]
+                bindEvent(e, eventName, callback)
+            }
+        }
+
+        //播放方式函数
+        var musicdq = function() {
+            audio.play()
+        }
+
+        var musiclb = function() {
+            e('.musicRight').click()
+        }
+
+        var musicsj = function() {
+            var n = parseInt(Math.random() * 10000) % songs.length
+            audio.src = 'music/' + songs[n].src
+        }
+
+        var __main = function() {
+            //歌曲列表
+            var songs = [
+                {
+                    src : '1.mp3',
+                    name : '陈一发儿 - 阿婆说',
+                },
+                {
+                    src : '2.mp3',
+                    name : '陈一发儿 - 童话镇',
+                },
+                {
+                    src : '3.mp3',
+                    name : '光宗信吉 - I SAY YES(wedding version)',
+                },
+                {
+                    src : '4.mp3',
+                    name : '骆集益 - 回梦游仙',
+                },
+                {
+                    src : '5.mp3',
+                    name : '骆集益 - 御剑江湖',
+                },
+                {
+                    src : '6.mp3',
+                    name : '麦振鸿 - 莫失莫忘',
+                },
+            ]
+            //绑定按钮
+            var audio = e('#audio')
+            //页面载入初始化
+            var musicLoad = function() {
+                audio.src = 'music/' + songs[0].src
+                audio.volume = 0.5
+                bindEvent(audio, 'ended', musiclb)
+                //歌单加入页面并绑定切歌功能
+                var songList = function(s) {
+                    for (var i = 0; i < s.length; i++) {
+                        var t =`
+                            <li data-name = '${s[i].name}' data-src = '${s[i].src}'>${s[i].name}</li>
+                        `
+                        e('.songList ul').insertAdjacentHTML('beforeend',t)
+                    }
+                    bindAll('.songList li','click',function(event) {
+                        var self = event.target.dataset.src
+                        audio.src = 'music/' + self
+                    })
+                }
+                songList(songs)
+            }
+            musicLoad()
+            //载入后初始化
+            bindEvent(audio, 'canplay', function() {
+                audio.play()
+                e('.durationTime').innerHTML = '/' + parseInt(audio.duration)
+                e('#progress').max = parseInt(audio.duration) + ''
+                if (e('.songListShow') != null) {
+                    e('.songListShow').classList.remove('songListShow')
+                }
+                for (var i = 0; i < es('.songList li').length; i++) {
+                    if (es('.songList li')[i].dataset.src == audio.src.slice(-5)) {
+                        es('.songList li')[i].classList.add('songListShow')
+                        break
+                    }
+                }
             })
-        })
-        bindEvent(d1, 'click', function() {
-            var n = (parseInt(z.dataset.run) + parseInt(z.dataset.mulu) + parseInt(d1.dataset.run)) % parseInt(z.dataset.mulu)
-            z.dataset.run = n
-            a.src = e('.mp3-' + n).dataset.path
-            a.addEventListener('canplay', function() {
-                a.play()
+            //播放
+            bindEvent(e('.musicPlay'), 'click', function() {
+                audio.play()
             })
-        })
-        var q = e('.bf')
-        var q1 = e('.bf1')
-        var q2 = e('.bf2')
-        var q3 = e('.bf3')
-        bindEvent(q,'click', function(event) {
-            var a = event.target
-            var b = e('.show')
-            b.classList.remove('show')
-            a.classList.add('show')
-        })
-        bindEvent(q1, 'click', function() {
-            console.log('单曲循环')
-            bindEvent(a, 'ended', function() {
-                console.log('播完了');
-                a.play()
+            //暂停
+            bindEvent(e('.musicPause'), 'click', function() {
+                audio.pause()
             })
-        })
-        // bindEvent(q2, 'click', function() {
-        //     console.log('列表循环')
-        //     bindEvent(a, 'ended', function() {
-        //         console.log('播完了');
-        //         d1.click()
-        //     })
-        // })
-        // bindEvent(q3, 'click', function() {
-        //     console.log('随机循环')
-        //     bindEvent(a, 'ended', function() {
-        //         var n = parseInt(Math.random() * parseInt(z.dataset.mulu))
-        //         console.log(n);
-        //         z.dataset.run = n
-        //         a.src = e('.mp3-' + n).dataset.path
-        //         a.addEventListener('canplay', function(){
-        //             a.play()
-        //         })
-        //     })
-        // })
-        //应该做一个列表
-        // var songs = [
-        //     '1.mp3',
-        //     '2.mp3',
-        //     '3.mp3',
-        // ]
-        // 这样的来操作播放器  我的思路是不对的
+            // 进度条
+            bindEvent(e('#progress'), 'change', function() {
+                audio.currentTime = e('#progress').value
+            })
+            //音量条
+            bindEvent(e('#musicVolume'), 'change', function() {
+                audio.volume =  e('#musicVolume').value
+            })
+            //计时器
+            bindEvent(audio, 'timeupdate', function() {
+                e('.currentTime').innerHTML = parseInt(audio.currentTime)
+                e('#progress').value = parseInt(audio.currentTime) + ''
+            })
+            // 上一首
+            bindEvent(e('.musicLeft'), 'click', function() {
+                var next = ((parseInt(e('.songListShow').dataset.src.split('.')[0]) - 1) + songs.length - 1)  %  songs.length
+                audio.src = 'music/' + songs[next].src
+
+            })
+            //下一首
+            bindEvent(e('.musicRight'), 'click', function() {
+                var next = ((parseInt(e('.songListShow').dataset.src.split('.')[0]) - 1) + songs.length + 1)  %  songs.length
+                audio.src = 'music/' + songs[next].src
+            })
+            //播放方式
+            bindEvent(e('.playWay'),'click', function(event) {
+                var self = event.target.innerHTML
+                if (self == '列表循环') {
+                    audio.removeEventListener('ended',musiclb)
+                    bindEvent(audio, 'ended', musicdq)
+                    e('.playWay').innerHTML = '单曲循环'
+                    return
+                } else if (self == '单曲循环') {
+                    audio.removeEventListener('ended',musicdq)
+                    bindEvent(audio, 'ended', musicsj)
+                    e('.playWay').innerHTML = '随机循环'
+                    return
+                } else {
+                    audio.removeEventListener('ended',musicsj)
+                    bindEvent(audio, 'ended', musiclb)
+                    e('.playWay').innerHTML = '列表循环'
+                    return
+                }
+            })
+        }
+        __main()
         </script>
     </body>
 </html>
