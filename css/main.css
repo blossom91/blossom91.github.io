@@ -560,3 +560,201 @@ h1, h2, h3, h4, h5, h6 {
 .slideDot .showDot {
     background: #db192a;
 }
+
+
+.todolist {
+    width: 100%;
+    height: 600px;
+    font-size: 15px;
+}
+
+.todolist header {
+    width: 600px;
+    height: 60px;
+    top: 12px;
+    left: 165px;
+    position: absolute;
+}
+
+.todolist header form {
+    width: 420px;
+    height: 80px;
+    margin: auto auto;
+    padding-top: 10px;
+}
+
+.listValue {
+    width: 300px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px
+}
+
+.addList {
+    width: 100px;
+    height: 30px;
+    margin: auto auto;
+    color: white;
+    border-radius: 8px;
+    background-color: mediumseagreen;
+    border-style: none;
+}
+
+.noteList {
+    margin-top: 80px;
+    position: absolute;
+    left: 15px;
+}
+
+.noteList ul {
+    list-style: none;
+}
+
+.noteList ul time {
+    font-size: 0.8em;
+    position: relative;
+    top: -8px;
+}
+
+.noteList ul img {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+
+.noteList ul li:hover img {
+    display: block;
+}
+
+.todoLiList {
+    width: 160px;
+    height: 180px;
+    float: left;
+    margin-left: 80px;
+    margin-top: 40px;
+    padding: 20px 15px;
+    border-radius: 10px 10px;
+    background-color: cadetblue;
+    word-wrap: break-word;
+    overflow: scroll;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 60%;
+    border-radius: 2px; /*这个属性设置使填充进度条时的图形为圆角*/
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+ /*给滑动轨道(track)添加样式*/
+input[type=range]::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 2px; /*将轨道设为圆角的*/
+    background: #555555;
+}
+input[type=range]::-moz-range-progress {
+    height: 4px;
+    border-radius: 2px; /*将轨道设为圆角的*/
+    background: rgba(4,154,12,0.2);
+}
+/*原始的控件获取到焦点时，会显示包裹整个控件的边框，所以还需要把边框取消。*/
+input[type=range]:focus {
+    outline: none;
+}
+ /*给滑块(thumb)添加样式*/
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 14px;
+    width: 14px;
+    border: 0.1px solid rgba(0, 0, 0, 0.1);
+    margin-top: -5px; /*使滑块超出轨道部分的偏移量相等*/
+    background: #f1f1f1;
+    border-radius: 50%; /*外观设置为圆形*/
+    box-shadow: 0 0 8px #ddd; /*添加底部阴影*/
+}
+
+.musicPack .songListShow {
+    color: red;
+}
+
+.musicPack {
+    width: 600px;
+    height: 500px;
+    margin: 0 auto;
+    text-align: center;
+    color: rgb(104, 113, 116);
+    font-size: 18px;
+    font-weight: 480;
+    margin-top: 80px;
+}
+
+.musicPack .musciHeader h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.musicPack .currentTime {
+    position: relative;
+    left: -140px;
+}
+
+.musicPack .durationTime {
+    position: relative;
+    right: -140px;
+}
+
+.musicPack .musicLine {
+    width: 55%;
+    height: 1px;
+    background: #8e8e8e;
+    margin: 10px auto;
+}
+
+.musicPack #musicVolume {
+    width: 20%;
+    position: relative;
+    top: 8px;
+    left: -12px;
+}
+
+.musicPack .songList ul {
+    position: relative;
+    left: 15px;
+    top: 0px;
+}
+
+.musicPack .songList ul li{
+    padding: 4px 0;
+    position: relative;
+    left: -18px;
+    top: 10px;
+}
+
+.musicPack .songList ul li:hover {
+    color: #6495ED;
+}
+
+.musicPack .musicLeft  {
+    position: relative;
+    left: -50px;
+    top: -7px;
+}
+
+.musicPack .musicRight  {
+    position: relative;
+    right: -50px;
+    top: -7px;
+}
+
+.musicPack .playWay {
+    position: absolute;
+    top: 472px;
+    right: 345px;
+}

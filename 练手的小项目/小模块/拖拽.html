@@ -33,7 +33,7 @@
                 display: none;
             }
         </style>
-        <script src='../jss/jquery.min.js'></script>
+        <script src='../../js/lib/jquery.min.js'></script>
     </head>
     <body>
         <button  class="dl" type="button" name="button">登录</button>
@@ -72,34 +72,37 @@
             })
 
 
-            var x0 = 0
-            var y0 = 0
-            var ismove = false
-            $('.title').on('mousedown',function(e) {
-                 x0 = e.offsetX
-                 y0 = e.offsetY
-                ismove = true
-            })
+            var moveFor = function() {
+                var x0 = 0
+                var y0 = 0
+                var ismove = false
+                $('.title').on('mousedown',function(e) {
+                     x0 = e.offsetX
+                     y0 = e.offsetY
+                    ismove = true
+                })
 
-            $(document).on('mousemove',function(e) {
-                var bodyW = document.documentElement.clientWidth
-                var bodyH = document.documentElement.clientHeight
-                var conW = $('.containers')[0].offsetWidth
-                var conH = $('.containers')[0].offsetHeight
-                var x1 = e.pageX
-                var y1 = e.pageY
-                var movex = x1 - x0
-                var movey = y1 - y0
-                movex = Math.min(bodyW - conW,Math.max(0,movex))
-                movey = Math.min(bodyH - conH,Math.max(0,movey))
-                if (ismove) {
-                    $('.containers').css('left',movex).css('top',movey)
-                    $('.box').css('left',x1).css('top',y1).css('display','block')
-                }
-            }).on('mouseup',function(){
-                ismove = false
-                $('.box').css('display','block')
-            })
+                $(document).on('mousemove',function(e) {
+                    var bodyW = document.documentElement.clientWidth
+                    var bodyH = document.documentElement.clientHeight
+                    var conW = $('.containers')[0].offsetWidth
+                    var conH = $('.containers')[0].offsetHeight
+                    var x1 = e.pageX
+                    var y1 = e.pageY
+                    var movex = x1 - x0
+                    var movey = y1 - y0
+                    movex = Math.min(bodyW - conW,Math.max(0,movex))
+                    movey = Math.min(bodyH - conH,Math.max(0,movey))
+                    if (ismove) {
+                        $('.containers').css('left',movex).css('top',movey)
+                        // $('.box').css('left',x1).css('top',y1).css('display','block')
+                    }
+                }).on('mouseup',function(){
+                    ismove = false
+                    // $('.box').css('display','block')
+                })
+            }
+moveFor()
         </script>
     </body>
 </html>
