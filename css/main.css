@@ -43,10 +43,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .header h1 {
     position: absolute;
+    font-size: 1em;
     left: 1em;
-    top: 0;
-    height: 3em;
-    line-height: 3em;
 }
 
 
@@ -77,7 +75,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #sectionOne {
-    background: url("../images/0.png"),url(../images/1.jpg);
+    background: url("../images/0.png"),url(../images/1.jpg) no-repeat;
+    background-size: 100% 100%;
 }
 
 .contentOne, .contentTwo, .contentThree {
@@ -119,6 +118,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #sectionTwo {
     background: url("../images/0.png"),url(../images/2.jpg);
+    background-size: 100% 100%;    
 }
 
 @keyframes pulse {
@@ -242,6 +242,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #sectionThree {
     background: url("../images/0.png"),url(../images/3.jpg);
+        background-size: 100% 100%;
 }
 
 .contentThreeText {
