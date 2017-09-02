@@ -8,7 +8,6 @@ const imgBounce = function() {
             $(this).removeClass('pulse')
         })
     })
-
 }
 // page4所有li加图片背景
 const imgForLi = function() {
@@ -16,9 +15,9 @@ const imgForLi = function() {
         $(this).css('background-image',`url(images/backimg/${i + 1}.jpg)`)
     })
 }
-//清里demo演示区
+//清理demo演示区
 const clearDemo = function() {
-    $('.closePop,.overspread').click(function() {
+    $('.closePop, .overspread').click(function() {
         $('.popUp').hide(0)
         $('.overspread').hide(0)
         $('.demoContainer').html('')
