@@ -1102,6 +1102,13 @@ hexo-generator-index@^0.2.0:
     hexo-pagination "0.0.2"
     object-assign "^4.0.1"
 
+hexo-generator-search@^2.1.1:
+  version "2.1.1"
+  resolved "http://registry.npm.taobao.org/hexo-generator-search/download/hexo-generator-search-2.1.1.tgz#bce5651b9c0dc1d3b0dd6d40e025fba412e788d9"
+  dependencies:
+    ejs "^1.0.0"
+    utils-merge "^1.0.0"
+
 hexo-generator-tag@^0.2.0:
   version "0.2.0"
   resolved "http://registry.npm.taobao.org/hexo-generator-tag/download/hexo-generator-tag-0.2.0.tgz#c5715846bb41e57d9c20c1d66d7db21a1abf7a62"
