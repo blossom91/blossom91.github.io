@@ -1116,6 +1116,12 @@ hexo-generator-tag@^0.2.0:
     hexo-pagination "0.0.2"
     object-assign "^4.0.1"
 
+hexo-helper-qrcode@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/hexo-helper-qrcode/download/hexo-helper-qrcode-1.0.2.tgz#867ca36104ab6962711f44b47e6645c3548cbc0a"
+  dependencies:
+    qr-image "^3.1.0"
+
 hexo-i18n@^0.2.1:
   version "0.2.1"
   resolved "http://registry.npm.taobao.org/hexo-i18n/download/hexo-i18n-0.2.1.tgz#84f141432bf09d8b558ed878c728164b6d1cd6de"
@@ -2101,6 +2107,10 @@ pseudomap@^1.0.2:
 punycode@^1.4.1:
   version "1.4.1"
   resolved "http://registry.npm.taobao.org/punycode/download/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
+
+qr-image@^3.1.0:
+  version "3.2.0"
+  resolved "http://registry.npm.taobao.org/qr-image/download/qr-image-3.2.0.tgz#9fa8295beae50c4a149cf9f909a1db464a8672e8"
 
 qs@~6.3.0:
   version "6.3.2"
