@@ -8,7 +8,7 @@ gitment:
   client_secret: ## GitHub client secret, e.g. ec2fb9054972c891289640354993b662f4cccc50
 uyan: ## Your uyan_id. e.g. 1234567
 livere: ## Your livere data-uid, e.g. MTAyMC8zMDAxOC78NTgz
-changyan: ## Your changyan appid, e.g. cyrALsXc8
+changyan: cytkQwNUK ## Your changyan appid, e.g. cyrALsXc8
 changyan_conf: ## You changyan conf, e.g. prod_d8a508c2825ab57eeb43e7c69bba0e8b
 # https://valine.js.org
 valine:
@@ -22,25 +22,25 @@ valine:
   pageSize: 10 ## 
   guest_info: nick,mail,link
 
-google_search: true ## Use Google search, true/false.
-baidu_search: ## Use Baidu search, true/false.
+google_search: false ## Use Google search, true/false.
+baidu_search: false ## Use Baidu search, true/false.
 swiftype: ## Your swiftype_key, e.g. m7b11ZrsT8Me7gzApciT
 tinysou: ## Your tinysou_key, e.g. 4ac092ad8d749fdc6293
-self_search: ## Use a jQuery-based local search engine, true/false.
+self_search: true ## Use a jQuery-based local search engine, true/false.
 google_analytics: ## Your Google Analytics tracking id, e.g. UA-42425684-2
 baidu_analytics: ## Your Baidu Analytics tracking id, e.g. 8006843039519956000
-show_category_count: false ## If you want to show the count of categories in the sidebar widget please set the value to true.
-toc_number: true ## If you want to add list number to toc please set the value to true.
-shareto: false ## If you want to use the share button please set the value to true, you must have hexo-helper-qrcode installed.
-busuanzi: false ## If you want to use Busuanzi page views please set the value to true.
-widgets_on_small_screens: false ## Set to true to enable widgets on small screens.
-canvas_nest:
+show_category_count: false ## 是否显示侧边栏分类数目.
+toc_number: true ## 是否显示文章中目录列表自动编号.
+shareto: false ## 是否使用分享按鈕，需要安装hexo-helper-qrcode插件使用.
+busuanzi: false ## 是否使用不蒜子页面访问计数.
+widgets_on_small_screens: false ## 是否在移动设备屏幕底部显示侧边栏.
+canvas_nest: ## 是否使用canvas动态背景
   enable: false ## If you want to use dynamic background please set the value to true, you can also fill the following parameters to customize the dynamic effect, or just leave them blank to keep the default effect.
   color: ## RGB value of the color, e.g. "100,99,98"
   opacity: ## Transparency of lines, e.g. "0.7"
   zIndex: ## The z-index property of the background, e.g. "-1"
   count: ## Quantity of lines, e.g. "150"
-donate:
+donate: ## 是否启用捐赠按钮
   enable: false ## If you want to show the donate button after each post, please set the value to true and fill the following items according to your need. You can also enable donate button in a page by adding a "donate: true" item to the front-matter.
   github: ## GitHub URL, e.g. https://github.com/Kaiyuan/donate-page
   alipay_qr: ## Path of Alipay QRcode image, e.g. /img/AliPayQR.png
@@ -63,35 +63,28 @@ menu:
     directory: atom.xml
     icon: fa-rss
 
-widgets: ## Six widgets in sidebar provided: search, category, tag, recent_posts, rencent_comments and links.
+widgets: ## 选择和排列希望使用的侧边栏小工具
   - search
   - category
   - tag
   - recent_posts
-  - recent_comments
   - links
 
-links:
-  - title: site-name1
-    url: http://www.example1.com/
-  - title: site-name2
-    url: http://www.example2.com/
-  - title: site-name3
-    url: http://www.example3.com/
+links: ## 友情链接，请依照格式填写
+  - title: bilibili
+    url: http://www.bilibili.com/
 
-timeline:
+timeline: ## 网站历史时间线，在页面front-matter中设置layout: timeline可显示
   - num: 1
-    word: 2014/06/12-Start
+    word: 2017/8/01-Start
   - num: 2
-    word: 2014/11/29-XXX
-  - num: 3
-    word: 2015/02/18-DDD
+    word: 2014/12/01-update
   - num: 4
     word: More
 
-# Static files
+# Static files  静态文件存储路径，方便设置CDN缓存
 js: js
 css: css
 
-# Theme version
+# Theme version 主题版本，便于静态文件更新后刷新CDN缓存 
 version: 0.0.0
