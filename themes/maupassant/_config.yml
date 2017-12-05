@@ -35,7 +35,7 @@ shareto: false ## 是否使用分享按鈕，需要安装hexo-helper-qrcode插�
 busuanzi: true ## 是否使用不蒜子页面访问计数.
 widgets_on_small_screens: false ## 是否在移动设备屏幕底部显示侧边栏.
 canvas_nest: ## 是否使用canvas动态背景
-  enable: true ## If you want to use dynamic background please set the value to true, you can also fill the following parameters to customize the dynamic effect, or just leave them blank to keep the default effect.
+  enable:    ## If you want to use dynamic background please set the value to true, you can also fill the following parameters to customize the dynamic effect, or just leave them blank to keep the default effect.
   color: ## RGB value of the color, e.g. "100,99,98"
   opacity: ## Transparency of lines, e.g. "0.7"
   zIndex: ## The z-index property of the background, e.g. "-1"
