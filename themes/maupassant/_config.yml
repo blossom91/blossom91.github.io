@@ -31,7 +31,7 @@ google_analytics: ## Your Google Analytics tracking id, e.g. UA-42425684-2
 baidu_analytics: ## Your Baidu Analytics tracking id, e.g. 8006843039519956000
 show_category_count: false ## 是否显示侧边栏分类数目.
 toc_number: true ## 是否显示文章中目录列表自动编号.
-shareto: true ## 是否使用分享按鈕，需要安装hexo-helper-qrcode插件使用.
+shareto: false ## 是否使用分享按鈕，需要安装hexo-helper-qrcode插件使用.
 busuanzi: true ## 是否使用不蒜子页面访问计数.
 widgets_on_small_screens: false ## 是否在移动设备屏幕底部显示侧边栏.
 canvas_nest: ## 是否使用canvas动态背景
@@ -59,9 +59,12 @@ menu:
   - page: about
     directory: about/
     icon: fa-user
-  - page: rss
-    directory: atom.xml
-    icon: fa-rss
+  - page: guestbook
+    directory: guestbook/
+    icon: fa-comments
+  # - page: rss
+  #   directory: atom.xml
+  #   icon: fa-rss
 
 widgets: ## 选择和排列希望使用的侧边栏小工具
   - search
