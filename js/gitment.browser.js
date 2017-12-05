@@ -2805,46 +2805,46 @@ var Gitment =
 
             var _constants = __webpack_require__(0)
 
-            // function renderHeader(_ref, instance) {
-            //     var meta = _ref.meta,
-            //         user = _ref.user,
-            //         reactions = _ref.reactions
+            function renderHeader(_ref, instance) {
+                var meta = _ref.meta,
+                    user = _ref.user,
+                    reactions = _ref.reactions
 
-            //     var container = document.createElement('div')
-            //     container.lang = 'en-US'
-            //     container.className = 'gitment-container gitment-header-container'
+                var container = document.createElement('div')
+                container.lang = 'en-US'
+                container.className = 'gitment-container gitment-header-container'
 
-            //     var likeButton = document.createElement('span')
-            //     var likedReaction = reactions.find(reaction => reaction.content === 'heart' && reaction.user.login === user.login)
-            //     likeButton.className = 'gitment-header-like-btn'
-            //     likeButton.innerHTML = '\n    ' + _icons.heart + '\n    ' + (likedReaction ? 'Unlike' : 'Like') + '\n    ' + (meta.reactions && meta.reactions.heart ? ' \u2022 <strong>' + meta.reactions.heart + '</strong> Liked' : '') + '\n  '
+                var likeButton = document.createElement('span')
+                var likedReaction = reactions.find(reaction => reaction.content === 'heart' && reaction.user.login === user.login)
+                likeButton.className = 'gitment-header-like-btn'
+                likeButton.innerHTML = '\n    ' + _icons.heart + '\n    ' + (likedReaction ? 'Unlike' : 'Like') + '\n    ' + (meta.reactions && meta.reactions.heart ? ' \u2022 <strong>' + meta.reactions.heart + '</strong> Liked' : '') + '\n  '
 
-            //     if (likedReaction) {
-            //         likeButton.classList.add('liked')
-            //         likeButton.onclick = function() {
-            //             return instance.unlike()
-            //         }
-            //     } else {
-            //         likeButton.classList.remove('liked')
-            //         likeButton.onclick = function() {
-            //             return instance.like()
-            //         }
-            //     }
-            //     container.appendChild(likeButton)
+                if (likedReaction) {
+                    likeButton.classList.add('liked')
+                    likeButton.onclick = function() {
+                        return instance.unlike()
+                    }
+                } else {
+                    likeButton.classList.remove('liked')
+                    likeButton.onclick = function() {
+                        return instance.like()
+                    }
+                }
+                container.appendChild(likeButton)
 
-            //     var commentsCount = document.createElement('span')
-            //     commentsCount.innerHTML = '\n    ' + (meta.comments ? ' \u2022 <strong>' + meta.comments + '</strong> Comments' : '') + '\n  '
-            //     container.appendChild(commentsCount)
+                var commentsCount = document.createElement('span')
+                commentsCount.innerHTML = '\n    ' + (meta.comments ? ' \u2022 <strong>' + meta.comments + '</strong> Comments' : '') + '\n  '
+                container.appendChild(commentsCount)
 
-            //     // var issueLink = document.createElement('a')
-            //     // issueLink.className = 'gitment-header-issue-link'
-            //     // issueLink.href = meta.html_url
-            //     // issueLink.target = '_blank'
-            //     // issueLink.innerText = 'Issue Page'
-            //     // container.appendChild(issueLink)
+                // var issueLink = document.createElement('a')
+                // issueLink.className = 'gitment-header-issue-link'
+                // issueLink.href = meta.html_url
+                // issueLink.target = '_blank'
+                // issueLink.innerText = 'Issue Page'
+                // container.appendChild(issueLink)
 
-            //     return container
-            // }
+                return container
+            }
 
             function renderComments(_ref2, instance) {
                 var meta = _ref2.meta,
@@ -3079,13 +3079,13 @@ var Gitment =
                 var container = document.createElement('div')
                 container.lang = 'en-US'
                 container.className = 'gitment-container gitment-root-container'
-                // container.appendChild(instance.renderHeader(state, instance))
+                container.appendChild(instance.renderHeader(state, instance))
                 container.appendChild(instance.renderComments(state, instance))
                 container.appendChild(instance.renderEditor(state, instance))
                 return container
             }
 
-            exports.default = { render, renderComments, renderEditor }
+            exports.default = { render, renderHeader, renderComments, renderEditor }
             /** */ },
         /* 3 */
         /** */ function(module, exports, __webpack_require__) {
