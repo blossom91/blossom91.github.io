@@ -3,7 +3,6 @@ layout: page
 comments: false
 ---
 <center>
-<h1 style='margin:0'>关于</h1>
 <i class='fa fa-user' aria-hidden="true"></i> Nickname: <a style='color:#0366d6' href="http://www.zhaohang.site/">blossom</a>
 
 <i class='fa fa-github' aria-hidden="true"></i> Github: <a style='color:#0366d6' href="https://github.com/blossom91">@blossom91</a>
