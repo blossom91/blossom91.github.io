@@ -5,7 +5,8 @@
 
 ## `hexo`框架说明
 
-*`hexo`依赖于node与git*
+
+**`hexo`依赖于node与git**
 
 ```shell
 npm install hexo-cli -g
