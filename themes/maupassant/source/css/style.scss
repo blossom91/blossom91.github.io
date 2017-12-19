@@ -1508,6 +1508,14 @@ figure.highlight,
   margin: 1.1em 0 0 2em;
   padding: 0.7em 0.7em 0 0.7em;
   max-width: 40%;
+  max-height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+@media all and (max-width: 760px){
+    .toc-article {
+        display: none;
+      }
 }
 .toc-title {
   font-size: 120%;

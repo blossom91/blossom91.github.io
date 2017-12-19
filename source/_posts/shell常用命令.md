@@ -4,7 +4,7 @@ toc: true
 mathjax: true
 comments: true
 date: 2017-09-08 14:01:25
-updated:
+updated: 2017-12-13
 tags: shell
 categories: 杂货铺
 ---
@@ -29,11 +29,17 @@ $ source [file]
 # 打印,等同于log
 $ echo ...
 
-# 可以传入参数 $0是文件名 $1是1
+# 可以传入参数 $0是脚本名 $1是1
 $ sh file.sh 1 2 3
 
 # 传入参数的个数  所有传入参数
-$#  $*
+$ echo $#  $*
+
+# 上个命令的退出状态，或函数的返回值
+$ echo $?
+
+# 当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID
+$ echo $$
 
 # -e 开启转义  \n开启换行  \c不换行
 $ echo -e "OK! \n"
@@ -114,9 +120,9 @@ $ lengthn=${#array_name[n]}
 ```
 
 ---
-##  Mac OSX 命令行
+###  Mac OSX 命令行
 
-### 一些常用命令
+#### 一些常用命令
 
 ```shell
 # 允许所有来源
@@ -136,7 +142,7 @@ $ defaults write com.apple.finder _FXShowPosixPathInTitle -bool NO killall Finde
 
 ```
 
-### 快捷命令
+#### 快捷命令
 
 |功能说明|快捷键|
 |:-:|:-:|
