@@ -6,7 +6,7 @@ comments: true
 date: 2017-12-19 17:37:34
 updated:
 tags: go
-categories: go
+categories: 后端
 ---
 
 `go`的学习,感谢[Go By Example](https://gobyexample.xgwang.me/)、[go网络编程](https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md)与[go语言标准库](http://books.studygolang.com/The-Golang-Standard-Library-by-Example/)

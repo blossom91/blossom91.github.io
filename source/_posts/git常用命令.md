@@ -8,19 +8,21 @@ tags: git
 categories: 杂货铺
 ---
 
-本文转载至[阮一峰](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html),感谢阮老师一直以来的优秀分享
+本文转载至[阮一峰](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
 git是一种分布式的版本管理工具
-可通过**ssh** **token**来管理权限问题
+github是基于git开发的一种图形化的git管理软件,支持免费的开源项目托管,是最大的开源社区
+gitlab是国人基于git开发的项目管理软件,最大的不同是支持免费的私有项目托管
+都可通过**ssh** **token**来管理权限问题
 
-<!-- more -->
 
-#### git名词解释与命令说明
+### git名词解释与命令说明
 - Workspace：工作区
 - Index / Stage：暂存区
 - Repository：仓库区（或本地仓库）
 - Remote：远程仓库
 
+---
 #### 新建代码库
 ```
 # 在当前目录新建一个Git代码库
@@ -32,8 +34,11 @@ $ git init [project-name]
 # 下载一个项目和它的整个代码历史
 $ git clone [url]
 
-# 下载一个项目分支
+# 下载一个项目分支 默认主机名origin
 $ git clone -b [dev] [url]
+
+# 下载一个项目 选择其他主机名
+$ git clone -o [origin] [url]
 ```
 ---
 #### 配置
@@ -141,7 +146,7 @@ $ git checkout -
 $ git branch --set-upstream [branch] [remote-branch]
 
 # 合并指定分支到当前分支
-$ git merge [branch]
+$ git merge --no-ff [branch]
 
 # 选择一个commit，合并进当前分支
 $ git cherry-pick [commit]
@@ -170,6 +175,9 @@ $ git tag -d [tag]
 
 # 删除远程tag
 $ git push origin :refs/tags/[tagName]
+
+
+
 
 # 查看tag信息
 $ git show [tag]
@@ -262,10 +270,14 @@ $ git remote show [remote]
 # 增加一个新的远程仓库，并命名
 $ git remote add [shortname] [url]
 
+# 删除一个远程仓库
+$ git remote rm [shortname]
+
 # 取回远程仓库的变化，并与本地分支合并
 $ git pull [remote] [branch]
 
 # 上传本地指定分支到远程仓库
+$ git push [remote] <本地分支名>:<远程分支名>
 $ git push [remote] [branch]
 
 # 强行推送当前分支到远程仓库，即使有冲突
@@ -273,6 +285,13 @@ $ git push [remote] --force
 
 # 推送所有分支到远程仓库
 $ git push [remote] --all
+
+# 删除指定的远程分支(等同于推送空分支)
+$ git push [remote] :master
+$ git push [remote] --delete master
+
+# 设置默认主机,用于省略 [remote]
+$ git push -u origin master
 ```
 ---
 #### 撤销
@@ -311,8 +330,36 @@ $ git stash pop
 ```
 ---
 #### 其他
+关于分支的一些约定:
+- 默认master是对外主分支
+- dev是公共开发分支
+- 修补bug: 从dev创建fixbug-0.1分支,修补结束后merge回dev分支并删除fixbug分支
+- 添加功能: 从dev创建feature-x分支,开发结束后merge回dev分支并删除fixbug分支
+- 发布预览: 从dev创建release-1.2分支,结束后merge回dev分支并删除fixbug分支
+---
+关于commit的一些约定:
+- feat：新功能（feature）
+- fix：修补bug
+- docs：文档（documentation）
+- style： 格式（不影响代码运行的变动）
+- refactor：重构（即不是新增功能，也不是修改bug的代码变动）
+- test：增加测试
+- chore：构建过程或辅助工具的变动
+
+[Commitizen](https://github.com/commitizen/cz-cli)是一个撰写合格 Commit message 的工具。
+```
+$ npm install -g commitizen
+
+# 运行下面的命令，使其支持 Angular 的 Commit message 格式
+$ commitizen init cz-conventional-changelog --save --save-exact
+```
+---
 ```
 # 生成一个可供发布的压缩包
 $ git archive
 ```
----
+
+```
+# 解决 Git refusing to merge unrelated histories 问题
+$ git pull origin master --allow-unrelated-histories
+```

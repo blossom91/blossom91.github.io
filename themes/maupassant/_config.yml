@@ -90,4 +90,4 @@ js: js
 css: css
 
 # Theme version 主题版本，便于静态文件更新后刷新CDN缓存 
-version: 0.0.0
+version: 0.0.1
