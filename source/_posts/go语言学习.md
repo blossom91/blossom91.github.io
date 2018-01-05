@@ -9,23 +9,138 @@ tags: go
 categories: 后端
 ---
 
-`go`的学习,感谢[Go By Example](https://gobyexample.xgwang.me/)、[go网络编程](https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md)与[go语言标准库](http://books.studygolang.com/The-Golang-Standard-Library-by-Example/)
+`go`的学习,感谢[Go By Example](https://gobyexample.xgwang.me/)、[go 网络编程](https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md)与[go 语言标准库](http://books.studygolang.com/The-Golang-Standard-Library-by-Example/)
 随着学习的深入,此文章持续更新...
 
 <!-- more -->
+
 ## 基础
 
 ### 声明
+
 ```go
-// 变量
+// 变量  
 var a string = "hello"
 var b, c int =  1, 2
+// 只允许函数中这样声明
 f := "world"
-// 常量
+// 常量(只允许布尔型、数字型（整数型、浮点型和复数）和字符串型)
 const n = "hello, world"
+// 同时声明多个常量、变量，或者导入多个包时，可采用分组的方式进行声明
+// 关键字iota，这个关键字用来声明enum的时候采用，它默认开始值是0，const中每增加一行加1
+const (
+    a = iota  //0
+    b = iota  //1
+    c = iota  //2
+)
+const v = iota // 每遇到一个const关键字，iota就会重置，此时v == 0
+
+const (
+	h, i, j = iota, iota, iota //h=0,i=0,j=0 iota在同一行值相同
+)
+
+// 声明了一个二维数组，该数组以两个数组作为元素，其中每个数组中又有4个int类型的元素
+doubleArray := [2][4]int{[4]int{1, 2, 3, 4}, [4]int{5, 6, 7, 8}}
+
+// 上面的声明可以简化，直接忽略内部的类型
+easyArray := [2][4]int{{1, 2, 3, 4}, {5, 6, 7, 8}}
+```
+
+### 字符串
+
+`go`语言中字符串是不可变的,想改变可以这样实现
+
+```go
+s := "hello"
+c := []byte(s)  // 将字符串 s 转换为 []byte 类型
+c[0] = 'c'
+s2 := string(c)  // 再转换回 string 类型
+fmt.Printf("%s\n", s2)
+```
+
+这样修改,字符串虽不能更改，但可进行切片操作
+
+```go
+s := "hello"
+s = "c" + s[1:]
+fmt.Printf("%s\n", s)
+```
+
+```go
+import "strings"
+```
+
+| 属性                                         | 说明                |
+| :------------------------------------------- | :------------------ |
+| `strings.Contains("test", "es")`             | 是否包含:`true`     |
+| `strings.Count("test", "t")`                 | 包含数量:`2`        |
+| `strings.HasPrefix("test", "te")`            | 前缀:`true`         |
+| `strings.HasSuffix("test", "st")`            | 后缀:`true`         |
+| `strings.Index("test", "e")`                 | index:`1`           |
+| `strings.Join([]string{"a", "b", "b"}, "-")` | join:`a-b-b`        |
+| `strings.Repeat("a", 5)`                     | 复制:`aaaaa`        |
+| `strings.Replace("foo", "o", "0", -1)`       | 替换:`f00`          |
+| `strings.Replace("foo", "o", "0", 1)`        | 替换 1 次:`f0o`     |
+| `strings.Split("a-b-c-d-e", "-")`            | split:`[a b c d e]` |
+| `strings.ToLower("TEST")`                    | 转小写:`test`       |
+| `strings.ToUpper("test")`                    | 转大写:`TEST`       |
+| `len("hello")`                               | 长度:`5`            |
+| `"hello"[1]`                                 | 索引取值:`101`      |
+
+---
+
+```go
+import "fmt"
+// fmt.Printf  通过 os.Stdout打印格式化的字符串
+
+// fmt.Sprintf 格式化并返回一个字符串而不带任何输出
+s := fmt.Sprintf("a %s", "string")
+fmt.Println(s)   // a string
+
+// fmt.Fprintf 格式化并输出到 io.Writers而不是 os.Stdout
+fmt.Fprintf(os.Stderr, "an %s\n", "error")  // an error
+
+p := point{x:1, y:2}
+```
+
+| 属性                               | 说明                                          |
+| :--------------------------------- | :-------------------------------------------- |
+| `fmt.Printf("%v\n", p)`            | 打印结构体`{1 2}`                             |
+| `fmt.Printf("%+v\n", p)`           | 打印结构体的字段名`{x:1 y:2}`                 |
+| `fmt.Printf("%#v\n", p)`           | 打印 Go 语法表示`main.point{x:1, y:2}`        |
+| `fmt.Printf("%T\n", p)`            | 打印值的类型`main.point`                      |
+| `fmt.Printf("%t\n", true)`         | 格式化布尔值`true`                            |
+| `fmt.Printf("%d\n", 123)`          | 整数标准的十进制格式化`123`                   |
+| `fmt.Printf("%b\n", 14)`           | 整数二进制`1110`                              |
+| `fmt.Printf("%c\n", 33)`           | 整数输出给定整数的对应字符`!`                 |
+| `fmt.Printf("%x\n", 456)`          | 整数十六进制`1c8`                             |
+| `fmt.Printf("%f\n", 78.9)`         | 浮点数十进制格式化`78.900000`                 |
+| `fmt.Printf("%e\n", 123400000.0)`  | 浮点型格式化科学技科学记数法`1.234000e+08`    |
+| `fmt.Printf("%E\n", 123400000.0)`  | 浮点型格式化科学技科学记数法`1.234000E+08`    |
+| `fmt.Printf("%s\n", "\"string\"")` | 基本的字符串输出`"string"`                    |
+| `fmt.Printf("%q\n", "\"string\"")` | Go 源代码中那样带有双引号的输出`"\"string\""` |
+| `fmt.Printf("%x\n", "hex this")`   | base-16 编码的字符串`6865782074686973`        |
+| `fmt.Printf("%p\n", &p)`           | 输出一个指针的值`0x42135100`                  |
+
+```go
+// 当输出数字的时候，你将经常想要控制输出结果的宽度和精度，可以使用在 % 后面使用数字来控制输出宽度。默认结果使用右对齐并且通过空格来填充空白部分。
+fmt.Printf("|%6d|%6d|\n", 12, 345)
+
+// 你也可以指定浮点型的输出宽度，同时也可以通过 宽度.精度 的语法来指定输出的精度。
+fmt.Printf("|%6.2f|%6.2f|\n", 1.2, 3.45)
+
+// 要左对齐，使用 - 标志。
+fmt.Printf("|%-6.2f|%-6.2f|\n", 1.2, 3.45)
+
+// 你也许也想控制字符串输出时的宽度，特别是要确保他们在类表格输出时的对齐。这是基本的右对齐宽度表示。
+fmt.Printf("|%6s|%6s|\n", "foo", "b")
+
+// 要左对齐，和数字一样，使用 - 标志。
+fmt.Printf("|%-6s|%-6s|\n", "foo", "b")
 ```
 
 ### 循环
+
 ```go
 i := 1
 for i <= 3 {
@@ -45,6 +160,7 @@ for {
 ```
 
 ### if/else
+
 ```go
 if 7%2 == 0 {
 	fmt.Println("7 is even")
@@ -61,7 +177,8 @@ if num := 9; num < 0 {
 }
 ```
 
-### switch 
+### switch
+
 ```go
 // 在一个 case 语句中，你可以使用逗号来分隔多个表达式。在这个例子中，我们很好的使用了可选的default 分支。
 switch time.Now().Weekday() {
@@ -80,82 +197,9 @@ default:
 }
 ```
 
-### 字符串
-
-```go
-import "strings"
-```
-
-|属性|说明|
-| :- | :- |
-|`strings.Contains("test", "es")`|是否包含:`true`|
-|`strings.Count("test", "t")`|包含数量:`2`|
-|`strings.HasPrefix("test", "te")`|前缀:`true`|
-|`strings.HasSuffix("test", "st")`|后缀:`true`|
-|`strings.Index("test", "e")`|index:`1`|
-|`strings.Join([]string{"a", "b", "b"}, "-")`|join:`a-b-b`|
-|`strings.Repeat("a", 5)`|复制:`aaaaa`|
-|`strings.Replace("foo", "o", "0", -1)`|替换:`f00`|
-|`strings.Replace("foo", "o", "0", 1)`|替换1次:`f0o`|
-|`strings.Split("a-b-c-d-e", "-")`|split:`[a b c d e]`|
-|`strings.ToLower("TEST")`|转小写:`test`|
-|`strings.ToUpper("test")`|转大写:`TEST`|
-|`len("hello")`|长度:`5`|
-|`"hello"[1]`|索引取值:`101`|
-
----
-```go
-import "fmt"
-// fmt.Printf  通过 os.Stdout打印格式化的字符串
-
-// fmt.Sprintf 格式化并返回一个字符串而不带任何输出
-s := fmt.Sprintf("a %s", "string")
-fmt.Println(s)   // a string
-
-// fmt.Fprintf 格式化并输出到 io.Writers而不是 os.Stdout
-fmt.Fprintf(os.Stderr, "an %s\n", "error")  // an error
-
-p := point{x:1, y:2}
-```
-
-|属性|说明|
-| :- | :- |
-|`fmt.Printf("%v\n", p)`|打印结构体`{1 2}`|
-|`fmt.Printf("%+v\n", p)`|打印结构体的字段名`{x:1 y:2}`|
-|`fmt.Printf("%#v\n", p)`|打印Go 语法表示`main.point{x:1, y:2}`|
-|`fmt.Printf("%T\n", p)`|打印值的类型`main.point`|
-|`fmt.Printf("%t\n", true)`|格式化布尔值`true`|
-|`fmt.Printf("%d\n", 123)`|整数标准的十进制格式化`123`|
-|`fmt.Printf("%b\n", 14)`|整数二进制`1110`|
-|`fmt.Printf("%c\n", 33)`|整数输出给定整数的对应字符`!`|
-|`fmt.Printf("%x\n", 456)`|整数十六进制`1c8`|
-|`fmt.Printf("%f\n", 78.9)`|浮点数十进制格式化`78.900000`|
-|`fmt.Printf("%e\n", 123400000.0)`|浮点型格式化科学技科学记数法`1.234000e+08`|
-|`fmt.Printf("%E\n", 123400000.0)`|浮点型格式化科学技科学记数法`1.234000E+08`|
-|`fmt.Printf("%s\n", "\"string\"")`|基本的字符串输出`"string"`|
-|`fmt.Printf("%q\n", "\"string\"")`|Go 源代码中那样带有双引号的输出`"\"string\""`|
-|`fmt.Printf("%x\n", "hex this")`|base-16 编码的字符串`6865782074686973`|
-|`fmt.Printf("%p\n", &p)`|输出一个指针的值`0x42135100`|
-
-```go
-// 当输出数字的时候，你将经常想要控制输出结果的宽度和精度，可以使用在 % 后面使用数字来控制输出宽度。默认结果使用右对齐并且通过空格来填充空白部分。
-fmt.Printf("|%6d|%6d|\n", 12, 345)
-
-// 你也可以指定浮点型的输出宽度，同时也可以通过 宽度.精度 的语法来指定输出的精度。
-fmt.Printf("|%6.2f|%6.2f|\n", 1.2, 3.45)
-
-// 要左对齐，使用 - 标志。
-fmt.Printf("|%-6.2f|%-6.2f|\n", 1.2, 3.45)
-
-// 你也许也想控制字符串输出时的宽度，特别是要确保他们在类表格输出时的对齐。这是基本的右对齐宽度表示。
-fmt.Printf("|%6s|%6s|\n", "foo", "b")
-
-// 要左对齐，和数字一样，使用 - 标志。
-fmt.Printf("|%-6s|%-6s|\n", "foo", "b")
-```
-
 ### 数组
-```go 
+
+```go
 // 这里我们创建了一个数组 a 来存放刚好 5 个 int。元素的类型和长度都是数组类型的一部分。数组默认是零值的，对于 int 数组来说也就是 0。
 var a [5]int
 fmt.Println("emp:", a)
@@ -178,7 +222,8 @@ for i := 0; i < 2; i++ {
 fmt.Println("2d: ", twoD)
 ```
 
-###  切片`slice`
+### 切片`slice`
+
 ```go
 // 不像数组，slice 的类型仅由它所包含的元素决定（不像数组中还需要元素的个数）。要创建一个长度非零的空slice，需要使用内建的方法 make。这里我们创建了一个长度为3的 string 类型 slice（初始化为零值）。
 s := make([]string, 3)
@@ -224,6 +269,7 @@ fmt.Println("2d: ", twoD)
 ```
 
 ### 关系数组`map`
+
 ```go
 // 要创建一个空 map，需要使用内建的 make:make(map[key-type]val-type).
 m := make(map[string]int)
@@ -249,6 +295,7 @@ fmt.Println("map:", n)
 ```
 
 ### 遍历`Rang`
+
 ```go
 // 这里我们使用 range 来统计一个 slice 的元素个数。数组也可以采用这种方法。
 nums := []int{2, 3, 4}
@@ -275,6 +322,7 @@ for i, c := range "go" {
 ```
 
 ### JSON
+
 ```go
 func main() {
 	// 首先我们来看一下基本数据类型到 JSON 字符串的编码过程。这里是一些原子值的例子。
@@ -335,6 +383,7 @@ func main() {
 ```
 
 ## 函数
+
 ```go
 // 这里是一个函数，接受两个 int 并且以 int 返回它们的和
 func plus(a int, b int) int {
@@ -349,6 +398,7 @@ func main() {
 ```
 
 ### 多返回值
+
 ```go
 // (int, int) 在这个函数中标志着这个函数返回 2 个 int。
 func vals() (int, int) {
@@ -366,6 +416,7 @@ func main() {
 ```
 
 ### 变参函数
+
 ```go
 // 这个函数使用任意数目的 int 作为参数。
 func sum(nums ...int) {
@@ -387,6 +438,7 @@ func main() {
 ```
 
 ### 闭包
+
 ```go
 // 这个 intSeq 函数返回另一个在 intSeq 函数体内定义的匿名函数。这个返回的函数使用闭包的方式 隐藏 变量 i。
 func intSeq() func() int {
@@ -410,6 +462,7 @@ func main() {
 ```
 
 ### 递归
+
 ```go
 // face 函数在到达 face(0) 前一直调用自身。
 func fact(n int) int {
@@ -424,6 +477,7 @@ func main() {
 ```
 
 ### 指针
+
 ```go
 // 我们将通过两个函数：zeroval 和 zeroptr 来比较指针和值类型的不同。zeroval 有一个 int 型参数，所以使用值传递。zeroval 将从调用它的那个函数中得到一个 ival形参的拷贝。
 func zeroval(ival int) {
@@ -444,12 +498,16 @@ func main() {
 	fmt.Println("zeroptr:", i)
 	// 指针也是可以被打印的。
 	fmt.Println("pointer:", &i)
+        // 又可以获取到值了
+	fmt.Println("pointer:", *&i)
 }
 
 // zeroval 在 main 函数中不能改变 i 的值，但是zeroptr 可以，因为它有一个这个变量的内存地址的引用。
+// 对于空指针   var  ptr *int    ptr == nil
 ```
 
 ### 结构体
+
 ```go
 func main() {
 	// 使用这个语法创建了一个新的结构体元素。
@@ -474,6 +532,7 @@ func main() {
 ```
 
 ### 方法
+
 ```go
 type rect struct {
 	width, height int
@@ -501,6 +560,7 @@ func main() {
 ```
 
 ### 接口
+
 ```go
 // 接口 是方法特征的命名集合。
 // 这里是一个几何体的基本接口。
@@ -533,7 +593,7 @@ func (c circle) perim() float64 {
 	return 2 * math.Pi * c.radius
 }
 
-// 如果一个变量的是接口类型，那么我们可以调用这个被命名的接口中的方法。这里有一个一通用的 measure 函数，利用这个特性，它可以用在任何 geometry 上。
+// 如果一个变量是接口类型，那么我们可以调用这个被命名的接口中的方法。这里有一个一通用的 measure 函数，利用这个特性，它可以用在任何 geometry 上。
 func measure(g geometry) {
 	fmt.Println(g)
 	fmt.Println(g.area())
@@ -548,7 +608,140 @@ func main() {
 }
 ```
 
+### 获取 interface 变量存储的类型
+
+`interface`的变量里面可以存储任意类型的数值(该类型实现了`interface`)
+那么获取这个变量里面实际保存的对象类型可以使用下列方法
+
+* Comma-ok 断言
+  Go 语言里面有一个语法，可以直接判断是否是该类型的变量： value, ok = element.(T)，这里 value 就是变量的值，ok 是一个 bool 类型，element 是 interface 变量，T 是断言的类型。如果 element 里面确实存储了 T 类型的数值，那么 ok 返回 true，否则返回 false。
+
+```go
+type Element interface{}
+type List []Element
+
+type Person struct {
+	name string
+	age  int
+}
+
+//定义了String方法，实现了fmt.Stringer
+func (p Person) String() string {
+	return "(name: " + p.name + " - age: " + strconv.Itoa(p.age) + " years)"
+}
+
+func main() {
+	list := make(List, 3)
+	list[0] = 1       // an int
+	list[1] = "Hello" // a string
+	list[2] = Person{"Dennis", 70}
+
+	for index, element := range list {
+		if value, ok := element.(int); ok {
+			fmt.Printf("list[%d] is an int and its value is %d\n", index, value)
+		} else if value, ok := element.(string); ok {
+			fmt.Printf("list[%d] is a string and its value is %s\n", index, value)
+		} else if value, ok := element.(Person); ok {
+			fmt.Printf("list[%d] is a Person and its value is %s\n", index, value)
+		} else {
+			fmt.Printf("list[%d] is of a different type\n", index)
+		}
+	}
+}
+```
+
+* switch 测试
+
+因为用到了很多的 if 所以自然有`switch`
+这里有一点需要强调的是：`element.(type)`语法不能在 switch 外的任何逻辑里面使用，如果你要在 switch 外面判断一个类型就使用`comma-ok`。
+
+```go
+func main() {
+	list := make(List, 3)
+	list[0] = 1       //an int
+	list[1] = "Hello" //a string
+	list[2] = Person{"Dennis", 70}
+
+	for index, element := range list {
+		switch value := element.(type) {
+		case int:
+			fmt.Printf("list[%d] is an int and its value is %d\n", index, value)
+		case string:
+			fmt.Printf("list[%d] is a string and its value is %s\n", index, value)
+		case Person:
+			fmt.Printf("list[%d] is a Person and its value is %s\n", index, value)
+		default:
+			fmt.Println("list[%d] is of a different type", index)
+		}
+	}
+}
+```
+
+### 反射(不太懂)
+
+暂时觉得这个可以判断结构类型
+
+```go
+type MyStruct struct {
+	name string
+}
+
+func (this *MyStruct) GetName(str string) string {
+	this.name = str
+	return this.name
+}
+func main() {
+	// 备注: reflect.Indirect -> 如果是指针则返回 Elem()
+	// 首先，reflect包有两个数据类型我们必须知道，一个是Type，一个是Value。
+	// Type就是定义的类型的一个数据类型，Value是值的类型
+	// 对象
+	s := "this is string"
+	// 获取对象类型 (string)
+	fmt.Println(reflect.TypeOf(s))
+	// 获取对象值 (this is string)
+	fmt.Println(reflect.ValueOf(s))
+	// 对象
+	var x float64 = 3.4
+	// 获取对象值 (<float64 Value>)
+	fmt.Println(reflect.ValueOf(x))
+	// 对象
+	a := &MyStruct{name: "nljb"}
+	// 返回对象的方法的数量 (1)
+	fmt.Println(reflect.TypeOf(a).NumMethod())
+	// 遍历对象中的方法
+	for m := 0; m < reflect.TypeOf(a).NumMethod(); m++ {
+		method := reflect.TypeOf(a).Method(m)
+		fmt.Println(method.Type)         // func(*main.MyStruct) string
+		fmt.Println(method.Name)         // GetName
+		fmt.Println(method.Type.NumIn()) // 参数个数
+		fmt.Println(method.Type.In(1))   // 参数类型
+	}
+	// 获取对象值 (<*main.MyStruct Value>)
+	fmt.Println(reflect.ValueOf(a))
+	// 获取对象名称
+	fmt.Println(reflect.Indirect(reflect.ValueOf(a)).Type().Name())
+	// 参数
+	i := "Hello"
+	v := make([]reflect.Value, 0)
+	v = append(v, reflect.ValueOf(i))
+	// 通过对象值中的方法名称调用方法 ([nljb]) (返回数组因为Go支持多值返回)
+	fmt.Println(reflect.ValueOf(a).MethodByName("GetName").Call(v))
+	// 通过对值中的子对象名称获取值 (nljb)
+	fmt.Println(reflect.Indirect(reflect.ValueOf(a)).FieldByName("name"))
+	// 是否可以改变这个值 (false)
+	fmt.Println(reflect.Indirect(reflect.ValueOf(a)).FieldByName("name").CanSet())
+	// 是否可以改变这个值 (true)
+	fmt.Println(reflect.Indirect(reflect.ValueOf(&(a.name))).CanSet())
+	// 不可改变 (false)
+	fmt.Println(reflect.Indirect(reflect.ValueOf(s)).CanSet())
+	// 可以改变
+	// reflect.Indirect(reflect.ValueOf(&s)).SetString("jbnl")
+	fmt.Println(reflect.Indirect(reflect.ValueOf(&s)).CanSet())
+}
+```
+
 ### 错误处理
+
 ```go
 // 按照惯例，错误通常是最后一个返回值并且是 error 类型，一个内建的接口。
 func f1(arg int) (int, error) {
@@ -602,6 +795,7 @@ func main() {
 ```
 
 ### 排序
+
 ```go
 func main() {
 	// 排序方法是正对内置数据类型的；这里是一个字符串的例子。注意排序是原地更新的，所以他会改变给定的序列并且不返回一个新值。
@@ -619,6 +813,7 @@ func main() {
 ```
 
 ### 自定义排序
+
 ```go
 // 为了在 Go 中使用自定义函数进行排序，我们需要一个对应的类型。这里我们创建一个为内置 []string 类型的别名的ByLength 类型，
 type ByLength []string
@@ -643,6 +838,7 @@ func main() {
 ```
 
 ### Panic
+
 ```go
 func main() {
 	// 我们将在这个网站中使用 panic 来检查预期外的错误。这个是唯一一个为 panic 准备的例子。
@@ -656,6 +852,7 @@ func main() {
 ```
 
 ### Defer
+
 ```go
 // 假设我们想要创建一个文件，向它进行写操作，然后在结束时关闭它。这里展示了如何通过 defer 来做到这一切。
 func main() {
@@ -683,6 +880,7 @@ func closeFile(f *os.File) {
 ```
 
 ### 时间
+
 ```go
 func main() {
 	p := fmt.Println
@@ -723,6 +921,7 @@ func main() {
 ```
 
 ### 时间戳
+
 ```go
 func main() {
 	// 分别使用带 Unix 或者 UnixNano 的 time.Now来获取从自协调世界时起到现在的秒数或者纳秒数。
@@ -742,6 +941,7 @@ func main() {
 ```
 
 ### 时间的格式化与解析
+
 ```go
 func main() {
 	p := fmt.Println
@@ -772,6 +972,7 @@ func main() {
 ```
 
 ### 数字解析
+
 ```go
 func main() {
 	// 使用 ParseFloat 解析浮点数，这里的 64 表示表示解析的数的位数。
@@ -795,7 +996,8 @@ func main() {
 }
 ```
 
-### url解析
+### url 解析
+
 ```go
 func main() {
 	// 我们将解析这个 URL 示例，它包含了一个 scheme，认证信息，主机名，端口，路径，查询参数和片段。
@@ -830,6 +1032,7 @@ func main() {
 ```
 
 ### 随机数
+
 ```go
 func main() {
 	// 例如，rand.Intn 返回一个随机的整数 n，0 <= n <= 100。
@@ -862,7 +1065,8 @@ func main() {
 }
 ```
 
-### SHA1散列
+### SHA1 散列
+
 ```go
 func main() {
 	s := "sha1"
@@ -878,7 +1082,8 @@ func main() {
 }
 ```
 
-### BASE64编码
+### BASE64 编码
+
 ```go
 func main() {
 	// 这是将要编解码的字符串。
@@ -899,12 +1104,8 @@ func main() {
 }
 ```
 
-
-
-
-
-
 ## 协程
+
 ```go
 func f(from string) {
 	for i := 0; i < 3; i++ {
@@ -929,6 +1130,7 @@ func main() {
 ```
 
 ### 通道
+
 ```go
 // 通道 是连接多个 Go 协程的管道。你可以从一个 Go 协程将值发送到通道，然后在别的 Go 协程中接收。
 func main() {
@@ -945,6 +1147,7 @@ func main() {
 ```
 
 ### 通道缓冲
+
 ```go
 // 默认通道是 无缓冲 的，这意味着只有在对应的接收（<- chan）通道准备好接收时，才允许进行发送（chan <-）。可缓存通道允许在没有对应接收方的情况下，缓存限定数量的值。
 func main() {
@@ -960,6 +1163,7 @@ func main() {
 ```
 
 ### 通道同步
+
 ```go
 // 我们可以使用通道来同步 Go 协程间的执行状态。这里是一个使用阻塞的接受方式来等待一个 Go 协程的运行结束。
 // 这是一个我们将要在 Go 协程中运行的函数。done 通道将被用于通知其他 Go 协程这个函数已经工作完毕。
@@ -982,6 +1186,7 @@ func main() {
 ```
 
 ### 通道方向
+
 ```go
 // ping 函数定义了一个只允许发送数据的通道。尝试使用这个通道来接收数据将会得到一个编译时错误。
 func ping(pings chan<- string, msg string) {
@@ -1003,6 +1208,7 @@ func main() {
 ```
 
 ### 通道选择器
+
 ```go
 func main() {
 	// 在我们的例子中，我们将从两个通道中选择。
@@ -1030,6 +1236,7 @@ func main() {
 ```
 
 ### 超时处理
+
 ```go
 func main() {
 	// 在我们的例子中，假如我们执行一个外部调用，并在 2 秒后通过通道 c1 返回它的执行结果。
@@ -1061,6 +1268,7 @@ func main() {
 ```
 
 ### 非阻塞通道
+
 ```go
 // 常规的通过通道发送和接收数据是阻塞的。然而，我们可以使用带一个 default 子句的 select 来实现非阻塞 的发送、接收，甚至是非阻塞的多路 select。
 func main() {
@@ -1094,6 +1302,7 @@ func main() {
 ```
 
 ### 通道的关闭
+
 ```go
 // 关闭 一个通道意味着不能再向这个通道发送值了。这个特性可以用来给这个通道的接收方传达工作已经完成的信息。
 // 在这个例子中，我们将使用一个 jobs 通道来传递 main() 中 Go协程任务执行的结束信息到一个工作 Go 协程中。当我们没有多余的任务给这个工作 Go 协程时，我们将 close 这个 jobs 通道。
@@ -1126,6 +1335,7 @@ func main() {
 ```
 
 ### 通道遍历
+
 ```go
 // 在前面的例子中，我们讲过 for 和 range为基本的数据结构提供了迭代的功能。我们也可以使用这个语法来遍历从通道中取得的值。
 func main() {
@@ -1144,6 +1354,7 @@ func main() {
 ```
 
 ### 定时器
+
 ```go
 func main() {
 	// 定时器表示在未来某一时刻的独立事件。你告诉定时器需要等待的时间，然后它将提供一个用于通知的通道。这里的定时器将等待 2 秒。
@@ -1165,6 +1376,7 @@ func main() {
 ```
 
 ### 打点器
+
 ```go
 func main() {
 	// 打点器和定时器的机制有点相似：一个通道用来发送数据。这里我们在这个通道上使用内置的 range 来迭代值每隔500ms 发送一次的值。
@@ -1182,6 +1394,7 @@ func main() {
 ```
 
 ### 工作池
+
 ```go
 // 这是我们将要在多个并发实例中支持的任务了。这些执行者将从 jobs 通道接收任务，并且通过 results 发送对应的结果。我们将让每个任务间隔 1s 来模仿一个耗时的任务。
 func worker(id int, jobs <-chan int, results chan<- int) {
@@ -1213,6 +1426,7 @@ func main() {
 ```
 
 ### 速率限制(未懂)
+
 ```go
 func main() {
 	// 首先我们将看一下基本的速率限制。假设我们想限制我们接收请求的处理，我们将这些请求发送给一个相同的通道。
@@ -1256,6 +1470,7 @@ func main() {
 ```
 
 ### 原子计数器
+
 ```go
 func main() {
 	// 我们将使用一个无符号整型数来表示（永远是正整数）这个计数器。
@@ -1280,6 +1495,7 @@ func main() {
 ```
 
 ### 互斥锁(未懂)
+
 ```go
 func main() {
 	// 在我们的例子中，state 是一个 map。
@@ -1331,6 +1547,7 @@ func main() {
 ```
 
 ### `go`状态协程(未读)
+
 ```go
 // 在这个例子中，state 将被一个单独的 Go 协程拥有。这就能够保证数据在并行读取时不会混乱。为了对 state 进行读取或者写入，其他的 Go 协程将发送一条数据到拥有的 Go协程中，然后接收对应的回复。结构体 readOp 和 writeOp封装这些请求，并且是拥有 Go 协程响应的一个方式。
 type readOp struct {
@@ -1396,7 +1613,9 @@ func main() {
 	fmt.Println("ops:", opsFinal)
 }
 ```
+
 ### 读文件
+
 ```go
 // 读取文件需要经常进行错误检查，这个帮助方法可以精简下面的错误检查过程。
 func check(e error) {
@@ -1445,6 +1664,7 @@ func main() {
 ```
 
 ### 写文件
+
 ```go
 func main() {
 	// 开始，这里是展示如写入一个字符串（或者只是一些字节）到一个文件。
@@ -1476,6 +1696,7 @@ func main() {
 ```
 
 ### 行过滤器
+
 ```go
 // 在读取标准输入流的输入，处理该输入，然后将得到一些的结果输出到标准输出的程序
 func main() {
@@ -1496,6 +1717,7 @@ func main() {
 ```
 
 ### 命令行参数
+
 ```go
 // 命令行参数是指定程序运行参数的一个常见方式。例如，go run hello.go，程序 go 使用了 run 和 hello.go 两个参数。
 func main() {
@@ -1515,6 +1737,7 @@ func main() {
 ```
 
 ### 命令行标志(未懂)
+
 ```go
 func main() {
 	// 基本的标记声明仅支持字符串、整数和布尔值选项。这里我们声明一个默认值为 "foo" 的字符串标志 word并带有一个简短的描述。
@@ -1577,6 +1800,7 @@ func main() {
 ```
 
 ### 环境变量(未懂)
+
 ```go
 func main() {
 	// 使用 os.Setenv 来设置一个键值队。使用 os.Getenv获取一个键对应的值。如果键不存在，将会返回一个空字符串。
@@ -1608,6 +1832,7 @@ func main() {
 ```
 
 ### 执行外部进程
+
 ```go
 func main() {
 	// 我们将从一个简单的命令开始，没有参数或者输入，仅打印一些信息到标准输出流。exec.Command 函数帮助我们创建一个表示这个外部进程的对象。
@@ -1644,6 +1869,7 @@ func main() {
 ```
 
 ### 替换执行进程
+
 ```go
 	// 有时候只想 用其他的（也许是非 Go 程序）来完全替代当前的 Go 进程
 	// 在我们的例子中，我们将执行 ls 命令。Go 需要提供我 们需要执行的可执行文件的绝对路径，所以我们将使用 exec.LookPath 来得到它（大概是 /bin/ls）。
@@ -1664,7 +1890,8 @@ func main() {
 }
 ```
 
-### 信号 
+### 信号
+
 ```go
 func main() {
 	// Go 通过向一个通道发送 os.Signal 值来进行信号通知。我们 将创建一个通道来接收这些通知（同时还创建一个用于在程序可 以结束时进行通知的通道）。
@@ -1694,6 +1921,7 @@ func main() {
 ```
 
 ### 退出
+
 ```go
 func main() {
 	// 当使用 os.Exit 时 defer 将不会 执行，所以这里的 fmt.Println 将永远不会被调用。

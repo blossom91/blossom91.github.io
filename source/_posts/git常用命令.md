@@ -10,20 +10,23 @@ categories: 杂货铺
 
 本文转载至[阮一峰](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
-git是一种分布式的版本管理工具
-github是基于git开发的一种图形化的git管理软件,支持免费的开源项目托管,是最大的开源社区
-gitlab是国人基于git开发的项目管理软件,最大的不同是支持免费的私有项目托管
-都可通过**ssh** **token**来管理权限问题
+`git` 是一种分布式的版本管理工具
+`github` 是基于 `git` 开发的一种图形化的 `git` 管理软件,支持免费的开源项目托管,是最大的开源社区
+`gitlab` 是国人基于 `git` 开发的项目管理软件,最大的不同是支持免费的私有项目托管都可通过**ssh** **token**来管理权限问题
 
+<!-- more -->
 
-### git名词解释与命令说明
-- Workspace：工作区
-- Index / Stage：暂存区
-- Repository：仓库区（或本地仓库）
-- Remote：远程仓库
+### git 名词解释与命令说明
+
+* Workspace：工作区
+* Index / Stage：暂存区
+* Repository：仓库区（或本地仓库）
+* Remote：远程仓库
 
 ---
+
 #### 新建代码库
+
 ```
 # 在当前目录新建一个Git代码库
 $ git init
@@ -40,8 +43,11 @@ $ git clone -b [dev] [url]
 # 下载一个项目 选择其他主机名
 $ git clone -o [origin] [url]
 ```
+
 ---
+
 #### 配置
+
 ```
 # 添加指定文件到暂存区
 $ git add [file1] [file2] ...
@@ -65,8 +71,11 @@ $ git rm --cached [file]
 # 改名文件，并且将这个改名放入暂存区
 $ git mv [file-original] [file-renamed]
 ```
+
 ---
+
 #### 增加/删除文件
+
 ```
 # 添加指定文件到暂存区
 $ git add [file1] [file2] ...
@@ -90,8 +99,11 @@ $ git rm --cached [file]
 # 改名文件，并且将这个改名放入暂存区
 $ git mv [file-original] [file-renamed]
 ```
+
 ---
+
 #### 代码提交
+
 ```
 # 提交暂存区到仓库区
 $ git commit -m [message]
@@ -112,8 +124,11 @@ $ git commit --amend -m [message]
 # 重做上一次commit，并包括指定文件的新变化
 $ git commit --amend [file1] [file2] ...
 ```
+
 ---
+
 #### 分支
+
 ```
 # 列出所有本地分支
 $ git branch
@@ -158,8 +173,11 @@ $ git branch -d [branch-name]
 $ git push origin --delete [branch-name]
 $ git branch -dr [remote/branch]
 ```
+
 ---
+
 #### 标签
+
 ```
 # 列出所有tag
 $ git tag
@@ -191,8 +209,11 @@ $ git push [remote] --tags
 # 新建一个分支，指向某个tag
 $ git checkout -b [branch] [tag]
 ```
+
 ---
+
 #### 查看信息
+
 ```
 # 显示有变更的文件
 $ git status
@@ -255,8 +276,11 @@ $ git show [commit]:[filename]
 # 显示当前分支的最近几次提交
 $ git reflog
 ```
+
 ---
+
 #### 远程同步
+
 ```
 # 下载远程仓库的所有变动
 $ git fetch [remote]
@@ -293,8 +317,11 @@ $ git push [remote] --delete master
 # 设置默认主机,用于省略 [remote]
 $ git push -u origin master
 ```
+
 ---
+
 #### 撤销
+
 ```
 # 恢复暂存区的指定文件到工作区
 $ git checkout [file]
@@ -328,32 +355,42 @@ $ git revert [commit]
 $ git stash
 $ git stash pop
 ```
+
 ---
+
 #### 其他
+
 关于分支的一些约定:
-- 默认master是对外主分支
-- dev是公共开发分支
-- 修补bug: 从dev创建fixbug-0.1分支,修补结束后merge回dev分支并删除fixbug分支
-- 添加功能: 从dev创建feature-x分支,开发结束后merge回dev分支并删除fixbug分支
-- 发布预览: 从dev创建release-1.2分支,结束后merge回dev分支并删除fixbug分支
+
+* 默认 master 是对外主分支
+* dev 是公共开发分支
+* 修补 bug: 从 dev 创建 fixbug-0.1 分支,修补结束后 merge 回 dev 分支并删除 fixbug 分支
+* 添加功能: 从 dev 创建 feature-x 分支,开发结束后 merge 回 dev 分支并删除 fixbug 分支
+* 发布预览: 从 dev 创建 release-1.2 分支,结束后 merge 回 dev 分支并删除 fixbug 分支
+
 ---
-关于commit的一些约定:
-- feat：新功能（feature）
-- fix：修补bug
-- docs：文档（documentation）
-- style： 格式（不影响代码运行的变动）
-- refactor：重构（即不是新增功能，也不是修改bug的代码变动）
-- test：增加测试
-- chore：构建过程或辅助工具的变动
+
+关于 commit 的一些约定:
+
+* feat：新功能（feature）
+* fix：修补 bug
+* docs：文档（documentation）
+* style： 格式（不影响代码运行的变动）
+* refactor：重构（即不是新增功能，也不是修改 bug 的代码变动）
+* test：增加测试
+* chore：构建过程或辅助工具的变动
 
 [Commitizen](https://github.com/commitizen/cz-cli)是一个撰写合格 Commit message 的工具。
+
 ```
 $ npm install -g commitizen
 
 # 运行下面的命令，使其支持 Angular 的 Commit message 格式
 $ commitizen init cz-conventional-changelog --save --save-exact
 ```
+
 ---
+
 ```
 # 生成一个可供发布的压缩包
 $ git archive

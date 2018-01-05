@@ -81,8 +81,8 @@ timeline: ## 网站历史时间线，在页面front-matter中设置layout: timel
   - num: 1
     word: 2017/8/01-Start
   - num: 2
-    word: 2014/12/01-update
-  - num: 4
+    word: 2018/01/01-update
+  - num: 3
     word: More
 
 # Static files  静态文件存储路径，方便设置CDN缓存
