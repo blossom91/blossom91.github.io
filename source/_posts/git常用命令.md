@@ -8,13 +8,12 @@ tags: git
 categories: 杂货铺
 ---
 
-本文转载至[阮一峰](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
-
 `git` 是一种分布式的版本管理工具
 `github` 是基于 `git` 开发的一种图形化的 `git` 管理软件,支持免费的开源项目托管,是最大的开源社区
-`gitlab` 是国人基于 `git` 开发的项目管理软件,最大的不同是支持免费的私有项目托管都可通过**ssh** **token**来管理权限问题
 
 <!-- more -->
+
+本文转载至[阮一峰](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
 ### git 名词解释与命令说明
 

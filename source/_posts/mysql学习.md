@@ -13,8 +13,7 @@ categories: 数据库
 
 <!-- more -->
 
----
-
+<br>
 MySQL 是一个关系型数据库管理系统,下面是一些术语解释:
 
 * 数据库: 数据库是一些关联表的集合。.
@@ -39,7 +38,7 @@ MySQL 是一个关系型数据库管理系统,下面是一些术语解释:
 | `mysql.server force-reload` | 强制重载 |
 |    `mysql.server status`    |   状态   |
 
-```shell
+```go
 # 命令行导入数据库
 $ mysql -u root -p 数据库 < 数据库文件.sql;
 ```
@@ -48,7 +47,7 @@ $ mysql -u root -p 数据库 < 数据库文件.sql;
 
 ### 用户
 
-```shell
+```go
 # 用户登录 默认本地  显示警告信息
 $ mysql [-h hostname] -u uesr [-p ] [--show-warnings]
 
@@ -97,7 +96,7 @@ $ drop user blssom@localhost
 |     `TEXT`     |         长文本         |
 |   `INT(10)`    |     最大 10 位数字     |
 
-```shell
+```go
 # 创建数据库 (如果不存在再创建)
 $ CREATE DATABASE [IF NOT EXISTS] blssomHome [charset=utf8]
 
@@ -151,7 +150,7 @@ $ DROP TABLE movie;
 
 ### 查询
 
-```shell
+```go
 # 添加数据 按顺序添加 按栏添加
 $ INSERT INTO 数据表 (栏1, 栏2, 栏3) VALUES (值1, 值2, 值3);
 $ INSERT INTO people VALUES (NULL, '华盛顿', '1954-12-28', '美国');
@@ -199,7 +198,7 @@ $ SELECT * FROM people WHERE name LIKE ('李%');
 
 ### 关系
 
-```shell
+```go
 # 栏的名称有冲突的话，写成 数据表.数据栏
 # SELECT 栏1,栏2 FROM 数据表1, 数据表2 WHERE 组织条件
 $ SELECT user_name, review_content FROM user, review WHERE review.user_id = user.user_id;
@@ -230,7 +229,7 @@ $ SELECT film_id, AVG(review_rate) FROM review GROUP BY film_id;
 
 ### 一些查询例子
 
-```shell
+```go
 # 查询电影平均分
 $ SELECT review.film_id, film.film_name, AVG(review_rate) FROM review, film WHERE review.film_id = film.film_id GROUP BY review.film_id;
 

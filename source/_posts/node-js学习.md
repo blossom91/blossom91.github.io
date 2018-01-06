@@ -5,8 +5,8 @@ mathjax: true
 comments: true
 date: 2017-11-01 07:40:12
 updated:
-tags:
-categories:
+tags: node
+categories: 后端
 ---
 
 对于 `node.js` 的学习,感谢[菜鸟教程](http://www.runoob.com/nodejs/nodejs-tutorial.html)与[慕课网](http://www.imooc.com/course/list?c=nodejs)提供的优秀资料随着学习的深入,此文章持续更新...
@@ -27,38 +27,38 @@ categories:
 
 node 里面没有`window`全局变量,取代的是`global`全局变量,例如:
 
-```node
+```js
 global.a = 200
 // 暴露到全局中
-console.log(a)  // 200
+console.log(a) // 200
 ```
 
-#### process
+#### global.process
 
 * 挂载在全局`global`下的方法,可以读取 node 命令参数
 
 输出到控制台
 
-```node
+```js
 process.stdout
 ```
 
 argv = [node 命令, main.js 路径, --test, a=1, b=2]
 
-```node
+```js
 const argv = process
 node main.js --test a=1 b=2
 ```
 
 当前进程执行路径(执行 node 脚本的路径)
 
-```node
+```js
 console.log(process.cwd())
 ```
 
 插入当前事件队列的最后一个 发生顺序 `nextTick` > `setTimeout` > `setImmediate
 
-```node
+```js
 process.nextTick(() => {})
 ```
 
@@ -68,42 +68,42 @@ process.nextTick(() => {})
 
 创建一个长度 10 且不可改变长度的 Buffer,默认用 0 填充
 
-```node
+```js
 const buf = Buffer.alloc(10)
 buf[2] = 4
-Buffer.alloc(5, 1)  // 用1填充
+Buffer.alloc(5, 1) // 用1填充
 ```
 
 定义一个长度为 10 的 Buffer,内容随机.因为没有清空值,所以创建速度更快
 
-```node
+```js
 Buffer.allocUnsafe(10)
 ```
 
 创建指定内容的 Buffer,默认使用 utf-8 编码
 
-```node
+```js
 Buffer.from([1, 2, 3])
 Buffer.from('test')
 ```
 
 Buffer 长度
 
-```node
-Buffer.byteLength('test')       // 4
-Buffer.byteLength('测试')       // 6
+```js
+Buffer.byteLength('test') // 4
+Buffer.byteLength('测试') // 6
 ```
 
 判断 Buffer 类型
 
-```node
-Buffer.isBuffer({})  // false
-Buffer.isBuffer(Buffer.from([1,2,3]))  // true
+```js
+Buffer.isBuffer({}) // false
+Buffer.isBuffer(Buffer.from([1, 2, 3])) // true
 ```
 
 拼接 Buffer 类型
 
-```node
+```js
 const buf = Buffer.concat([Buffer.from('hello'), Buffer.from(' world')])
 ```
 
@@ -111,38 +111,38 @@ const buf = Buffer.concat([Buffer.from('hello'), Buffer.from(' world')])
 
 转换字符串类型,默认 utf-8 编码
 
-```node
+```js
 console.log(buf.toString('base64'))
 ```
 
 Buffer 类型初始定义长度,与内容无关
 
-```node
-console.log(buf.length)  // 10
+```js
+console.log(buf.length) // 10
 ```
 
 填充 Buffer 类型内容,第一个参数为填充内容,第二三个参数为填充位置
 
-```node
-console.log(buf.fill(10, 2, 6))  // 10
+```js
+console.log(buf.fill(10, 2, 6)) // 10
 ```
 
 判断 Buffer 类型的内容是否一样
 
-```node
+```js
 console.log(Buffer.from('test').equals(Buffer.from('test')) // true
 ```
 
 判断 Buffer 类型包含的内容位置,类似于数组的方法
 
-```node
+```js
 console.log(Buffer.from('test').indexOf('es') // 1
 console.log(Buffer.from('test').indexOf('es!') //  -1
 ```
 
 拷贝 Buffer 类型,参数`buf2`开始拷贝位置,`buf`拷贝区间汉字长度为 3,有时候会导致`copy`乱码,可以用内置包`string_decode`解决
 
-```node
+```js
 const buf = Buffer.from([1, 2, 3, 4, 5, 6])
 const buf2 = Buffer.alloc(3)
 buf.copy(buf2, 0, 2, 3)
@@ -158,20 +158,20 @@ decoder.write(buf2)
 
 合并出文件路径`/usr/local/bin/`
 
-```node
+```js
 const path = require('path')
 path.join('/usr', 'local', 'bin/')
 ```
 
 解析出绝对路径
 
-```node
+```js
 path.resolve('./')
 ```
 
 文件名 文件夹名 扩展名
 
-```node
+```js
 console.log(path.basename)
 console.log(path.dirname)
 console.log(path.extname)
@@ -179,7 +179,7 @@ console.log(path.extname)
 
 (总是)解析出文件绝对路径 文件夹绝对路径
 
-```node
+```js
 console.log(__dirname)
 console.log(__filename)
 ```
@@ -191,7 +191,7 @@ console.log(__filename)
 
 #### events
 
-```node
+```js
 const EventEmitter = require('events')
 class CustomEvent extends EventEmitter {}
 const ce = new CustomEvent()
@@ -202,7 +202,7 @@ const ce = new CustomEvent()
 `removeListener`移除单个事件函数  
 `removeAllListener`移除所有事件函数
 
-```node
+```js
 var fn1 = function() {
     console.log('remove')
 }
@@ -217,7 +217,7 @@ ce.removeListener('error', fn1)
 
 `once` 绑定的事件只会触发一次
 
-```node
+```js
 ce.once('test', () => {
     console.log('test event once')
 })
@@ -227,10 +227,10 @@ ce.once('test', () => {
 
 读取文件,分同步与异步方法,可设置读取格式参数`utf8` 默认为`Buffer`类型
 
-```node
+```js
 const fs = require('fs')
 fs.readFile('./main.js', 'utf8', (err, data) => {
-    if (err)  throw err
+    if (err) throw err
     console.log(data)
 })
 
@@ -241,19 +241,19 @@ console.log(data)
 
 创建写入文件,默认类型`utf8` 也可以传入`Buffer`类型
 
-```node
-fs.writeFile('./text', 'hello world', 'uft8', err => { })
+```js
+fs.writeFile('./text', 'hello world', 'uft8', err => {})
 
 const content = Buffer.from('this is a test!')
 fs.writeFile('./text', content, err => {})
 
 // 添加文件内容
-fs.appendFile('file', '你好 python', (err) => {})
+fs.appendFile('file', '你好 python', err => {})
 ```
 
 读取文件状态 监视文件状态
 
-```node
+```js
 fs.stat('./main.js', (err, stats) => {
     if (err) {
         console.log('文件不存在')
@@ -263,16 +263,21 @@ fs.stat('./main.js', (err, stats) => {
     console.log(stats)
 })
 
-fs.watch('./', {
-    recursive: true     // 递归监视
-}, (eventType, filename) => {   //事件类型   文件名
-    console.log(eventType, filename)
-})
+fs.watch(
+    './',
+    {
+        recursive: true // 递归监视
+    },
+    (eventType, filename) => {
+        //事件类型   文件名
+        console.log(eventType, filename)
+    }
+)
 ```
 
 文件流相关 读与写
 
-```node
+```js
 const rs = fs.createReadStream('./main.js')
 // 打印到控制台,pipe可以链式使用
 rs.pipe(process.stdout).pipe(...)
@@ -297,24 +302,24 @@ ws.on('finish', () => {
 
 压缩文件
 
-```node
-const {createGzip, createDeflate} = require('zlib')
-const inp = fs.createReadStream('input.txt');
-const out = fs.createWriteStream('input.txt.gz');
-inp.pipe(createGzip()).pipe(out);
+```js
+const { createGzip, createDeflate } = require('zlib')
+const inp = fs.createReadStream('input.txt')
+const out = fs.createWriteStream('input.txt.gz')
+inp.pipe(createGzip()).pipe(out)
 ```
 
 改名 删除
 
-```node
+```js
 fs.rename('./main.js', 'index.js', err => {})
 
-fs.unlink('./main.js',  err => {})
+fs.unlink('./main.js', err => {})
 ```
 
 读取文件列表 创建文件夹 删除文件夹
 
-```node
+```js
 fs.readdir('./', (err, files) => {
     if (err) throw err
     console.log(files)
@@ -329,16 +334,18 @@ fs.rmdir('test', err => {})
 
 目前解决异步的方法`promise` 与 `async await`
 
-```node
+```js
 // promise化工具
 const promisify = require('util').promisify
 
 const read = promisify(fs.readFile)
-read('./main.js').then(data => {
-    console.log(data)
-}).catch(err => {
-    console.log(err)
-})
+read('./main.js')
+    .then(data => {
+        console.log(data)
+    })
+    .catch(err => {
+        console.log(err)
+    })
 // async await
 const test = async function() {
     try {

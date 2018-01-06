@@ -5,13 +5,15 @@ mathjax: true
 comments: true
 date: 2017-10-24 19:16:12
 updated:
-tags:
-categories:
+tags: go
+categories: 后端
 ---
 
-[govendor](https://github.com/kardianos/govendor)是类似于`npm`的一个包管理工具该工具将项目依赖的外部包拷贝到项目下的 `vendor` 目录下，并通过 `vendor.json` 文件来记录依赖包的版本，方便用户使用相对稳定的依赖。
+[govendor](https://github.com/kardianos/govendor)是类似于`npm`的一个包管理工具...
 
 <!-- more -->
+
+该工具将项目依赖的外部包拷贝到项目下的 `vendor` 目录下，并通过 `vendor.json` 文件来记录依赖包的版本，方便用户使用相对稳定的依赖。
 
 ### 基本说明
 
