@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="blossom Html Css JavaScript Node Go Python Swift 全端 后端 Ios"><title>redis数据库与go中的使用 | blossom</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.2"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/7.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">redis数据库与go中的使用</h1><a id="logo" href="/.">blossom</a><p class="description">good good study and day day up</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">redis数据库与go中的使用</h1><div class="post-meta">Jan 21, 2018<span> | </span><span class="category"><a href="/categories/数据库/">数据库</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="clear"><div id="toc" class="toc-article"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本"><span class="toc-number">1.</span> <span class="toc-text">基本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令"><span class="toc-number">2.</span> <span class="toc-text">命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Keys"><span class="toc-number">2.1.</span> <span class="toc-text">Keys</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#String（字符串"><span class="toc-number">2.2.</span> <span class="toc-text">String（字符串)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hash（哈希）"><span class="toc-number">2.3.</span> <span class="toc-text">Hash（哈希）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List（列表）"><span class="toc-number">2.4.</span> <span class="toc-text">List（列表）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set（集合）"><span class="toc-number">2.5.</span> <span class="toc-text">Set（集合）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zset（有序集合"><span class="toc-number">2.6.</span> <span class="toc-text">Zset（有序集合)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Golang-redis-操作"><span class="toc-number">3.</span> <span class="toc-text">Golang redis 操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用"><span class="toc-number">3.1.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建客户端"><span class="toc-number">3.2.</span> <span class="toc-text">创建客户端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#string"><span class="toc-number">3.3.</span> <span class="toc-text">string</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#list"><span class="toc-number">3.4.</span> <span class="toc-text">list</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#set"><span class="toc-number">3.5.</span> <span class="toc-text">set</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hash"><span class="toc-number">3.6.</span> <span class="toc-text">hash</span></a></li></ol></li></ol></div></div><div class="post-content"><p>对于<code>redis</code>的学习,感谢<a href="http://www.runoob.com/redis/redis-tutorial.html" target="_blank" rel="noopener">菜鸟教程</a>提供的优秀资料<br>随着学习的深入,此文章持续更新…</p>
+<a id="more"></a>
+<p>Redis 是 key - value 型数据库,有以下三个特点：</p>
+<ul>
+<li>Redis 支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
+<li>Redis 不仅仅支持简单的 key-value 类型的数据，同时还提供 list，set，zset，hash 等数据结构的存储。</li>
+<li>Redis 支持数据的备份，即 master-slave 模式的数据备份。</li>
+</ul>
+<h3 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h3><p>通过<code>homebrew</code>安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install redis</span><br></pre></td></tr></table></figure>
+<p>通过<code>homebrew</code>安装<code>Redis Desktop Manager</code> 是一个<code>redis</code>桌面管理工具</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install rdm</span><br></pre></td></tr></table></figure>
+<p>启动<code>redis</code> / 关闭<code>redis</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br><span class="line"></span><br><span class="line">redis-cli shutdown</span><br></pre></td></tr></table></figure>
+<p>进入<code>redis</code>命令界面 –raw 解决乱码问题</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --raw</span><br></pre></td></tr></table></figure>
+<p>选择数据库 默认数据库为<code>0</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 0   # ok</span><br></pre></td></tr></table></figure>
+<p>通过 config 命令查看或设置配置项</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">config get config_setting_name</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看所有配置</span></span><br><span class="line">config get *</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置配置</span></span><br><span class="line">config set config_setting_name new_config_value</span><br><span class="line">config set loglevel "notice"</span><br><span class="line"></span><br><span class="line">config get loglevel</span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="string">"notice"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><h4 id="Keys"><a href="#Keys" class="headerlink" title="Keys"></a>Keys</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">返回</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Del key</td>
+<td style="text-align:center">key 存在时删除 key</td>
+<td style="text-align:center">删除的数量</td>
+</tr>
+<tr>
+<td style="text-align:center">Exists key</td>
+<td style="text-align:center">检查 key 值是否存在</td>
+<td style="text-align:center">存在<code>1</code>否则<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Expire key</td>
+<td style="text-align:center">已秒设置过期时间</td>
+<td style="text-align:center">成功<code>1</code>否则<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Expireat key</td>
+<td style="text-align:center"><code>unix</code>时间戳设置过去时间</td>
+<td style="text-align:center">成功<code>1</code>否则<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">PEXPIRE key</td>
+<td style="text-align:center">以毫秒设置过期时间</td>
+<td style="text-align:center">成功<code>1</code>否则<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">KEYS *</td>
+<td style="text-align:center">查找所有符合给定模式的 key</td>
+<td style="text-align:center">符合查询要求的数组</td>
+</tr>
+<tr>
+<td style="text-align:center">Move key database</td>
+<td style="text-align:center">移动 key 值到其他数据库</td>
+<td style="text-align:center">成功<code>1</code>否则<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">PERSIST key</td>
+<td style="text-align:center">移除 key 的过期时间</td>
+<td style="text-align:center">成功<code>1</code>否则<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Pttl key</td>
+<td style="text-align:center">以毫秒为单位返回过期时间</td>
+<td style="text-align:center">无 key:<code>-2</code> 无过期时间: <code>-1</code> 否则返回时间</td>
+</tr>
+<tr>
+<td style="text-align:center">TTL key</td>
+<td style="text-align:center">以秒为单位返回 key 的过期时间</td>
+<td style="text-align:center">无 key:<code>-2</code> 无过期时间: <code>-1</code> 否则返回时间</td>
+</tr>
+<tr>
+<td style="text-align:center">RANDOMKEY</td>
+<td style="text-align:center">从当前数据库中随机返回一个 key</td>
+<td style="text-align:center">无 key 返回<code>nil</code></td>
+</tr>
+<tr>
+<td style="text-align:center">RENAME oldkey newkey</td>
+<td style="text-align:center">修改 key 的名称</td>
+<td style="text-align:center">成功:<code>ok</code> 失败返回错误 新 key 存在覆盖新 key</td>
+</tr>
+<tr>
+<td style="text-align:center">Renamenx oldkey newkey</td>
+<td style="text-align:center">仅当 newkey 不存在时，将 key 改名为 newkey</td>
+<td style="text-align:center">成功<code>1</code>否则<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">TYPE key</td>
+<td style="text-align:center">返回 key 所储存的值的类型</td>
+<td style="text-align:center">无 key 返回<code>none</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="String（字符串"><a href="#String（字符串" class="headerlink" title="String（字符串)"></a>String（字符串)</h4><ul>
+<li>string 可以包含任何数据。比如 jpg 图片或者序列化的对象</li>
+<li>一个键最大能存储 512MB</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">返回</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">SET key value</td>
+<td style="text-align:center">设置 key value</td>
+<td style="text-align:center">成功后返回<code>ok</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Get key</td>
+<td style="text-align:center">获取指定 key 的值</td>
+<td style="text-align:center">无 key 返回<code>nil</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Getrange key start end</td>
+<td style="text-align:center">返回 key 中字符串值的子字符</td>
+<td style="text-align:center">截取的子字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">GETSET key value</td>
+<td style="text-align:center">将给定 key 的值设为 value 返回 key 的旧值(old value)</td>
+<td style="text-align:center">无 key 返回<code>nil</code></td>
+</tr>
+<tr>
+<td style="text-align:center">MGET key1 key2</td>
+<td style="text-align:center">获取所有(一个或多个)给定 key 的值</td>
+<td style="text-align:center">一个包含所有给定 key 的值的列表</td>
+</tr>
+<tr>
+<td style="text-align:center">SETEX key time(s) value</td>
+<td style="text-align:center">重设 key 与过期时间</td>
+<td style="text-align:center">成功<code>ok</code></td>
+</tr>
+<tr>
+<td style="text-align:center">SETNX key value</td>
+<td style="text-align:center">key 不存在时设置 value</td>
+<td style="text-align:center">成功<code>1</code>失败<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">STRLEN key</td>
+<td style="text-align:center">返回 key 的长度</td>
+<td style="text-align:center">无 key 返回<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">MSET key1 value1 key2 value2</td>
+<td style="text-align:center">同时设置多个 key 与 value</td>
+<td style="text-align:center">总是<code>ok</code></td>
+</tr>
+<tr>
+<td style="text-align:center">MSETNX key1 value1 key2 value2</td>
+<td style="text-align:center">同时设置多个不存在的 key 与 value</td>
+<td style="text-align:center">全部成功返回<code>1</code>否则<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">PSETEX key time(s) value</td>
+<td style="text-align:center">毫秒为单位设置过期时间</td>
+<td style="text-align:center">成功<code>ok</code></td>
+</tr>
+<tr>
+<td style="text-align:center">INCR key</td>
+<td style="text-align:center">使 key 值加一</td>
+<td style="text-align:center">newkey,无 key 初始化为<code>0</code>再加<code>1</code>否则返回错误</td>
+</tr>
+<tr>
+<td style="text-align:center">Incrby key int64</td>
+<td style="text-align:center">使 key 值加 num</td>
+<td style="text-align:center">newkey,无 key 初始化为<code>0</code>再加<code>num</code>否则返回错误</td>
+</tr>
+<tr>
+<td style="text-align:center">Incrbyfloat key float</td>
+<td style="text-align:center">同上 浮点数类型</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">Decr key</td>
+<td style="text-align:center">使 key 值减一</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">Decrby key int64</td>
+<td style="text-align:center">使 key 值减去 num</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">Append key value</td>
+<td style="text-align:center">给 key 追加 value</td>
+<td style="text-align:center">newkey 的长度 无 key 等于 set</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Hash（哈希）"><a href="#Hash（哈希）" class="headerlink" title="Hash（哈希）"></a>Hash（哈希）</h4><ul>
+<li>hash 是一个键值(key=&gt;value)对集合。</li>
+<li>hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象。</li>
+<li>每个 hash 可以存储 232 -1 键值对（40 多亿）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">返回</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Hdel key field1</td>
+<td style="text-align:center">删除一个或多个哈希表字段</td>
+<td style="text-align:center">成功删除的数量</td>
+</tr>
+<tr>
+<td style="text-align:center">Hexists key field1</td>
+<td style="text-align:center">查看指定字段是否存在</td>
+<td style="text-align:center">存在<code>1</code> 否则<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">HGET key field1</td>
+<td style="text-align:center">返回指定字段的值</td>
+<td style="text-align:center">不存在返回<code>nil</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Hgetall key field1</td>
+<td style="text-align:center">返回整个 key</td>
+<td style="text-align:center">不存在返回空列表</td>
+</tr>
+<tr>
+<td style="text-align:center">HINCRBY key field1 int64</td>
+<td style="text-align:center">为 key 中的指定字段的整数值加上指定增量</td>
+<td style="text-align:center">此字段的新值</td>
+</tr>
+<tr>
+<td style="text-align:center">HINCRBYFLOAT key field1 float</td>
+<td style="text-align:center">浮点数版本</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">Hkeys key</td>
+<td style="text-align:center">获取所有哈希表中的字段</td>
+<td style="text-align:center">不存在返回空列表</td>
+</tr>
+<tr>
+<td style="text-align:center">Hlen key</td>
+<td style="text-align:center">获取哈希表中字段的数量</td>
+<td style="text-align:center">不存在返回<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Hmget key field1 field2</td>
+<td style="text-align:center">获取所有给定字段的值</td>
+<td style="text-align:center">不存在返回<code>nil</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Hmset key field1 value1 field2 value2</td>
+<td style="text-align:center">同时将多个 field-value (域-值)对设置到 key 中</td>
+<td style="text-align:center">成功返回<code>ok</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Hset key field value</td>
+<td style="text-align:center">key 中的字段 field 的值设为 value</td>
+<td style="text-align:center">新建字段返回<code>1</code>覆盖返回<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Hsetnx key field value</td>
+<td style="text-align:center">字段 field 不存在时设置哈希表字段的值</td>
+<td style="text-align:center">成功<code>1</code>失败<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Hvals key</td>
+<td style="text-align:center">获取哈希表中所有值</td>
+<td style="text-align:center">不存在返回空列表</td>
+</tr>
+</tbody>
+</table>
+<h4 id="List（列表）"><a href="#List（列表）" class="headerlink" title="List（列表）"></a>List（列表）</h4><ul>
+<li>Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）</li>
+<li>列表最多可存储 232 - 1 元素 (4294967295, 每个列表可存储 40 多亿)。</li>
+</ul>
+<h4 id="Set（集合）"><a href="#Set（集合）" class="headerlink" title="Set（集合）"></a>Set（集合）</h4><ul>
+<li>集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)。</li>
+<li>集合中最大的成员数为 232 - 1(4294967295, 每个集合可存储 40 多亿个成员)。</li>
+</ul>
+<h4 id="Zset（有序集合"><a href="#Zset（有序集合" class="headerlink" title="Zset（有序集合)"></a>Zset（有序集合)</h4><ul>
+<li>string 类型元素的集合,且不允许重复的成员</li>
+<li>每个元素都会关联一个 double 类型的分数,通过分数来为集合中的成员进行从小到大的排序。</li>
+<li>成员是唯一的,但分数(score)却可以重复</li>
+</ul>
+<h3 id="Golang-redis-操作"><a href="#Golang-redis-操作" class="headerlink" title="Golang redis 操作"></a>Golang redis 操作</h3><p><code>golang</code>操作<code>redis</code>,使用<a href="https://gopkg.in/redis.v6" target="_blank" rel="noopener">redis.v6</a>的一些简单说明</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> get gopkg.in/redis.v6</span><br><span class="line"><span class="keyword">import</span> <span class="string">"gopkg.in/redis.v6"</span></span><br></pre></td></tr></table></figure>
+<h4 id="创建客户端"><a href="#创建客户端" class="headerlink" title="创建客户端"></a>创建客户端</h4><p>通过 redis.NewClient 函数即可创建一个 redis 客户端, 这个方法接收一个 redis.Options 对象参数, 通过这个参数, 我们可以配置 redis 相关的属性, 例如 redis 服务器地址, 数据库名, 数据库密码等.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">createClient</span><span class="params">()</span> *<span class="title">redis</span>.<span class="title">Client</span></span> &#123;</span><br><span class="line">    client := redis.NewClient(&amp;redis.Options&#123;</span><br><span class="line">        Addr:     <span class="string">"localhost:6379"</span>,</span><br><span class="line">        Password: <span class="string">""</span>,</span><br><span class="line">        DB:       <span class="number">0</span>,</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过 cient.Ping() 来检查是否成功连接到了 redis 服务器</span></span><br><span class="line">    pong, err := client.Ping().Result()</span><br><span class="line">    fmt.Println(pong, err)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> client</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="string"><a href="#string" class="headerlink" title="string"></a>string</h4><p>set get 操作,第三个参数是过期时间, 如果是 0, 则表示没有过期时间.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">err := client.Set(<span class="string">"name"</span>, <span class="string">"xys"</span>, <span class="number">0</span>).Err()</span><br><span class="line"></span><br><span class="line">val, err := client.Get(<span class="string">"name"</span>).Result()</span><br></pre></td></tr></table></figure>
+<p>这里设置过期时间.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">err = client.Set(<span class="string">"age"</span>, <span class="string">"20"</span>, <span class="number">1</span> * time.Second).Err()</span><br></pre></td></tr></table></figure>
+<h4 id="list"><a href="#list" class="headerlink" title="list"></a>list</h4><p>在名称为 fruit 的 list 尾添加一个值为 value 的元素</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.RPush(<span class="string">"fruit"</span>, <span class="string">"apple"</span>)</span><br></pre></td></tr></table></figure>
+<p>在名称为 fruit 的 list 头添加一个值为 value 的 元素</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.LPush(<span class="string">"fruit"</span>, <span class="string">"banana"</span>)</span><br></pre></td></tr></table></figure>
+<p>返回名称为 fruit 的 list 的长度</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">length, err := client.LLen(<span class="string">"fruit"</span>).Result()</span><br></pre></td></tr></table></figure>
+<p>返回并删除名称为 fruit 的 list 中的首元素</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value, err := client.LPop(<span class="string">"fruit"</span>).Result()</span><br></pre></td></tr></table></figure>
+<p>返回并删除名称为 fruit 的 list 中的尾元素</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value, err = client.RPop(<span class="string">"fruit"</span>).Result()</span><br></pre></td></tr></table></figure>
+<h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><p>向 blacklist 中添加元素</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.SAdd(<span class="string">"blacklist"</span>, <span class="string">"Obama"</span>)</span><br></pre></td></tr></table></figure>
+<p>向 whitelist 添加元素</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.SAdd(<span class="string">"whitelist"</span>, <span class="string">"the Elder"</span>)</span><br></pre></td></tr></table></figure>
+<p>判断元素是否在集合中</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isMember, err := client.SIsMember(<span class="string">"blacklist"</span>, <span class="string">"Bush"</span>).Result()</span><br></pre></td></tr></table></figure>
+<p>求交集, 即既在黑名单中, 又在白名单中的元素</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">names, err := client.SInter(<span class="string">"blacklist"</span>, <span class="string">"whitelist"</span>).Result()</span><br></pre></td></tr></table></figure>
+<p>获取指定集合的所有元素</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">all, err := client.SMembers(<span class="string">"blacklist"</span>).Result()</span><br></pre></td></tr></table></figure>
+<h4 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h4><p>向名称为 user_xys 的 hash 中添加元素 name</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.HSet(<span class="string">"user_xys"</span>, <span class="string">"name"</span>, <span class="string">"xys"</span>)</span><br></pre></td></tr></table></figure>
+<p>批量地向名称为 user_test 的 hash 中添加元素 name 和 age</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.HMSet(<span class="string">"user_test"</span>, <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;<span class="string">"name"</span>: <span class="string">"test"</span>, <span class="string">"age"</span>:<span class="string">"20"</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>单独获取名为 user_test 的 age 字段</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">age, err := client.HGet(<span class="string">"user_test"</span>, <span class="string">"age"</span>).Result()</span><br></pre></td></tr></table></figure>
+<p>批量获取名为 user_test 的 hash 中的指定字段的值.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fields, err := client.HMGet(<span class="string">"user_test"</span>, <span class="string">"name"</span>, <span class="string">"age"</span>).Result()</span><br></pre></td></tr></table></figure>
+<p>获取名为 user_xys 的 hash 中的字段个数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">length, err := client.HLen(<span class="string">"user_xys"</span>).Result()</span><br></pre></td></tr></table></figure>
+<p>删除名为 user_test 的 age 字段</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.HDel(<span class="string">"user_test"</span>, <span class="string">"age"</span>)</span><br></pre></td></tr></table></figure>
+</div><div class="tags"><a href="/tags/redis/">redis</a></div><div class="post-nav"><a href="/2018/02/17/JavaScript学习笔记/" class="pre">JavaScript 学习笔记</a><a href="/2018/01/08/supervisor进程管理工具/" class="next">supervisor进程管理工具</a></div><div id="container"></div><link rel="stylesheet" href="/css/default.css?v=0.0.2"><script src="/js/gitment.browser.js?v=0.0.2"></script><script>var gitment = new Gitment({
+  owner: 'blossom91',
+  repo: 'blossom91.github.io',
+  oauth: {
+    client_id: '7d6e0c7d1f3a71ae0658',
+    client_secret: '12bf717efd08498927437024badb4baa732e6bf7',
+  },
+})
+gitment.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂货铺/">杂货铺</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/variety/" style="font-size: 15px;">variety</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/go/" style="font-size: 15px;">go</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/02/关于http-tcp协议/">关于http/tcp协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/19/关于hybrid/">关于Hybrid</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/关于前端优化/">关于前端优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/我的程序员入门手册/">我的程序员入门手册</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/17/flex属性详解/">flex布局详解(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/关于nginx/">关于Nginx</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/JavaScript学习笔记/">JavaScript 学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/21/redis数据库与go中的使用/">redis数据库与go中的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/08/supervisor进程管理工具/">supervisor进程管理工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/23/jQuery与lodash($|_)/">jQuery与lodash($|_)</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.bilibili.com/" title="bilibili" target="_blank">bilibili</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">blossom |</a> 豫ICP备17040049号</div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.2" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.2" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.2"></script></div></body></html>

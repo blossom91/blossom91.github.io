@@ -1,0 +1,1960 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="blossom Html Css JavaScript Node Go Python Swift 全端 后端 Ios"><title>我的程序员入门手册 | blossom</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.2"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/7.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">我的程序员入门手册</h1><a id="logo" href="/.">blossom</a><p class="description">good good study and day day up</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">我的程序员入门手册</h1><div class="post-meta">Apr 1, 2018<span> | </span><span class="category"><a href="/categories/前端/">前端</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><p>哈哈,偶尔看到我入行程序员的时候写的一个笔记,见证了我的成长,感觉挺有纪念意义的,就整理一下搬过来吧~~~~</p>
+<a id="more"></a>
+<h3 id="视频音频标签"><a href="#视频音频标签" class="headerlink" title="视频音频标签"></a>视频音频标签</h3><p>带控制器的视频标签, 不同浏览器有不同的文件格式要求<br>所以用 2 个 source 标签指定不同的视频格式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">height</span>=<span class="string">"200"</span> <span class="attr">controls</span>=<span class="string">"controls"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.mp4"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.ogv"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>带控制器的音频标签, 不同浏览器有不同的文件格式要求<br>所以用 2 个 source 标签指定不同的音频格式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">id</span>=<span class="string">'id-audio-player'</span> <span class="attr">controls</span>=<span class="string">"controls"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"audio.ogg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"audio.mp3"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">audio</span> &gt;</span></span><br></pre></td></tr></table></figure>
+<p>audio 基本操作如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">document</span>.querySelector(<span class="string">'#id-audio-player'</span>)</span><br><span class="line">a.play() <span class="comment">//播放</span></span><br><span class="line">a.pause() <span class="comment">//暂停</span></span><br><span class="line">a.autoplay <span class="comment">//自动播放 (设为true)</span></span><br><span class="line">a.src <span class="comment">//链接音频文件</span></span><br><span class="line">a.volume <span class="comment">//音量（0-1之间的数）</span></span><br><span class="line">a.duration <span class="comment">//音频时间长度</span></span><br><span class="line">a.currentTime = <span class="number">1</span> <span class="comment">//现在播放第几s（设置）</span></span><br><span class="line">a.playbackRate <span class="comment">// 播放速率, 默认是 1</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="移动端设置"><a href="#移动端设置" class="headerlink" title="移动端设置"></a>移动端设置</h3><p>设置 viewport<br>viewport 是 html 的父元素<br>在手机上需要用下面的语句设置它的尺寸</p>
+<blockquote>
+<p><strong>网易移动端模板</strong></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript"><span class="comment">//设置rem</span></span></span><br><span class="line"><span class="javascript"><span class="built_in">document</span>.documentElement.style.fontSize = <span class="built_in">document</span>.documentElement.clientWidth / <span class="number">7.5</span>(iPhone6相对宽度) + <span class="string">'px'</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript"><span class="comment">//通过设计图宽度 / 100 来得出相对宽度 rem</span></span></span><br><span class="line"><span class="actionscript"><span class="comment">//比如iphone5 设计图宽度640 相对宽度 6.4</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">width=device-width</td>
+<td style="text-align:left">宽度等于设备宽度</td>
+</tr>
+<tr>
+<td style="text-align:left">height=device-height</td>
+<td style="text-align:left">高度等于设备宽度</td>
+</tr>
+<tr>
+<td style="text-align:left">initial-scale</td>
+<td style="text-align:left">初始缩放比例</td>
+</tr>
+<tr>
+<td style="text-align:left">minimum-scale</td>
+<td style="text-align:left">允许用户缩放的最小比例</td>
+</tr>
+<tr>
+<td style="text-align:left">maximum-scale</td>
+<td style="text-align:left">允许用户缩放的最大比例</td>
+</tr>
+<tr>
+<td style="text-align:left">user-scalable</td>
+<td style="text-align:left">是否允许用户缩放</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>###媒体查询-响应式开发<br>响应式设计就是一套 CSS 根据当前的分辨率选择不同的样式<br>媒体查询主要用来:</p>
+<ul>
+<li>检测媒体的类型, 比如 screen, tv 等</li>
+<li>检测布局视口的特性, 比如视口的宽高分辨率等</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">@<span class="keyword">media</span> all and (min-width: <span class="number">200px</span>) and (max-width: <span class="number">300px</span>)&#123;</span></span><br><span class="line"><span class="undefined">    body &#123;</span></span><br><span class="line"><span class="undefined">        background: red;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">//网易移动端字体设置</span></span><br><span class="line"><span class="css">@<span class="keyword">media</span> screen and (max-width: <span class="number">321px</span>) &#123;</span></span><br><span class="line"><span class="undefined">    body &#123;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">font-size</span><span class="selector-pseudo">:16px</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">@<span class="keyword">media</span> screen and (min-width: <span class="number">321px</span>) and (max-width:<span class="number">400px</span>) &#123;</span></span><br><span class="line"><span class="undefined">    body &#123;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">font-size</span><span class="selector-pseudo">:17px</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">@<span class="keyword">media</span> screen and (min-width: <span class="number">400px</span>) &#123;</span></span><br><span class="line"><span class="undefined">    body &#123;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">font-size</span><span class="selector-pseudo">:19px</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中, all 是媒体类型, 代表任何设备<br>and 是逻辑操作<br>意思是, 对于任何设备, 在宽度在 200-300 的范围内应用这个样式</p>
+<hr>
+<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a><a href="http://www.w3school.com.cn/cssref/index.asp" target="_blank" rel="noopener">CSS</a></h1><hr>
+<h4 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h4><blockquote>
+<p>举例：&lt; <code>h1</code> id=”<code>id-h1</code>“ class=”<code>class-h1</code>“&gt; 琉璃 &lt; /h1 &gt;<br>一切标签都可被选择包括 html, style 等</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">元素 选择器</th>
+<th style="text-align:center">符号</th>
+<th style="text-align:right">优先级 从高到低</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">!important</td>
+<td style="text-align:center">!</td>
+<td style="text-align:right">h1 { color: red <code>!important</code>; }</td>
+</tr>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">#</td>
+<td style="text-align:right"><code>#id-h1</code> { color: red; }</td>
+</tr>
+<tr>
+<td style="text-align:center">class</td>
+<td style="text-align:center">.</td>
+<td style="text-align:right"><code>.class-h1</code> { color: red; }</td>
+</tr>
+<tr>
+<td style="text-align:center">标签</td>
+<td style="text-align:center">无</td>
+<td style="text-align:right"><code>h1</code> { color: red; }</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">定义</th>
+<th style="text-align:right">优先级 从高到低</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">!</td>
+<td style="text-align:right">!important</td>
+</tr>
+<tr>
+<td style="text-align:center">内联</td>
+<td style="text-align:right">禁止使用 &lt; h1 <code>~~style=&quot;color: red;&quot;~~</code> &gt; Hello World &lt; /h1 &gt;</td>
+</tr>
+<tr>
+<td style="text-align:center">中联</td>
+<td style="text-align:right">&lt; style &gt; <code>h1{ color: red; }</code> &lt; /style &gt;</td>
+</tr>
+<tr>
+<td style="text-align:center">外联</td>
+<td style="text-align:right">&lt; link rel=”stylesheet” href=”<code>tag.css</code>“ &gt;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: lightblue;          <span class="comment">/* 背景色   */</span></span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">0px</span>;                     <span class="comment">/* 外边距   */</span></span><br><span class="line">    <span class="attribute">border</span>:<span class="number">0px</span>;                     <span class="comment">/* 边框     */</span></span><br><span class="line">    <span class="attribute">border-style</span>: solid;            <span class="comment">/* 边框样式 */</span></span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">0px</span>;                    <span class="comment">/* 内边距   */</span></span><br><span class="line">    <span class="attribute">font-family</span>: Microsoft YaHei;   <span class="comment">/* 字体     */</span></span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">22px</span>;                <span class="comment">/* 字体大小 */</span></span><br><span class="line">    <span class="attribute">text-align</span>: center;             <span class="comment">/* 对齐     */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.tanChuang</span> &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">100</span>;                   <span class="comment">/* 顶层     */</span></span><br><span class="line">    <span class="attribute">position</span>: fixed;                <span class="comment">/* 定位     */</span></span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0px</span>;                       <span class="comment">/* 顶部     */</span></span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0px</span>;                      <span class="comment">/* 左部     */</span></span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0.96</span>;                  <span class="comment">/* 透明度   */</span></span><br><span class="line">    <span class="attribute">background</span>: black;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.tanCenter</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-61.8%);  <span class="comment">/* Y轴距离  */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.circle</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>:  <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;             <span class="comment">/* 圆角     */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">background</span> 相关属性和缩写</span><br><span class="line">    <span class="selector-tag">background-color</span>: <span class="selector-id">#233</span>;</span><br><span class="line">    <span class="selector-tag">background-image</span>: <span class="selector-tag">url</span>(<span class="selector-tag">bg</span><span class="selector-class">.png</span>);</span><br><span class="line">    <span class="selector-tag">background-repeat</span>: <span class="selector-tag">no-repeat</span>;</span><br><span class="line">    <span class="selector-tag">background-attachment</span>: <span class="selector-tag">fixed</span>; 背景图片随滚动轴移动方式</span><br><span class="line">    <span class="selector-tag">background</span>: <span class="selector-id">#233</span> <span class="selector-tag">url</span>(<span class="selector-tag">bg</span><span class="selector-class">.png</span>) <span class="selector-tag">no-repeat</span>;</span><br><span class="line"></span><br><span class="line">三种缩写, 分别对应有 4 2 3 个值的时候的解释, <span class="selector-tag">padding</span> 同理</span><br><span class="line"><span class="selector-tag">margin</span>: <span class="selector-tag">top</span>  <span class="selector-tag">right</span>  <span class="selector-tag">bottom</span>  <span class="selector-tag">left</span></span><br><span class="line">margin: (top/bottom)  (right/left)</span><br><span class="line">margin: top  (right/left)  bottom</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">overflow</span>属性</span><br><span class="line">    <span class="selector-tag">visible</span> 默认</span><br><span class="line">    <span class="selector-tag">auto</span> 需要的时候加滚动条</span><br><span class="line">    <span class="selector-tag">hidden</span> 隐藏多余元素</span><br><span class="line">    <span class="selector-tag">scroll</span> 就算用不着也会强制加滚动条</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>内联元素 居中 text-align: center<br>区块元素 居中 margin: 0px auto;</p>
+</blockquote>
+<h4 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a><a href="http://www.w3school.com.cn/css/css_pseudo_classes.asp" target="_blank" rel="noopener">伪类</a></h4><table>
+<thead>
+<tr>
+<th style="text-align:center">:link</th>
+<th style="text-align:center">未访问</th>
+<th style="text-align:center">:hover</th>
+<th style="text-align:center">悬停</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>:visited</strong></td>
+<td style="text-align:center"><strong>已访问</strong></td>
+<td style="text-align:center"><strong>:active</strong></td>
+<td style="text-align:center"><strong>选定</strong></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span>   &#123; <span class="attribute">color</span>: white; <span class="attribute">text-decoration</span>: none; &#125; <span class="comment">/*去下划线*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span>&#123; <span class="attribute">color</span>: black; &#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>  &#123; <span class="attribute">color</span>: red; <span class="attribute">cursor</span>: pointer; &#125; <span class="comment">/*鼠标样式*/</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123; <span class="attribute">color</span>: lightblue; &#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-class">.class</span><span class="selector-pseudo">:visited</span> &#123;<span class="attribute">color</span>: white;&#125;    <span class="comment">/* 独立伪类 */</span></span><br></pre></td></tr></table></figure>
+<h4 id="定位-position"><a href="#定位-position" class="headerlink" title="定位 position"></a>定位 <a href="http://www.w3school.com.cn/cssref/pr_class_position.asp" target="_blank" rel="noopener">position</a></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">值</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">static</td>
+<td style="text-align:left">默认 <code>static</code></td>
+</tr>
+<tr>
+<td style="text-align:left">relative</td>
+<td style="text-align:left">相对定位 可相对自身偏移</td>
+</tr>
+<tr>
+<td style="text-align:left">absolute</td>
+<td style="text-align:left">完全绝对定位, 忽略其他所有东西, 往上浮动到 非 static 的元素</td>
+</tr>
+<tr>
+<td style="text-align:left">fixed</td>
+<td style="text-align:left">基于 <code>window</code> 的绝对定位, 不随页面滚动改变</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>非 static 元素可以用 top left bottom right 属性来设置坐标<br>非 static 元素可以用 z-index 属性来设置显示层次<br>e.pageX——相对整个页面的坐标<br>e.clientX——相对可视区域的坐标<br>e.offsetX——相对当前坐标系的 border 左上角开始的坐标</p>
+</blockquote>
+<h4 id="布局-flex"><a href="#布局-flex" class="headerlink" title="布局 flex"></a>布局 <a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">flex</a></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">容器的属性</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>flex-direction</code>:row</td>
+<td style="text-align:left">属性决定主轴的方向（即项目的排列方向</td>
+</tr>
+<tr>
+<td style="text-align:left">row,row-reverse</td>
+<td style="text-align:left">主轴为水平方向，起点在左(右)端</td>
+</tr>
+<tr>
+<td style="text-align:left">column,column-reverse</td>
+<td style="text-align:left">主轴为垂直方向，起点在上(下)沿</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>flex-wrap</code>:nowrap</td>
+<td style="text-align:left">定义如果一条轴线排不下如何换行,默认不换行</td>
+</tr>
+<tr>
+<td style="text-align:left">wrap,wrap-reverse</td>
+<td style="text-align:left">换行，第一行在上(下)方</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>flex-flow</code></td>
+<td style="text-align:left"><code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式，默认值为<code>row nowrap</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>justify-content</code></td>
+<td style="text-align:left">属性定义了项目在主轴上的对齐方式</td>
+</tr>
+<tr>
+<td style="text-align:left">flex-start,flex-end</td>
+<td style="text-align:left">左对齐(默认),右对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">center,space-between</td>
+<td style="text-align:left">居中,两端对齐，项目之间的间隔都相等</td>
+</tr>
+<tr>
+<td style="text-align:left">space-around</td>
+<td style="text-align:left">每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>align-items</code></td>
+<td style="text-align:left">属性定义项目在交叉轴上如何对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">stretch</td>
+<td style="text-align:left">(默认值)如果项目未设置高度或设为 auto，将占满整个容器的高度</td>
+</tr>
+<tr>
+<td style="text-align:left">flex-start,flex-end</td>
+<td style="text-align:left">交叉轴的起(终)点对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">center,baseline</td>
+<td style="text-align:left">交叉轴的中点对齐,项目的第一行文字的基线对齐</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>align-content</code></td>
+<td style="text-align:left">定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用</td>
+</tr>
+<tr>
+<td style="text-align:left">flex-start,flex-end</td>
+<td style="text-align:left">与交叉轴的起(终)点对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">center</td>
+<td style="text-align:left">与交叉轴的中点对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">space-between</td>
+<td style="text-align:left">与交叉轴两端对齐，轴线之间的间隔平均分布</td>
+</tr>
+<tr>
+<td style="text-align:left">space-around</td>
+<td style="text-align:left">每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍</td>
+</tr>
+<tr>
+<td style="text-align:left">stretch（默认值)</td>
+<td style="text-align:left">轴线占满整个交叉轴</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目的属性</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>order</code>:0</td>
+<td style="text-align:left">定义项目的排列顺序。数值越小排列越靠前，默认为 0</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>flex-grow</code>:0</td>
+<td style="text-align:left">定义项目的放大比例，默认 0 即如果存在剩余空间，也不放大</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>flex-grow</code>:1</td>
+<td style="text-align:left">属性都为 1，则它们将等分剩余空间（如果有的话）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>flex-grow</code>:2</td>
+<td style="text-align:left">如果一个项目的 flex-grow 属性为 2，其他项目都为 1，则前者占据的剩余空间将比其他项多一倍</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>flex-shrink</code>:1</td>
+<td style="text-align:left">定义了项目的缩小比例，默认为 1，即如果空间不足，该项目将缩小</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>flex-shrink</code>:0</td>
+<td style="text-align:left">如果一个项目的属性为 0，其他项目都为 1，则空间不足时，前者不缩小,负值无效</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>flex-basis</code>:auto</td>
+<td style="text-align:left">定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为 auto，即项目的本来大小</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>flex-basis</code>:350px</td>
+<td style="text-align:left">可以设为跟 width 或 height 属性一样的值（比如 350px），则项目将占据固定空间</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>flex</code></td>
+<td style="text-align:left">是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写，默认值为<code>0 1 auto</code>。后两个属性可选。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>flex</code>:auto,none</td>
+<td style="text-align:left">默认值分别是(1 1 auto) 和 (0 0 auto)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>align-self</code>:auto</td>
+<td style="text-align:left">允许单个项目有与其他项目不一样的对齐方式，可覆盖<code>align-items</code>属性。默认值为<code>auto</code>，表示继承父元素的<code>align-items</code>属性，如果没有父元素，则等同于<code>stretch</code>.该属性可能取 6 个值，除了 auto，其他都与 align-items 属性完全一致</td>
+</tr>
+</tbody>
+</table>
+<h4 id="显示-display"><a href="#显示-display" class="headerlink" title="显示 display"></a>显示 <a href="http://www.w3school.com.cn/cssref/pr_class_display.asp" target="_blank" rel="noopener">display</a></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">值</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">none</td>
+<td style="text-align:left">不显示</td>
+</tr>
+<tr>
+<td style="text-align:left">block</td>
+<td style="text-align:left">独占一行(默认有<code>div p ul ol li h1 h2 h3 h4 h5 h6</code>)</td>
+</tr>
+<tr>
+<td style="text-align:left">inline</td>
+<td style="text-align:left">内联元素 无法设置宽高</td>
+</tr>
+<tr>
+<td style="text-align:left">inline-block</td>
+<td style="text-align:left">内联元素 可以设置宽高</td>
+</tr>
+</tbody>
+</table>
+<h4 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a><a href="http://www.w3school.com.cn/css/css_boxmodel.asp" target="_blank" rel="noopener">盒模型</a></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">BOX</th>
+<th style="text-align:left">单位</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">margin:</td>
+<td style="text-align:left">0px;</td>
+<td style="text-align:left">外边距</td>
+</tr>
+<tr>
+<td style="text-align:left">border:</td>
+<td style="text-align:left">0px;</td>
+<td style="text-align:left">边框</td>
+</tr>
+<tr>
+<td style="text-align:left">padding:</td>
+<td style="text-align:left">0px;</td>
+<td style="text-align:left">内边距</td>
+</tr>
+<tr>
+<td style="text-align:left">width:</td>
+<td style="text-align:left">80% or 0px;</td>
+<td style="text-align:left">宽</td>
+</tr>
+<tr>
+<td style="text-align:left">height:</td>
+<td style="text-align:left">100% or 0px;</td>
+<td style="text-align:left">高</td>
+</tr>
+</tbody>
+</table>
+<p>###动画</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">动画</th>
+<th style="text-align:right">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">transform</td>
+<td style="text-align:right">2D 变形</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html" target="_blank" rel="noopener">transition</a></td>
+<td style="text-align:right">css 动画(运动时间,运动对象,运动速度,等待时间)</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html" target="_blank" rel="noopener">animation</a></td>
+<td style="text-align:right">多过程动画效果(具体看链接)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a><a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="noopener">JavaScript</a></h1><table>
+<thead>
+<tr>
+<th style="text-align:center">定义</th>
+<th style="text-align:right">插入 &lt; /body &gt; 之前 顺序执行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">中联</td>
+<td style="text-align:right">&lt; script &gt;<code>log(&#39;Hello World!&#39;)</code>&lt; /script &gt;</td>
+</tr>
+<tr>
+<td style="text-align:center">外联</td>
+<td style="text-align:right">&lt; script src=”<code>Echo.js</code>“ charset=”utf-8”&gt;&lt; /script &gt;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Array-数组"><a href="#Array-数组" class="headerlink" title="Array 数组"></a><strong>Array</strong> <a href="http://www.w3school.com.cn/jsref/jsref_obj_array.asp" target="_blank" rel="noopener">数组</a></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">秒懂释义</th>
+<th style="text-align:left">相当于</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>slice( )</strong></td>
+<td style="text-align:left">复制 切片并返回</td>
+<td style="text-align:left">支持负索引</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>splice(开始,长度,元素)</strong></td>
+<td style="text-align:left">删除插入并返回</td>
+<td style="text-align:left">开始的地方插入</td>
+</tr>
+<tr>
+<td style="text-align:left">concat( array )</td>
+<td style="text-align:left">连接 数组</td>
+</tr>
+<tr>
+<td style="text-align:left">includes( str[ ] )</td>
+<td style="text-align:left">检查 是否包含 str[ ] 返回 bool</td>
+</tr>
+<tr>
+<td style="text-align:left">indexOf()</td>
+<td style="text-align:left">返回元素第一次在数组中出现的位置,无返回-1</td>
+</tr>
+<tr>
+<td style="text-align:left">length</td>
+<td style="text-align:left">返回长度</td>
+<td style="text-align:left">长度可设置以清空</td>
+</tr>
+<tr>
+<td style="text-align:left">push( )</td>
+<td style="text-align:left">末尾 添加元素</td>
+<td style="text-align:left">push(1,2,[1,2])</td>
+</tr>
+<tr>
+<td style="text-align:left">unshift( )</td>
+<td style="text-align:left">头部 添加元素</td>
+</tr>
+<tr>
+<td style="text-align:left">pop( )</td>
+<td style="text-align:left">尾部 删除<strong>一个</strong>元素</td>
+</tr>
+<tr>
+<td style="text-align:left">shift( )</td>
+<td style="text-align:left">头部 删除<strong>一个</strong>元素</td>
+</tr>
+<tr>
+<td style="text-align:left">join( str )</td>
+<td style="text-align:left">返回 字符串 str 分隔</td>
+</tr>
+<tr>
+<td style="text-align:left">reverse( )</td>
+<td style="text-align:left">翻转 所有元素</td>
+</tr>
+<tr>
+<td style="text-align:left">sort( )</td>
+<td style="text-align:left">排序函数(需提供排序方式函数)</td>
+</tr>
+<tr>
+<td style="text-align:left">map()</td>
+<td style="text-align:left">参数是函数,返回一个新数组</td>
+</tr>
+<tr>
+<td style="text-align:left">filter()</td>
+<td style="text-align:left">参数是一个过滤函数,返回符合条件的新数组</td>
+</tr>
+<tr>
+<td style="text-align:left">toString()</td>
+<td style="text-align:left">返回数组的字符串形式</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Str-字符串"><a href="#Str-字符串" class="headerlink" title="Str 字符串"></a><strong>Str</strong> <a href="http://www.w3school.com.cn/jsref/jsref_obj_string.asp" target="_blank" rel="noopener">字符串</a></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>slice( )</strong></td>
+<td style="text-align:left">返回 切片</td>
+</tr>
+<tr>
+<td style="text-align:left">if( <code>==</code> )</td>
+<td style="text-align:left">判断相等需要双等号</td>
+</tr>
+<tr>
+<td style="text-align:left">includes( str )</td>
+<td style="text-align:left">检查 是否包含 str 返回 bool</td>
+</tr>
+<tr>
+<td style="text-align:left">split( str )</td>
+<td style="text-align:left">以 str 分割字符串 返回 array</td>
+</tr>
+<tr>
+<td style="text-align:left">toLowerCase()</td>
+<td style="text-align:left">字母转小写</td>
+</tr>
+<tr>
+<td style="text-align:left">toUpperCase()</td>
+<td style="text-align:left">字母转大写</td>
+</tr>
+<tr>
+<td style="text-align:left">indexOf( str )</td>
+<td style="text-align:left">查找 是否包含 str 返回 下标</td>
+</tr>
+<tr>
+<td style="text-align:left">match( str )</td>
+<td style="text-align:left">整个匹配结果以及任何括号捕获的匹配结果的 Array,没有就返回 null</td>
+</tr>
+<tr>
+<td style="text-align:left">replace( pattern, str )</td>
+<td style="text-align:left">替换 pattern 为 str ；/pattern/g 全部替换</td>
+</tr>
+<tr>
+<td style="text-align:left">search( <a href="#regexp-正则表达式">pattern</a> )</td>
+<td style="text-align:left">查找 pattern 返回下标 否则返回 -1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Object-字典"><a href="#Object-字典" class="headerlink" title="Object 字典"></a><strong>Object</strong> 字典</h4><blockquote>
+<p><code>dict</code> = { ‘初中生’:6, ‘高中生’:7, ‘大学生’:8 }<br>|属性|说明<br>|:-|:-|<br>| <code>dict</code> = { key : ‘value’, }|创建<br>|<code>dict.(key)</code> |点语法读取|<br>|<code>dict</code> [‘小学生’] = 4| 添加<br>|<code>dict</code> [‘小学生’] = 5| 修改<br>|delete <code>dict</code> [‘大学生’]| 删除<br>|Object.keys( <code>dict</code> )| 返回 keys</p>
+</blockquote>
+<h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Student = <span class="function"><span class="keyword">function</span>(<span class="params">name, height</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 用 this.变量名 来创造一个只有类的实例才能访问的变量</span></span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.height = height</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 用 new 函数名(参数) 初始化一个类的实例</span></span><br><span class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> Student(<span class="string">'gua'</span>, <span class="number">169</span>)</span><br><span class="line"><span class="comment">// 可以改变 s1 的属性</span></span><br><span class="line">s1.name = <span class="string">'xiaogua'</span></span><br><span class="line">s1.height = <span class="number">1.69</span></span><br><span class="line"><span class="comment">// 可以创建多个互相独立的实例</span></span><br><span class="line"><span class="keyword">var</span> s2 = <span class="keyword">new</span> Student()</span><br><span class="line"><span class="keyword">var</span> s3 = <span class="keyword">new</span> Student()</span><br><span class="line"><span class="comment">//可以给类增加一些方法(函数)</span></span><br><span class="line">Student.prototype.greeting = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`hello, I'm <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 可以调用实例的方法</span></span><br><span class="line">s1.greeting()</span><br><span class="line"></span><br><span class="line">ES6类的表示方法</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 初始化的套路</span></span><br><span class="line">    <span class="keyword">constructor</span>(name, height) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">        <span class="keyword">this</span>.height = height</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方法没有 var</span></span><br><span class="line">    greeting() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`hello, I'm <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    update(name, age) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">        <span class="keyword">this</span>.age = age</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> <span class="keyword">extends</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="comment">//继承类的用法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>####this</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">apply call bind  <span class="comment">//是用来给函数指定 this 用的</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">apply 接受两个参数</span><br><span class="line">第一个参数是函数里面的 <span class="keyword">this</span></span><br><span class="line">第二个参数是要传给函数的参数列表, 类型是 数组(暂定), apply 会把数组拆成一个个的参数传给函数</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log.apply(<span class="built_in">console</span>, <span class="built_in">arguments</span>) <span class="comment">//直接用</span></span><br><span class="line"></span><br><span class="line">call 和 apply 类似, 但是小有区别, 如下</span><br><span class="line">第一个参数和 apply 一样</span><br><span class="line">第 <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, ... 个参数会依次作为参数传给函数</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log.call(<span class="built_in">console</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">//直接用</span></span><br><span class="line"></span><br><span class="line">bind 函数<span class="comment">/*不直接调用*/</span>, 而是返回一个函数让你来调用</span><br><span class="line">第一个参数是用来指定函数里面的 <span class="keyword">this</span>, 和 apply call 一样</span><br><span class="line"><span class="keyword">var</span> log = <span class="built_in">console</span>.log.bind(<span class="built_in">console</span>)  <span class="comment">//不直接用</span></span><br><span class="line">log()    <span class="comment">//才可调用</span></span><br></pre></td></tr></table></figure>
+<h4 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">let</td>
+<td style="text-align:left">就是<code>限制作用域在 {}</code> 内的 var</td>
+</tr>
+<tr>
+<td style="text-align:left">const</td>
+<td style="text-align:left">用来声明一个<code>不可赋值的变量</code>,也是限制作用域在 {} 内的 var</td>
+</tr>
+<tr>
+<td style="text-align:left">Set</td>
+<td style="text-align:left">和 <code>Array</code> 相似的数据结构不同之处在于 <code>Set 中的元素都是不重复的</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Set</td>
+<td style="text-align:left"><code>var s = new Set()</code> add 方法添加元素<code>s.add(1)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Set</td>
+<td style="text-align:left">has 方法检查元素是否在 set 中 <code>s.has(1) =&gt; true</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Set</td>
+<td style="text-align:left">size 属性相当于 length <code>s.size =&gt; 2</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Set</td>
+<td style="text-align:left">delete 方法删除一个元素<code>s.delete(1)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Map</td>
+<td style="text-align:left"><code>Object</code>相似 <code>var m = new Map()</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Map</td>
+<td style="text-align:left">set 方法增加一个值<code>m.set(&#39;name&#39;, &#39;gua&#39;)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Map</td>
+<td style="text-align:left">get 属性得到一个值<code>m.get(&#39;name&#39;)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">…</td>
+<td style="text-align:left">叫扩展符号, 作用是把数组解开成单独的元素</td>
+</tr>
+<tr>
+<td style="text-align:left">…</td>
+<td style="text-align:left"><code>var a1 = [1, 2, 3]</code> <code>var a2 = [...a1, 4]</code> =&gt; <code>[1, 2, 3, 4]</code></td>
+</tr>
+<tr>
+<td style="text-align:left">…</td>
+<td style="text-align:left">也可以传参<code>var a1 = [1, 2, 3]</code> <code>log(...a1) =&gt;</code> <code>&#39;1,2,3&#39;</code></td>
+</tr>
+<tr>
+<td style="text-align:left">…</td>
+<td style="text-align:left">语法可以实现可变长度的参数, 多余的参数会被放进 args 数组中</td>
+</tr>
+<tr>
+<td style="text-align:left">…</td>
+<td style="text-align:left"><code>var foo = function(a, ...args) {log(a, args.length)}</code> <code>foo(1, 2, 3, 4)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">解包</td>
+<td style="text-align:left"><code>var [a, b] = [1, 2]</code> <code>[a, b] = [b, a]</code></td>
+</tr>
+<tr>
+<td style="text-align:left">箭头</td>
+<td style="text-align:left"><code>(参数1, 参数2) =&gt; 语句</code> <code>function(参数1, 参数2) {return 语句}</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="Json-格式"><a href="#Json-格式" class="headerlink" title="Json 格式"></a><strong>Json</strong> 格式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="built_in">JSON</span>.stringify( [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] ) <span class="comment">//编译</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> y = <span class="built_in">JSON</span>.parse( x )           <span class="comment">//读取</span></span><br></pre></td></tr></table></figure>
+<h4 id="Promise-处理回调的方法"><a href="#Promise-处理回调的方法" class="headerlink" title="Promise 处理回调的方法"></a><strong>Promise</strong> 处理回调的方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将 fs.readFile 的操作封装成 promise，这样就可以使用 promise 的 api 了</span></span><br><span class="line"><span class="keyword">const</span> readFile = <span class="function"><span class="keyword">function</span>(<span class="params">filename</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 一般前端的写法</span></span><br><span class="line">    <span class="comment">// return new Promise(function(resolve, reject) &#123;&#125;)</span></span><br><span class="line">    <span class="keyword">const</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line">        <span class="keyword">const</span> options = &#123;</span><br><span class="line">            encoding: <span class="string">'utf8'</span>,</span><br><span class="line">        &#125;</span><br><span class="line">        fs.readFile(filename, options, <span class="function"><span class="keyword">function</span>(<span class="params">error, content</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (error !== <span class="literal">null</span>) &#123;</span><br><span class="line">                reject(error)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                resolve(content)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> p</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用 promise 读取文件就不用写成回调的形式了</span></span><br><span class="line"><span class="comment">// 直接按照同步的写法就好了</span></span><br><span class="line"><span class="comment">// 可以无限 then, 只要你保证上一个 then 返回了东西即可</span></span><br><span class="line"><span class="keyword">let</span> promise = readFile(<span class="string">'foo.txt'</span>)</span><br><span class="line">promise</span><br><span class="line">    .then(</span><br><span class="line">        <span class="function"><span class="keyword">function</span>(<span class="params">content</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'debug file content'</span>, content)</span><br><span class="line">            <span class="keyword">const</span> c = content + <span class="string">' suffix1'</span></span><br><span class="line">            <span class="keyword">return</span> c</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'debug error message'</span>, error)</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">c1</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'second then'</span>, c1)</span><br><span class="line">        <span class="keyword">const</span> c = c1 + <span class="string">' suffix2'</span></span><br><span class="line">        <span class="keyword">return</span> c</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'third then'</span>, c)</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'GUA ****** line 46'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面的写法也可以写成下面这样</span></span><br><span class="line"><span class="comment">// 把 reject 的操作放在 catch 里面</span></span><br><span class="line">promise</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">content</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'debug file content'</span>, content)</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'debug error message'</span>, error)</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="comment">// 有时候会碰到批量执行异步操作，如果直接用循环 + 调用函数的形式会比较麻烦</span></span><br><span class="line"><span class="comment">// 使用 Promise.all 就很方便了</span></span><br><span class="line"><span class="comment">// all 方法是直接挂在 Promise 类上的，而 then catch 这些方法是挂在原型上</span></span><br><span class="line"><span class="comment">// Promise.all 会把数组里面所有的 promise 对象都执行完</span></span><br><span class="line"><span class="comment">// 再往下调用</span></span><br><span class="line"><span class="built_in">Promise</span>.all(list).then(<span class="function"><span class="keyword">function</span>(<span class="params">content</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Promise.all, content'</span>, content)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="重命名文件的方法"><a href="#重命名文件的方法" class="headerlink" title="重命名文件的方法"></a>重命名文件的方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> file = app.$(<span class="string">'videoInput'</span>).files[<span class="number">0</span>];</span><br><span class="line"><span class="comment">// 重命名</span></span><br><span class="line"><span class="keyword">var</span> aafile = <span class="keyword">new</span> File([file], <span class="string">"aa.mp4"</span>);</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="BOM-API"><a href="#BOM-API" class="headerlink" title="BOM API"></a><strong>BOM API</strong></h2><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">location</td>
+<td style="text-align:left">管理 URL(改变 href 属性就可以跳转页面)</td>
+</tr>
+<tr>
+<td style="text-align:left">navigator</td>
+<td style="text-align:left">对象是用来查询浏览器的信息的 例如 navigator.userAgent</td>
+</tr>
+<tr>
+<td style="text-align:left">history</td>
+<td style="text-align:left">对象是用来处理历史纪录的</td>
+</tr>
+<tr>
+<td style="text-align:left">screen</td>
+<td style="text-align:left">管理屏幕</td>
+</tr>
+<tr>
+<td style="text-align:left">window</td>
+<td style="text-align:left">管理浏览器所有的东西</td>
+</tr>
+<tr>
+<td style="text-align:left">open（‘url’，‘_self/_blank’）</td>
+<td style="text-align:left">打开一个新窗口 打开自身或另打开</td>
+</tr>
+<tr>
+<td style="text-align:left">close()</td>
+<td style="text-align:left">关闭窗口</td>
+</tr>
+<tr>
+<td style="text-align:left">document.body.scrollTop</td>
+<td style="text-align:left">滚轮离顶部距离</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">history.length <span class="comment">// 历史列表中的 url 数量</span></span><br><span class="line">history.back() <span class="comment">// 相当于点击后退按钮</span></span><br><span class="line">history.forward() <span class="comment">// 相当于点前进</span></span><br><span class="line">history.go(<span class="number">-2</span>) <span class="comment">// 相当于点击两次后退按钮</span></span><br><span class="line"><span class="comment">//H5新函数</span></span><br><span class="line"><span class="keyword">var</span> state = &#123;</span><br><span class="line">    page: <span class="string">'settings'</span>,</span><br><span class="line">&#125;</span><br><span class="line">history.pushState(state, <span class="string">'settings'</span>, <span class="string">'/settings'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*三个参数分别是</span></span><br><span class="line"><span class="comment">    1.自定义对象</span></span><br><span class="line"><span class="comment">    2.新页面的标题, 但是现在还没有浏览器实现这个功能</span></span><br><span class="line"><span class="comment">    3.新页面的地址(/...)</span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">用户点击 前进 后退 按钮的时候, 会触发 window 的 popstate事件</span></span><br><span class="line"><span class="comment">于是可以在这里操作*/</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'popstate'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> state = event.state</span><br><span class="line">    <span class="comment">// state 就是 pushState 的第一个参数 被储存</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'pop state'</span>, state)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*还有一个 replaceState 函数, 它的作用和 pushState 一样,   只是不生成一条历史纪录</span></span><br><span class="line"><span class="comment">只能在相同域名下使用*/</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="DOM-API"><a href="#DOM-API" class="headerlink" title="DOM API"></a><strong>DOM API</strong></h2><ul>
+<li>DOM 是 HTML 文件</li>
+<li>DOM API 是浏览器提供给 JavaScript 操作 html 页面的交互方式</li>
+</ul>
+<h4 id="常用-1"><a href="#常用-1" class="headerlink" title="常用"></a>常用</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="attribute">id</span>=<span class="string">"id"</span> <span class="attribute">type</span>=<span class="string">"text"</span> <span class="attribute">value</span>=<span class="string">"Gua"</span>&gt;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性 <a href="#选择器">（元素 .class #id）</a></th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">var <code>omg</code> = document.querySelector( <code>&#39;#id&#39;</code> )</td>
+<td style="text-align:center">获取 DOM 对象</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">var <code>omgs</code> = document.querySelectorAll(<code>&#39;.classname&#39;</code>)</td>
+<td style="text-align:center">获取 DOM 对象组</td>
+</tr>
+<tr>
+<td style="text-align:left">var <code>omgValue</code> = <code>omg</code>.getAttribute( <code>&#39;value&#39;</code> )</td>
+<td style="text-align:center">获取 属性值</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>omg</code>.setAttribute( <code>&#39;value&#39;</code> , <code>&#39;Gua&#39;</code> )</td>
+<td style="text-align:center">修改 属性值</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>omg</code>.hasAttribute( <code>&#39;value&#39;</code> )</td>
+<td style="text-align:center">查询 是否存在</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>omg</code>.removeAttribute( <code>&#39;type&#39;</code> )</td>
+<td style="text-align:center">删除 某个属性</td>
+</tr>
+<tr>
+<td style="text-align:left">var <code>allProperty</code> = <code>omg</code>.attributes</td>
+<td style="text-align:center">查找 所有属性</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>omg</code>.remove( )</td>
+<td style="text-align:center">整个删除 元素</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>omg</code>.dataset.()</td>
+<td style="text-align:center">获取 data-()值</td>
+</tr>
+<tr>
+<td style="text-align:left">var button = document.<strong>createElement</strong>(‘button’)</td>
+<td style="text-align:center">创建 元素</td>
+</tr>
+<tr>
+<td style="text-align:left">button.<strong>innerHTML</strong> = ‘注册用户’</td>
+<td style="text-align:center">设置属性</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>omg</code>.<strong>appendChild</strong>(button)</td>
+<td style="text-align:center">给一个元素添加子元素</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>omg</code>.<strong>insertAdjacentHTML</strong>( <code>&#39;beforeend&#39;</code>, <code>html</code> )</td>
+<td style="text-align:center">插入 HTML</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">insertAdjacentHTML</th>
+<th style="text-align:left">标签 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">beforebegin</td>
+<td style="text-align:left">开始标记 前</td>
+</tr>
+<tr>
+<td style="text-align:left">afterbegin</td>
+<td style="text-align:left">开始标记 后</td>
+</tr>
+<tr>
+<td style="text-align:left">beforeend</td>
+<td style="text-align:left">结束标记 前</td>
+</tr>
+<tr>
+<td style="text-align:left">afterend</td>
+<td style="text-align:left">结束标记 后</td>
+</tr>
+</tbody>
+</table>
+<p>####本地存储</p>
+<blockquote>
+<p>贮藏：localStorage[ <code>&#39;name&#39;</code> ] = ‘馒头’<br>取出：localStorage[ <code>&#39;name&#39;</code> ]<br>电脑本地储存 5MB Object,只能存字符串，可使用 Json 转字符串<br>localStorage 没有过期时间, 要用 clear remove 主动删除数据</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>贮藏：sessionStorage[ <code>&#39;name&#39;</code> ] = ‘馒头’<br>取出：sessionStorage[ <code>&#39;name&#39;</code> ]<br>sessionStorage 的数据在用户关闭浏览器后将被删除</p>
+</blockquote>
+<hr>
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a><strong>事件</strong></h3><blockquote>
+<p>事件绑定：<br>区分元素 &gt; 绑定元素 &gt; 触发 Event &gt; 操作元素</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<p>|var <code>button</code> = document.querySelector( <code>&quot;#id-div-cont&quot;</code> )<br>|// 获取 元素|<br>|<code>button</code>.addEventListener( <code>&#39;click&#39;</code>, callback)|<br>|// 事件 绑定 或 委托 |</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><a href="http://www.w3school.com.cn/jsref/jsref_events.asp" target="_blank" rel="noopener">常用事件</a></th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">‘focus’</td>
+<td style="text-align:center">获得 焦点</td>
+</tr>
+<tr>
+<td style="text-align:left">‘blur’</td>
+<td style="text-align:center">失去 焦点</td>
+</tr>
+<tr>
+<td style="text-align:left">‘click’</td>
+<td style="text-align:center">单击</td>
+</tr>
+<tr>
+<td style="text-align:left">‘dblclick’</td>
+<td style="text-align:center">双击</td>
+</tr>
+<tr>
+<td style="text-align:left">‘mousedown’</td>
+<td style="text-align:center">鼠标点下</td>
+</tr>
+<tr>
+<td style="text-align:left">‘mousemove’</td>
+<td style="text-align:center">鼠标移动</td>
+</tr>
+<tr>
+<td style="text-align:left">‘mouseup’</td>
+<td style="text-align:center">鼠标抬起</td>
+</tr>
+<tr>
+<td style="text-align:left">‘mouseover’</td>
+<td style="text-align:center">鼠标悬停</td>
+</tr>
+<tr>
+<td style="text-align:left">‘mouseout’</td>
+<td style="text-align:center">鼠标移开</td>
+</tr>
+<tr>
+<td style="text-align:left">‘keydown’</td>
+<td style="text-align:center">按下 某键</td>
+</tr>
+<tr>
+<td style="text-align:left">‘ended’</td>
+<td style="text-align:center">播放结束</td>
+</tr>
+<tr>
+<td style="text-align:left">submit</td>
+<td style="text-align:center">当<code>&lt;form&gt;</code>提交时触发</td>
+</tr>
+<tr>
+<td style="text-align:left">change</td>
+<td style="text-align:center">当<code>&lt;input&gt;&lt;select&gt;&lt;textarea&gt;</code>的内容改变时触发</td>
+</tr>
+<tr>
+<td style="text-align:left">‘animationend’</td>
+<td style="text-align:center">动画结束之后</td>
+</tr>
+<tr>
+<td style="text-align:left">onload</td>
+<td style="text-align:center">事件页面加载时发生</td>
+</tr>
+<tr>
+<td style="text-align:left">onscroll</td>
+<td style="text-align:center">页面滚动时发生</td>
+</tr>
+<tr>
+<td style="text-align:left">onresize</td>
+<td style="text-align:center">页面改变大小时发生</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">事件 event 参数</th>
+<th style="text-align:right">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">event.target.parentElement</td>
+<td style="text-align:right">父元素</td>
+</tr>
+<tr>
+<td style="text-align:left">event.target</td>
+<td style="text-align:right">元素</td>
+</tr>
+<tr>
+<td style="text-align:left">event.target.children</td>
+<td style="text-align:right">子元素</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>event.target.parentElement.children</strong></td>
+<td style="text-align:right">父子元素</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a><strong>Ajax</strong></h2><ul>
+<li>阿贾克斯中 <strong>event</strong> 事件本身，包含触发事件所有内容</li>
+</ul>
+<h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a><strong>GET</strong></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ajaxGet = <span class="function"><span class="keyword">function</span>(<span class="params">ku</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> r = <span class="keyword">new</span> XMLHttpRequest() <span class="comment">// 创建 AJAX 对象</span></span><br><span class="line">    r.open(<span class="string">'GET'</span>, ku.url, <span class="literal">true</span>) <span class="comment">// 设置 请求方法 地址</span></span><br><span class="line">    r.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (r.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="comment">// 如果 完成</span></span><br><span class="line">            ku.callback(r.response) <span class="comment">// 注册 响应函数 结果</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    r.send() <span class="comment">// 发送 请求</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// readyState有4种状态  0. 未初始化 1.载入  2.载入完成  3.交互  4.交互完成</span></span><br><span class="line"><span class="keyword">var</span> ku = &#123;</span><br><span class="line">    url: <span class="string">'/login'</span>, <span class="comment">// 地址</span></span><br><span class="line">    callback: <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 响应函数</span></span><br><span class="line">        <span class="built_in">console</span>.log(response)</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">ajaxGet(ku)</span><br></pre></td></tr></table></figure>
+<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a><strong>POST</strong></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ajax = <span class="function"><span class="keyword">function</span>(<span class="params"> ku </span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> r = <span class="keyword">new</span> XMLHttpRequest( )      <span class="comment">// 创建 AJAX 对象</span></span><br><span class="line">    r.open( ku.method, ku.url, <span class="literal">true</span> )  <span class="comment">// 设置 请求方法 地址</span></span><br><span class="line">    r.setRequestHeader(<span class="string">'Content-Type'</span>, ku.ContentType)</span><br><span class="line">    r.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (r.readyState === <span class="number">4</span>) &#123;      <span class="comment">// 完成</span></span><br><span class="line">            ku.callback(r.response)    <span class="comment">// 注册 响应函数 结果</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    r.send( ku.data )                  <span class="comment">// 发送 请求</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> ku = &#123;</span><br><span class="line">    method:         <span class="string">'POST'</span>,            <span class="comment">// 请求方法</span></span><br><span class="line">    url:            <span class="string">'/login'</span>,          <span class="comment">// 地址</span></span><br><span class="line">    ContentType:    <span class="string">'application/json'</span>,<span class="comment">// 数据格式</span></span><br><span class="line">    data: <span class="built_in">JSON</span>.stringify(&#123;             <span class="comment">// 发送内容</span></span><br><span class="line">        username:   <span class="string">'abc'</span>,</span><br><span class="line">        password:   <span class="string">'123'</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">    callback: <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;     <span class="comment">// 响应函数</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'result:'</span>, response )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">ajax( ku )</span><br></pre></td></tr></table></figure>
+<h2 id="http-协议"><a href="#http-协议" class="headerlink" title="http 协议"></a><strong>http 协议</strong></h2><blockquote>
+<p>请求和返回是一样的数据格式，分为 4 部分：<br>1，请求行或者响应行<br>2，HTTP Header（请求的 Header 中 Host 字段是必须的，其他都是可选）<br>3，\r\n\r\n（连续两个换行回车符，用来分隔 Header 和 Body）<br>4，HTTP Body（可选）</p>
+<p>请求的格式，注意大小写（这是一个不包含 Body 的请求）：<br>原始数据如下<br>‘GET / HTTP/1.1\r\nhost:g.cn\r\n\r\n’<br>打印出来如下<br>GET / HTTP/1.1<br>Host: g.cn<br>r\n(空一行)</p>
+</blockquote>
+<hr>
+<h1 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a><strong>jQuery</strong></h1><h4 id="常用-2"><a href="#常用-2" class="headerlink" title="常用"></a>常用</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">选择器</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\$( <code>&#39;.class&#39;</code> )</td>
+<td style="text-align:left">匹配所有 符合<a href="#选择器">元素</a> 返回 数组</td>
+</tr>
+<tr>
+<td style="text-align:left">\$( <code>&#39; #id, .class ,div &#39;</code>)</td>
+<td style="text-align:left">组选择</td>
+</tr>
+<tr>
+<td style="text-align:left">.find( <code>&#39;#id&#39;</code> )</td>
+<td style="text-align:left">向下查找子元素</td>
+</tr>
+<tr>
+<td style="text-align:left">.closest( <code>&#39;.class&#39;</code> )</td>
+<td style="text-align:left">查找 父元素（一直向上 找到为止）</td>
+</tr>
+<tr>
+<td style="text-align:left">.parent()</td>
+<td style="text-align:left">查找 父元素</td>
+</tr>
+<tr>
+<td style="text-align:left">.next()</td>
+<td style="text-align:left">下一个元素</td>
+</tr>
+<tr>
+<td style="text-align:left">.prev()</td>
+<td style="text-align:left">上一个元素</td>
+</tr>
+<tr>
+<td style="text-align:left">.children()</td>
+<td style="text-align:left">查找 子元素</td>
+</tr>
+<tr>
+<td style="text-align:left">.parent().children()</td>
+<td style="text-align:left">查找 父子元素</td>
+</tr>
+<tr>
+<td style="text-align:left">.siblings()</td>
+<td style="text-align:left">查找 父子元素（除过 自己）</td>
+</tr>
+<tr>
+<td style="text-align:left">.first()</td>
+<td style="text-align:left">第一个元素</td>
+</tr>
+<tr>
+<td style="text-align:left">.last()</td>
+<td style="text-align:left">最后一个元素</td>
+</tr>
+<tr>
+<td style="text-align:left">.slice( , )</td>
+<td style="text-align:left">同数组 slice()方法一致</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'ul.lang li'</span>) <span class="comment">// 选出JavaScript、Python和Lua 3个节点</span></span><br><span class="line">$(<span class="string">'ul.lang li:first-child'</span>) <span class="comment">// 仅选出JavaScript</span></span><br><span class="line">$(<span class="string">'ul.lang li:last-child'</span>) <span class="comment">// 仅选出Lua</span></span><br><span class="line">$(<span class="string">'ul.lang li:nth-child(2)'</span>) <span class="comment">// 选出第N个元素，N从1开始</span></span><br><span class="line">$(<span class="string">'ul.lang li:nth-child(even)'</span>) <span class="comment">// 选出序号为偶数的元素</span></span><br><span class="line">$(<span class="string">'ul.lang li:nth-child(odd)'</span>) <span class="comment">// 选出序号为奇数的元素</span></span><br></pre></td></tr></table></figure>
+<h4 id="jQuery-对象-DOM-操作"><a href="#jQuery-对象-DOM-操作" class="headerlink" title="jQuery 对象 DOM 操作"></a><strong>jQuery 对象 DOM 操作</strong></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">dom 操作修改</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">.text( )</td>
+<td style="text-align:left">取值文本（有参数则为赋值）</td>
+</tr>
+<tr>
+<td style="text-align:left">.html( )</td>
+<td style="text-align:left">取值字符串（有参数则为赋值)</td>
+</tr>
+<tr>
+<td style="text-align:left">.show()</td>
+<td style="text-align:left">显示</td>
+</tr>
+<tr>
+<td style="text-align:left">.hide()</td>
+<td style="text-align:left">隐藏</td>
+</tr>
+<tr>
+<td style="text-align:left">.toggle()</td>
+<td style="text-align:left">开关</td>
+</tr>
+<tr>
+<td style="text-align:left">.hasClass( )</td>
+<td style="text-align:left">查询 class 返回 ture 或 false</td>
+</tr>
+<tr>
+<td style="text-align:left">.addClass(‘className’)</td>
+<td style="text-align:left">添加 class</td>
+</tr>
+<tr>
+<td style="text-align:left">.removeClass( )</td>
+<td style="text-align:left">删除 class</td>
+</tr>
+<tr>
+<td style="text-align:left">.removeClass( )</td>
+<td style="text-align:left">删除 class</td>
+</tr>
+<tr>
+<td style="text-align:left">.data( )</td>
+<td style="text-align:left">获取 data 属性</td>
+</tr>
+<tr>
+<td style="text-align:left">.width()//.height()</td>
+<td style="text-align:left">查询宽高,填写参数是设置宽高</td>
+</tr>
+<tr>
+<td style="text-align:left">.attr( , )</td>
+<td style="text-align:left">第一个参数属性名,查询(有第二个参数赋值)</td>
+</tr>
+<tr>
+<td style="text-align:left">.removeAttr( )</td>
+<td style="text-align:left">填入参数移除属性</td>
+</tr>
+<tr>
+<td style="text-align:left">.prop()</td>
+<td style="text-align:left">与 attr 类似,但是处理 checked 等 bool 属性</td>
+</tr>
+<tr>
+<td style="text-align:left">.val()</td>
+<td style="text-align:left">表单元素专属获取和设置(填参数)对应的 value 属性</td>
+</tr>
+<tr>
+<td style="text-align:left">.append( )</td>
+<td style="text-align:left">最末尾</td>
+</tr>
+<tr>
+<td style="text-align:left">.prepend( )</td>
+<td style="text-align:left">最开头</td>
+</tr>
+<tr>
+<td style="text-align:left">.before( )</td>
+<td style="text-align:left">同级节点 之前</td>
+</tr>
+<tr>
+<td style="text-align:left">.after( )</td>
+<td style="text-align:left">同级节点 之后</td>
+</tr>
+<tr>
+<td style="text-align:left">.remove()</td>
+<td style="text-align:left">删除</td>
+</tr>
+<tr>
+<td style="text-align:left">.empty()</td>
+<td style="text-align:left">删除（除过 自己)</td>
+</tr>
+</tbody>
+</table>
+<p>####<strong>jQuery 对象 css 操作</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//jQuery对象有“批量操作”的特点可调用css对象方便修改对象的CSS</span></span><br><span class="line">$(<span class="string">'#test'</span>)</span><br><span class="line">    .css(<span class="string">'background-color'</span>, <span class="string">'black'</span>)</span><br><span class="line">    .css(<span class="string">'color'</span>, <span class="string">'red'</span>)</span><br><span class="line"><span class="keyword">var</span> div = $(<span class="string">'#test-div'</span>)</span><br><span class="line">div.css(<span class="string">'color'</span>) <span class="comment">// '#000033', 获取CSS属性</span></span><br><span class="line">div.css(<span class="string">'color'</span>, <span class="string">'#336699'</span>) <span class="comment">// 设置CSS属性</span></span><br><span class="line">div.css(<span class="string">'color'</span>, <span class="string">''</span>) <span class="comment">// 清除CSS属性</span></span><br><span class="line"><span class="comment">//css()方法将作用于DOM节点的style属性，具有最高优先级</span></span><br></pre></td></tr></table></figure>
+<h4 id="jQ-动画"><a href="#jQ-动画" class="headerlink" title="jQ 动画"></a><strong>jQ</strong> 动画</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">动画操作</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">.show(‘slow’)</td>
+<td style="text-align:left">显示(参数时间 1000 或者时间描述)</td>
+</tr>
+<tr>
+<td style="text-align:left">.hide(3000)</td>
+<td style="text-align:left">同上</td>
+</tr>
+<tr>
+<td style="text-align:left">.toggle()</td>
+<td style="text-align:left">开关</td>
+</tr>
+<tr>
+<td style="text-align:left">.slideUp()</td>
+<td style="text-align:left">窗帘效果的关(参数同上)</td>
+</tr>
+<tr>
+<td style="text-align:left">.slideDown()</td>
+<td style="text-align:left">….开</td>
+</tr>
+<tr>
+<td style="text-align:left">.slideToggle()</td>
+<td style="text-align:left">开关</td>
+</tr>
+<tr>
+<td style="text-align:left">.fadeOut()</td>
+<td style="text-align:left">淡入(参数同上)</td>
+</tr>
+<tr>
+<td style="text-align:left">.fadeIn()</td>
+<td style="text-align:left">淡出</td>
+</tr>
+<tr>
+<td style="text-align:left">.fadeToggle()</td>
+<td style="text-align:left">淡入淡出</td>
+</tr>
+<tr>
+<td style="text-align:left">.animate({opacity: 0.25,width: ‘256px’},3000,callback)</td>
+<td style="text-align:left">自定义动画,三个参数,1 变化对象,2 时间,3 动画结束回调函数</td>
+</tr>
+<tr>
+<td style="text-align:left">.delay(1000)</td>
+<td style="text-align:left">暂停动画</td>
+</tr>
+<tr>
+<td style="text-align:left">.data(‘id’)</td>
+<td style="text-align:left"><code>&lt;div data-id=&#39;101&#39;&gt;</code>取 data 值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="jQ-事件绑定"><a href="#jQ-事件绑定" class="headerlink" title="jQ 事件绑定"></a><strong>jQ</strong> 事件绑定</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'hello!'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a.click(hello); <span class="comment">// 绑定事件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 10秒钟后解除绑定:</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    a.off(<span class="string">'click'</span>, hello);</span><br><span class="line">&#125;, <span class="number">10000</span>);</span><br><span class="line">使用off(<span class="string">'click'</span>)一次性移除已绑定的click事件的所有处理函数</span><br><span class="line">无参数调用off()一次性移除已绑定的所有类型的事件处理函数</span><br><span class="line"></span><br><span class="line">a.on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Hello!'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 两者等价(常用下一种)</span></span><br><span class="line">a.click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'Hello!'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//事件委托用法</span></span><br><span class="line">$( <span class="string">'#id-div-cont'</span> ).on( <span class="string">'click'</span>, <span class="string">'.del'</span>, Event )</span><br><span class="line"><span class="comment">// 绑定 父元素 #id-div-cont 监听.del(如果点击的是.del则发生)</span></span><br></pre></td></tr></table></figure>
+<h4 id="jQ-函数"><a href="#jQ-函数" class="headerlink" title="jQ 函数"></a><strong>jQ</strong> 函数</h4><p><strong>each</strong> 遍历</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> eve = <span class="function"><span class="keyword">function</span>(<span class="params">i, eve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i, eve)</span><br><span class="line">&#125;</span><br><span class="line">$(<span class="string">'.notePad_one'</span>).each( eve )</span><br></pre></td></tr></table></figure>
+<p><strong>map</strong> 遍历 返回值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="keyword">var</span> eve = <span class="function"><span class="keyword">function</span>(<span class="params"> i </span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i * i</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = $.map( a, eve )</span><br><span class="line"><span class="comment">// 结果 b = [1, 4, 9, 16, 25]</span></span><br><span class="line"><span class="comment">//map与each最大区别是返回值</span></span><br></pre></td></tr></table></figure>
+<p><strong>filter</strong> 过滤器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="keyword">var</span> eve = <span class="function"><span class="keyword">function</span>(<span class="params"> i </span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i % <span class="number">2</span> == <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = $.grep( a, eve )</span><br><span class="line"><span class="comment">// 结果 b = [1, 3, 5]</span></span><br></pre></td></tr></table></figure>
+<h4 id="jQ-Ajax"><a href="#jQ-Ajax" class="headerlink" title="jQ Ajax"></a><strong>jQ</strong> Ajax</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = &#123;</span><br><span class="line">    url: <span class="string">'/uploads/tags.json'</span>,</span><br><span class="line">    type: <span class="string">'get'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">r</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(r)</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$.ajax(request)</span><br><span class="line"></span><br><span class="line"><span class="comment">//基础的jq ajax方法</span></span><br><span class="line">$.ajax(&#123;<span class="attr">name</span>:value, <span class="attr">name</span>:value, ... &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// jq get方法</span></span><br><span class="line">$.get(<span class="string">"test.php"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//jq post 方法</span></span><br><span class="line">$.post(URL,&#123;<span class="attr">name</span>:<span class="string">'小明'</span>&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">data,status,xhr</span>),<span class="title">dataType</span>)</span></span><br></pre></td></tr></table></figure>
+<h1 id="Bootstrap"><a href="#Bootstrap" class="headerlink" title="Bootstrap"></a><strong>Bootstrap</strong></h1><blockquote>
+<p>Bootstrap 设置响应式的 CSS 布局</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置bootstrap需要加入以下设置--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">' jQuery'</span>&gt;</span><span class="undefined">` bootstrap 必须引用 jq</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="布局-col"><a href="#布局-col" class="headerlink" title="布局 col"></a><strong>布局 col</strong></h4><blockquote>
+<p>col-(xs,sm,md,lg)每一个 div 可以加入多个 col-?类 叫做混合布局,会根据屏幕自适应布局.<br>每一横行都是新的 12 格,如果父元素 8 格,子元素还是新的 12 格</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ClassName</th>
+<th style="text-align:left">类效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">col-(xs,sm,md,lg)-(0-12)</td>
+<td style="text-align:left">布局:一个屏幕分成 12 栏网格效果</td>
+</tr>
+<tr>
+<td style="text-align:left">row</td>
+<td style="text-align:left">设置新的一排的布局</td>
+</tr>
+<tr>
+<td style="text-align:left">container</td>
+<td style="text-align:left">内容居中</td>
+</tr>
+<tr>
+<td style="text-align:left">page-header</td>
+<td style="text-align:left">标题下面加一条灰色的线</td>
+</tr>
+<tr>
+<td style="text-align:left">col-(xs,sm,md,lg)-push-(0-12)</td>
+<td style="text-align:left">在 col-?尺寸上把主体内容向右推?个网格宽度</td>
+</tr>
+<tr>
+<td style="text-align:left">col-(xs,sm,md,lg)-pull-(0-12)</td>
+<td style="text-align:left">在 col-?尺寸上把主体内容向左拉?个网格宽度</td>
+</tr>
+<tr>
+<td style="text-align:left">clearfix</td>
+<td style="text-align:left">修复元素浮动的问题</td>
+</tr>
+<tr>
+<td style="text-align:left">col-(xs,sm,md,lg)-offset-(0-12)</td>
+<td style="text-align:left">在 col-?尺寸把主体内容向右偏移?个网格宽度</td>
+</tr>
+<tr>
+<td style="text-align:left">visible-(xs,sm,md,lg)</td>
+<td style="text-align:left">在特定尺寸上显示内容</td>
+</tr>
+<tr>
+<td style="text-align:left">hidden-(xs,sm,md,lg)</td>
+<td style="text-align:left">在特定尺寸上隐藏内容</td>
+</tr>
+<tr>
+<td style="text-align:left">pull-right(left)</td>
+<td style="text-align:left">靠右显示与靠左显示</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="导航栏-navbar"><a href="#导航栏-navbar" class="headerlink" title="导航栏 navbar"></a><strong>导航栏 navbar</strong></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">ClassName</th>
+<th style="text-align:left">类效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">navbar</td>
+<td style="text-align:left">灰色边框的条</td>
+</tr>
+<tr>
+<td style="text-align:left">navbar-light(dark)</td>
+<td style="text-align:left">亮色背景与暗色背景</td>
+</tr>
+<tr>
+<td style="text-align:left">navbar-default</td>
+<td style="text-align:left">条是灰色背景</td>
+</tr>
+<tr>
+<td style="text-align:left">navbar-inverse</td>
+<td style="text-align:left">条是暗色背景</td>
+</tr>
+<tr>
+<td style="text-align:left">navbar-fixed-top(bottom)</td>
+<td style="text-align:left">导航栏固定在页面顶部(不滚动)</td>
+</tr>
+<tr>
+<td style="text-align:left">navbar-static-top(bottom)</td>
+<td style="text-align:left">导航栏固定在页面顶部(随页面滚动)</td>
+</tr>
+<tr>
+<td style="text-align:left">navbar-brand</td>
+<td style="text-align:left">给标签添加样式</td>
+</tr>
+<tr>
+<td style="text-align:left">nav navbar-nav</td>
+<td style="text-align:left">给 ul 添加样式</td>
+</tr>
+<tr>
+<td style="text-align:left">nav-item</td>
+<td style="text-align:left">表示这是导航栏里的一个项目</td>
+</tr>
+<tr>
+<td style="text-align:left">active</td>
+<td style="text-align:left">添加灰色的背景</td>
+</tr>
+<tr>
+<td style="text-align:left">glyphicon</td>
+<td style="text-align:left">使用小图标(用 span 标签使用)</td>
+</tr>
+<tr>
+<td style="text-align:left">glyphicon glyphicon-search</td>
+<td style="text-align:left">搜索小图标</td>
+</tr>
+<tr>
+<td style="text-align:left">form-control</td>
+<td style="text-align:left">input 添加样式</td>
+</tr>
+<tr>
+<td style="text-align:left">navbar-from</td>
+<td style="text-align:left">form 样式</td>
+</tr>
+<tr>
+<td style="text-align:left">navbar-left</td>
+<td style="text-align:left">向左浮动</td>
+</tr>
+<tr>
+<td style="text-align:left">btn</td>
+<td style="text-align:left">按钮基本样式</td>
+</tr>
+<tr>
+<td style="text-align:left">btn-primary</td>
+<td style="text-align:left">按钮的一个样式</td>
+</tr>
+<tr>
+<td style="text-align:left">btn-sm</td>
+<td style="text-align:left">按钮大小</td>
+</tr>
+<tr>
+<td style="text-align:left">navbar-btn</td>
+<td style="text-align:left">按钮边距</td>
+</tr>
+<tr>
+<td style="text-align:left">navbar-left(right)</td>
+<td style="text-align:left">元素靠左(靠右)</td>
+</tr>
+<tr>
+<td style="text-align:left">collapse navbar-collaps</td>
+<td style="text-align:left">响应式导航栏类(div 包围要折叠的导航界面)</td>
+</tr>
+<tr>
+<td style="text-align:left">navbar-toggle</td>
+<td style="text-align:left">切换显示隐藏的界面按钮类</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>data-toggle=&#39;collapse&#39;</code> <code>data-target=&#39;#(div包围元素的id)&#39;</code></td>
+<td style="text-align:left">切换按钮指定 2 个 data 属性</td>
+</tr>
+<tr>
+<td style="text-align:left">navbar-header</td>
+<td style="text-align:left">隐藏后显示的界面类</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="对话框-modal"><a href="#对话框-modal" class="headerlink" title="对话框 modal"></a><strong>对话框 modal</strong></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">ClassName</th>
+<th style="text-align:left">类效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">modal-backdrop in</td>
+<td style="text-align:left">添加一层暗色半透明的背景</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>data-toggle=&#39;modal&#39;</code> <code>data-target=&#39;#(对话框id)&#39;</code></td>
+<td style="text-align:left">给一个按钮绑定开关 id 对话框功能</td>
+</tr>
+<tr>
+<td style="text-align:left">modal fade</td>
+<td style="text-align:left">过渡的效果</td>
+</tr>
+<tr>
+<td style="text-align:left">data-dismiss=’modal’</td>
+<td style="text-align:left">设置关闭对话框功能</td>
+</tr>
+<tr>
+<td style="text-align:left">tabindex=’-1’</td>
+<td style="text-align:left">点击 tab 键优先跳转这个位置</td>
+</tr>
+<tr>
+<td style="text-align:left">data-backdrop=’false’</td>
+<td style="text-align:left">关闭自动暗色背景功能</td>
+</tr>
+<tr>
+<td style="text-align:left">‘show.bs.modal’</td>
+<td style="text-align:left">事件名,对话框显示时发生</td>
+</tr>
+<tr>
+<td style="text-align:left">‘hide.bs.moda’</td>
+<td style="text-align:left">事件名,对话框隐藏时发生</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="旋转木马-carousel"><a href="#旋转木马-carousel" class="headerlink" title="旋转木马 carousel"></a><strong>旋转木马 carousel</strong></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">ClassName</th>
+<th style="text-align:left">类效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">carousel</td>
+<td style="text-align:left">旋转木马组件大类</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>data-ride=&#39;carousel&#39;</code> <code>data-interval=&#39;?000&#39;</code></td>
+<td style="text-align:left">自动播放与?s 一次</td>
+</tr>
+<tr>
+<td style="text-align:left">data-pause=’false’</td>
+<td style="text-align:left">默认值 hover 鼠标悬浮暂停播放</td>
+</tr>
+<tr>
+<td style="text-align:left">data-wrap=’false’</td>
+<td style="text-align:left">默认为 true 播放结束循环播放</td>
+</tr>
+<tr>
+<td style="text-align:left">slide</td>
+<td style="text-align:left">过度效果</td>
+</tr>
+<tr>
+<td style="text-align:left">carousel-inner</td>
+<td style="text-align:left">放置旋转东西的小类</td>
+</tr>
+<tr>
+<td style="text-align:left">item</td>
+<td style="text-align:left">每一个幻灯片项目都放到一组带 item 类的容器里</td>
+</tr>
+<tr>
+<td style="text-align:left">item active</td>
+<td style="text-align:left">幻灯片开始播放的那个项目的上添加</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;a href=&#39;#(carousel)的id&#39;...</code></td>
+<td style="text-align:left">为幻灯片添加下一张功能</td>
+</tr>
+<tr>
+<td style="text-align:left">left(right) carousel-control</td>
+<td style="text-align:left">为 a 标签添加向左(右)转换功能的类</td>
+</tr>
+<tr>
+<td style="text-align:left">data-slide=’prev(next)’</td>
+<td style="text-align:left">为 a 标签添加向左(右)转换功能的设置</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>glyphicon</code> <code>glyphicon-chevron-left(right)</code></td>
+<td style="text-align:left">左右的小图标</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;ol class=&#39;carousel-indicators&#39;</code></td>
+<td style="text-align:left">添加幻灯片对应小圆点</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;li data-target=&#39;#(id)&#39; data-slide-to=&#39;(0)&#39;</code></td>
+<td style="text-align:left">0 对应第一个项目</td>
+</tr>
+<tr>
+<td style="text-align:left">active</td>
+<td style="text-align:left">默认从添加这个类的项目开始旋转</td>
+</tr>
+<tr>
+<td style="text-align:left">‘slide.bs.carousel’</td>
+<td style="text-align:left">事件,播放时触发</td>
+</tr>
+<tr>
+<td style="text-align:left">‘slid.bs.carousel’</td>
+<td style="text-align:left">事件,播放完成触发</td>
+</tr>
+</tbody>
+</table>
+<h1 id="lodash"><a href="#lodash" class="headerlink" title="lodash"></a><strong>lodash</strong></h1><blockquote>
+<p>lodash 是一个非常实用的 js 工具库 _是表达符号</p>
+</blockquote>
+<h3 id="lodash-函数"><a href="#lodash-函数" class="headerlink" title="lodash 函数"></a><strong>lodash</strong> 函数</h3><p><strong>each</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_.each(list(数组或对象), (v, k) =&gt; &#123;</span><br><span class="line">    <span class="comment">// each 方法的两个参数</span></span><br><span class="line">    <span class="comment">// 如果 list 是 列表，那么 v 和 k 分别是指 list 的 element/index</span></span><br><span class="line">    <span class="comment">// 如果 list 是 对象（字典），那么 v 和 k 分别是指 object 的 value/key</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'element and index'</span>, v, k)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>map</strong> (旧数组/对象生成一个新数组)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list2(新数组) = _.map(list1(旧数组), (v, k) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> r = v * v</span><br><span class="line">    <span class="keyword">return</span> r</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'list2'</span>, list2)</span><br></pre></td></tr></table></figure>
+<p><strong>filter</strong> (遍历数组/对象，返回符合判断函数中的元素)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> u(符合条件的新数组) =</span><br><span class="line">_.filter(us(数组可包含对象), (e) =&gt; &#123;</span><br><span class="line">        <span class="keyword">var</span> b = e.score &gt; <span class="number">70</span>(bool值)</span><br><span class="line">        <span class="keyword">return</span> b</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'filter u'</span>, u)</span><br></pre></td></tr></table></figure>
+<p><strong>orderBy</strong> (按照条件排序,先按 score 升序,如果有 score 一样的,再按 name 降序)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> users = _.orderBy(us, [<span class="string">'score'</span>, <span class="string">'name'</span>], [<span class="string">'asc'</span>(升序), <span class="string">'desc'</span>(降序)])</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'order by users'</span>, users)</span><br></pre></td></tr></table></figure>
+<p><strong>flatten</strong> (减少一层嵌套数组(只减少一层),也就是可以将二维数组拍成一维数组)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> l = [<span class="number">1</span>, [<span class="number">2</span>], [<span class="number">3</span>, [<span class="number">4</span>]], [<span class="number">5</span>, [<span class="number">6</span>], [<span class="number">7</span>]]]</span><br><span class="line"><span class="keyword">var</span> f = _.flatten(l)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'flatten result'</span>, f)</span><br></pre></td></tr></table></figure>
+<p><strong>compact</strong> 剔除数组中的假值元素(js 中假值元素分别为<code>false null 0 NaN &#39;&#39; undefined</code>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = _.compact(l(包含假值元素的数组))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'compact result'</span>, result) ** (isEqual ** isEqual比较两个对象或者数组是否相等)</span><br><span class="line"><span class="keyword">var</span> o1 = &#123;</span><br><span class="line">    key: <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o2 = &#123;</span><br><span class="line">    key: <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = _.isEqual(o1, o2)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'isEqual result'</span>, result)</span><br></pre></td></tr></table></figure>
+<p><strong>result</strong> (获取嵌套对象的值)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">    k1: &#123;</span><br><span class="line">        k2: &#123;</span><br><span class="line">            k3: &#123;</span><br><span class="line">                k4: <span class="string">'value in nested dict'</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> path = <span class="string">'k1.k2.k3.k4'</span></span><br><span class="line"><span class="keyword">var</span> result = _.result(o, path)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'result nested result'</span>, result)</span><br></pre></td></tr></table></figure>
+<p><strong>cloneDeep</strong> 深拷贝(改变赋值不影响原函数的拷贝)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">    a: [<span class="number">1</span>],</span><br><span class="line">    b: [<span class="number">2</span>],</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> deep = _.cloneDeep(o)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'deep'</span>, deep)</span><br></pre></td></tr></table></figure>
+<p><strong>random</strong> (返回给定范围的随机值)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> a = <span class="number">10</span>      <span class="keyword">var</span> b = <span class="number">20</span></span><br><span class="line">    <span class="comment">// 返回 a 和 b 之间的一个整数</span></span><br><span class="line">    <span class="keyword">var</span> r1 = _.random(a, b)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'random r1'</span>, r1)</span><br><span class="line"><span class="comment">//如果指定第三个参数为 true，这个参数的意思是指 floating ,那么返回的就是一个浮点数</span></span><br><span class="line">    <span class="keyword">var</span> r2 = _.random(a, b, <span class="literal">true</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'random r2'</span>, r2(浮点数))</span><br></pre></td></tr></table></figure>
+<p><strong>shuffle</strong> (返回打乱顺序后的数组)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> l = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="keyword">const</span> s = _.shuffle(l)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'shuffle l'</span>, s)</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="vue-js"><a href="#vue-js" class="headerlink" title="vue.js"></a>vue.js</h1><hr>
+<blockquote>
+<p>注意事项 1.确保在初始化根实例之前注册了组件</p>
+</blockquote>
+<ol>
+<li>内部使用 vue 属性需要使用 this 3.要在内联语句处理器中访问原生 DOM 事件。可以用特殊变量 <code>$event</code> 把它传入方法 4.在数据变化之后立即使用 Vue.nextTick(callback) == this.$nextTick(callback)</li>
+</ol>
+<hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Vue 属性</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">el</td>
+<td style="text-align:center">绑定的 id</td>
+</tr>
+<tr>
+<td style="text-align:center">data</td>
+<td style="text-align:center">储存的一些属性</td>
+</tr>
+<tr>
+<td style="text-align:center">methods</td>
+<td style="text-align:center">储存的一些方法(函数)</td>
+</tr>
+<tr>
+<td style="text-align:center">filters</td>
+<td style="text-align:center">储存一些过滤函数</td>
+</tr>
+<tr>
+<td style="text-align:center">computed</td>
+<td style="text-align:center">储存一些计算属性函数(存在缓存,一般情况可以用 methods 替代)</td>
+</tr>
+<tr>
+<td style="text-align:center">watch</td>
+<td style="text-align:center">数据改变时触发,允许我们执行异步操作</td>
+</tr>
+<tr>
+<td style="text-align:center">components</td>
+<td style="text-align:center">局部注册组件属性</td>
+</tr>
+<tr>
+<td style="text-align:center">props</td>
+<td style="text-align:center">子组件要显式地用 props 选项声明它期待获得的数据</td>
+</tr>
+<tr>
+<td style="text-align:center">template</td>
+<td style="text-align:center">组件模板</td>
+</tr>
+<tr>
+<td style="text-align:center">data(组件)</td>
+<td style="text-align:center">组件 data 必须是函数 return 出的对象</td>
+</tr>
+<tr>
+<td style="text-align:center">Vue.set(object, key, value)</td>
+<td style="text-align:center">将响应属性添加到嵌套的对象上</td>
+</tr>
+<tr>
+<td style="text-align:center">directives</td>
+<td style="text-align:center">注册局部指令</td>
+</tr>
+<tr>
+<td style="text-align:center">beforeCreate</td>
+<td style="text-align:center">在实例初始化之后数据观测之前被调用</td>
+</tr>
+<tr>
+<td style="text-align:center">created</td>
+<td style="text-align:center">实例被创建之后被调用</td>
+</tr>
+<tr>
+<td style="text-align:center">beforeMount</td>
+<td style="text-align:center">在挂载开始之前被调用：相关的 render 函数首次被调用</td>
+</tr>
+<tr>
+<td style="text-align:center">mounted</td>
+<td style="text-align:center">el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子</td>
+</tr>
+<tr>
+<td style="text-align:center">beforeUpdate</td>
+<td style="text-align:center">数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前</td>
+</tr>
+<tr>
+<td style="text-align:center">updated</td>
+<td style="text-align:center">由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子</td>
+</tr>
+<tr>
+<td style="text-align:center">activated</td>
+<td style="text-align:center">keep-alive 组件激活时调用</td>
+</tr>
+<tr>
+<td style="text-align:center">deactivated</td>
+<td style="text-align:center">keep-alive 组件停用时调用</td>
+</tr>
+<tr>
+<td style="text-align:center">beforeDestroy</td>
+<td style="text-align:center">实例销毁之前调用。在这一步，实例仍然完全可用</td>
+</tr>
+<tr>
+<td style="text-align:center">destroyed</td>
+<td style="text-align:center">Vue 实例销毁后调用</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$on(<span class="string">'事件名字'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">r</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(r)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//监听自定义事件 第一个事件名字 第二个参数触发函数</span></span><br><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'事件名字'</span>, <span class="string">'输入值'</span>)</span><br><span class="line"><span class="comment">//触发自定义事件 第一个参数名字 第二个参数函数参数</span></span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p><em>常用 vue 指令</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">v-if(show)</td>
+<td style="text-align:center">true 显示 false 隐藏</td>
+</tr>
+<tr>
+<td style="text-align:center">v-else</td>
+<td style="text-align:center">跟 v-if 并列的话,v-if 隐藏它显示</td>
+</tr>
+<tr>
+<td style="text-align:center">v-bind:()</td>
+<td style="text-align:center">绑定某个属性,v-bind 可隐藏 <code>:()</code></td>
+</tr>
+<tr>
+<td style="text-align:center">v-text</td>
+<td style="text-align:center">纯文本内容显示</td>
+</tr>
+<tr>
+<td style="text-align:center">v-html</td>
+<td style="text-align:center">渲染显示</td>
+</tr>
+<tr>
+<td style="text-align:center">v-on:click</td>
+<td style="text-align:center">绑定点击 click 事件也可以用<code>@click</code></td>
+</tr>
+<tr>
+<td style="text-align:center">v-model</td>
+<td style="text-align:center">input 默认值(复选单选按钮,选择列表) 修改后值随之改变</td>
+</tr>
+<tr>
+<td style="text-align:center">v-once</td>
+<td style="text-align:center">渲染的值不发生变化</td>
+</tr>
+<tr>
+<td style="text-align:center">v-for</td>
+<td style="text-align:center"><code>( ,index)in( )</code> 循环取值 index 为序号,也可以是循环整数</td>
+</tr>
+<tr>
+<td style="text-align:center">v-for</td>
+<td style="text-align:center"><code>(value,key,index)in(object)</code>也可以循环取值 object</td>
+</tr>
+<tr>
+<td style="text-align:center">key</td>
+<td style="text-align:center">为 vue 指定唯一性 key 值,可以防止切换的重复组件被复用</td>
+</tr>
+<tr>
+<td style="text-align:center">is</td>
+<td style="text-align:center"><code>&lt;tr is=&quot;my-row&quot;&gt;&lt;/tr&gt;</code>将 tr 替换为 my-row 模板</td>
+</tr>
+<tr>
+<td style="text-align:center">scope</td>
+<td style="text-align:center">值对应一个临时变量名，此变量接收从子组件中传递的 props 对象</td>
+</tr>
+<tr>
+<td style="text-align:center">ref</td>
+<td style="text-align:center">可以使用 ref 为子组件指定一个索引 ID<code>new Vue({ el: &#39;#id&#39; }).$refs.(ID)</code></td>
+</tr>
+<tr>
+<td style="text-align:center">inline-template</td>
+<td style="text-align:center">组件将把它的内容当作它的模板，而不是把它当作分发内容</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>:duration=&quot;{ enter: 500, leave: 800 }&quot;</code></td>
+<td style="text-align:center">定义动画持续时间</td>
+</tr>
+</tbody>
+</table>
+<p><strong>html 代码事例</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'app'</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>(<span class="attr">show</span>)=<span class="string">'welcome'</span> <span class="attr">v-bind:title</span>=<span class="string">'title'</span> <span class="attr">v-once</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--1.显示隐藏元素(if是添加show是改变display) 2.v-bind(可省略)绑定title属性为'title' 3.message值不随着改变--&gt;</span></span><br><span class="line">    &#123;&#123; loggedIN? message : '请先登录 '&#125;&#125;  </span><br><span class="line">    <span class="comment">&lt;!--loggedIN值为true hello  false  请先登录 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span>     //v-else-if也可以使用</span><br><span class="line">    Now you don't</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">     <span class="comment">&lt;!--if为false时显示 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-text</span>=<span class="string">'message'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  <span class="comment">&lt;!--message纯文本显示 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-html</span>=<span class="string">'message'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>   <span class="comment">&lt;!--渲染显示 --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--触发的事件调用 event.preventDefault()--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">"onSubmit"</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 点击事件将只会触发一次 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.once</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 阻止单击事件冒泡,可以串联按照顺序执行 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop.once</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 只当事件在该元素本身（比如不是子元素）触发时触发回调 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.self</span>=<span class="string">"doThat"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 在 "change" 而不是 "input" 事件中更新 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model.lazy</span>=<span class="string">"msg"</span> &gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 自动转换输入的字符为数字 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model.number</span>=<span class="string">"age"</span> <span class="attr">type</span>=<span class="string">"number"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 自动过滤用户输入的首尾空格 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model.trim</span>=<span class="string">"msg"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">'message'</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--input框中默认为message  修改此值即修改data里message值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">'comment in comments  //(value, key, index) in object)'</span>&gt;</span></span><br><span class="line">            &#123;&#123; comment.content &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--循环comments数组创建li  可通过app.comments.push(&#123;content:'lalala'&#125;)添加新的li元素--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--组件化演示 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">comment</span> <span class="attr">v-for</span>=<span class="string">'comment in comments'</span> <span class="attr">v-bind:comment</span>=<span class="string">'comment'</span>&gt;</span><span class="tag">&lt;/<span class="name">comment</span>&gt;</span>  <span class="comment">&lt;!--效果同上li --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>js 代码事例</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义全局组件化</span></span><br><span class="line">Vue.component(<span class="string">'comment'</span>, &#123;</span><br><span class="line">    <span class="comment">//声明组件名字</span></span><br><span class="line">    template: <span class="string">'&lt;li&gt; &#123;&#123; comment.content &#125;&#125; &lt;/li&gt;'</span>, <span class="comment">//组件模板</span></span><br><span class="line">    <span class="comment">// '&lt;slot&gt; :) &lt;/slot&gt;'   内容分发</span></span><br><span class="line">    <span class="comment">//包含slot标签的div没有内容时显示:) 有内容时隐藏</span></span><br><span class="line">    props: [<span class="string">'comment'</span>], <span class="comment">//组件传入的对象</span></span><br><span class="line">    <span class="comment">/* prosp: &#123;</span></span><br><span class="line"><span class="comment">        comment: &#123;</span></span><br><span class="line"><span class="comment">            type:String,    </span></span><br><span class="line"><span class="comment">            default: 'button',   默认值</span></span><br><span class="line"><span class="comment">            required: true,      必须有值</span></span><br><span class="line"><span class="comment">            validator (value) &#123;</span></span><br><span class="line"><span class="comment">                return value.length &gt; 3      值长度大于 3</span></span><br><span class="line"><span class="comment">            &#125;      prosp的另一种对象形式</span></span><br><span class="line"><span class="comment">        &#125;        可以过滤传入对象的属性</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">    methods: &#123;</span><br><span class="line">        logMessage() &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.message)</span><br><span class="line">        &#125;, <span class="comment">//组件化中也可以直接定义data与methods</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#app'</span>, <span class="comment">//选择应用vue的选择器,等效于vm.$mout('#app')</span></span><br><span class="line">    methods: &#123;</span><br><span class="line">        logMessage() &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.message)</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    data: &#123;</span><br><span class="line">        message: <span class="string">'hello'</span>,</span><br><span class="line">        title: <span class="string">'hello'</span>, <span class="comment">//鼠标放上去显示</span></span><br><span class="line">        welcome: <span class="literal">true</span>, <span class="comment">//true显示这个元素 false隐藏</span></span><br><span class="line">        loggedin: <span class="literal">false</span>,</span><br><span class="line">        comments: [&#123; <span class="attr">content</span>: <span class="string">'yayaya1'</span> &#125;, &#123; <span class="attr">content</span>: <span class="string">'yayaya2'</span> &#125;, &#123; <span class="attr">content</span>: <span class="string">'yayaya3'</span> &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    created: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 实例被创建之后调用</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'hello word~'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="vue-router-js"><a href="#vue-router-js" class="headerlink" title="vue-router.js"></a>vue-router.js</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello App!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 使用 router-link 组件来导航. --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 通过传入 `to` 属性指定链接. --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;router-link&gt; 默认会被渲染成一个 `&lt;a&gt;` 标签 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/foo"</span>&gt;</span>Go to Foo<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/bar"</span>&gt;</span>Go to Bar<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 渲染模板里面根据路由再次嵌套渲染--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/user/foo/profile"</span>&gt;</span>/user/foo/profile<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 路由出口 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 路由匹配到的组件将渲染在这里 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Foo = &#123; <span class="attr">template</span>: <span class="string">'&lt;div&gt;foo&lt;/div&gt;'</span> &#125;</span><br><span class="line"><span class="keyword">const</span> Bar = &#123; <span class="attr">template</span>: <span class="string">'&lt;div&gt;bar&lt;/div&gt;'</span> &#125;</span><br><span class="line"><span class="keyword">const</span> User = &#123;  <span class="comment">//动态参数值会被设置到 this.$route.params</span></span><br><span class="line">  template: <span class="string">'&lt;div&gt;User &#123;&#123; $route.params.id &#125;&#125;&lt;/div&gt;'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> User = &#123;</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div class="user"&gt;</span></span><br><span class="line"><span class="string">      &lt;h2&gt;User &#123;&#123; $route.params.id &#125;&#125;&lt;/h2&gt;</span></span><br><span class="line"><span class="string">      &lt;router-view&gt;&lt;/router-view&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">     &#123; <span class="attr">path</span>: <span class="string">'/foo'</span>, <span class="attr">component</span>: Foo &#125;,</span><br><span class="line">     &#123; <span class="attr">path</span>: <span class="string">'/bar'</span>, <span class="attr">component</span>: Bar &#125;,</span><br><span class="line">     <span class="comment">// 动态路径参数 以冒号开头</span></span><br><span class="line">     &#123; <span class="attr">path</span>: <span class="string">'/user/:id'</span>, <span class="attr">component</span>: User,</span><br><span class="line">     <span class="comment">//自路由再次渲染</span></span><br><span class="line">       children: [ &#123; <span class="attr">path</span>: <span class="string">'profile'</span>, <span class="attr">component</span>: UserProfile &#125;,</span><br><span class="line">                 &#123; <span class="attr">path</span>: <span class="string">'posts'</span>, <span class="attr">component</span>: UserPosts &#125; ]</span><br><span class="line">     &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  router</span><br><span class="line">&#125;).$mount(<span class="string">'#app'</span>)   <span class="comment">//$mount('#app')相当于 el:'#app'</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>router.push</code> 会向 <code>history</code>栈添加一个新的记录点击浏览器后退按钮回到之前的 URL<br><code>router.replace</code>与<code>router.push</code> 很像，唯一的不同就是，它不会向 <code>history</code> 添加新记录<br><code>router.go</code> 参数是一个整数，意思是在 history 记录中向前或者后退多少步<br><code>{ path: &#39;/a&#39;, redirect: { name: &#39;foo&#39; }}</code><br>重定向的意思是，当用户访问 /a 时，URL 将会被替换成 /b，然后匹配路由为 /b<br><code>{ path: &#39;/a&#39;, component: A, alias: &#39;/b&#39; }</code><br>/a 的别名是 /b，意味着，当用户访问 /b 时，URL 会保持为 /b，但是路由匹配则为 /a，就像用户访问 /a 一样</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 全局注册的钩子   3个参数 去哪 哪来  干嘛</span></span><br><span class="line">&#125;)</span><br><span class="line">beforeEnter: <span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//组件内部的钩子 效果一样</span></span><br><span class="line">&#125;</span><br><span class="line">beforeRouteEnter (to, <span class="keyword">from</span>, next) <span class="comment">//渲染该组件的对应路由被 confirm 前调用 无this</span></span><br><span class="line"></span><br><span class="line">beforeRouteUpdate (to, <span class="keyword">from</span>, next) <span class="comment">//在当前路由改变，但是该组件被复用时调用</span></span><br><span class="line"></span><br><span class="line">beforeRouteLeave (to, <span class="keyword">from</span>, next) <span class="comment">//导航离开该组件的对应路由时调用</span></span><br><span class="line"></span><br><span class="line">scrollBehavior (to, <span class="keyword">from</span>, savedPosition) &#123;</span><br><span class="line">    <span class="comment">// return 期望滚动到哪个的位置</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a>node.js</h1><h3 id="node-fs-专属配置环境工具"><a href="#node-fs-专属配置环境工具" class="headerlink" title="node(fs)专属配置环境工具"></a>node(fs)专属配置环境工具</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)     <span class="comment">//加载fs库赋值于fs</span></span><br><span class="line">fs.readdir(<span class="string">'.'</span>, (err,files) =&gt; &#123; <span class="comment">// .当前目录..上一级</span></span><br><span class="line">    <span class="keyword">if</span>(err != <span class="literal">null</span>) &#123;</span><br><span class="line">       <span class="built_in">console</span>.log(err)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'files'</span>, files)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)   <span class="comment">//  读取当前目录下的文件(readdirSync同步版本)</span></span><br><span class="line"></span><br><span class="line">fs.rmdir(<span class="string">'目录名'</span>,(err) =&gt; &#123; &#125;)</span><br><span class="line"><span class="comment">//删除目录文件(目录必须为空)</span></span><br><span class="line"></span><br><span class="line">fs.unlink(file, (err) =&gt; &#123; &#125;)  </span><br><span class="line"><span class="comment">//  删除file文件</span></span><br><span class="line"></span><br><span class="line">fs.mkdir(<span class="string">'目录名字'</span>,(err) =&gt; &#123; &#125;)</span><br><span class="line"><span class="comment">//创建目录</span></span><br><span class="line"></span><br><span class="line">fs.readdir(<span class="string">'目录'</span>,(err, files) =&gt; &#123;&#125;)</span><br><span class="line"><span class="comment">//读取目录内容</span></span><br><span class="line"></span><br><span class="line">fs.writeFile(<span class="string">'file'</span>, <span class="string">'你好 Node.js'</span>, (err) =&gt; &#123;&#125;)</span><br><span class="line"> <span class="comment">//  创建file文件</span></span><br><span class="line"></span><br><span class="line">fs.appendFile(<span class="string">'file'</span>, <span class="string">'你好 python'</span>, (err) =&gt; &#123;&#125;)</span><br><span class="line"><span class="comment">//添加文件内容</span></span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">'message.txt'</span>, <span class="string">'utf8'</span>, (err, data) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'读取了文件'</span>, data)</span><br><span class="line">&#125;)    <span class="comment">//   读取文件</span></span><br><span class="line"></span><br><span class="line">fs.rename(<span class="string">'原名字'</span>,<span class="string">'新名字'</span>,(err) =&gt; &#123;&#125;)</span><br><span class="line"><span class="comment">//重命名文件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fileReadStream = fs.createReadStream(<span class="string">'文件名'</span>)</span><br><span class="line"><span class="keyword">var</span> fileWriteStream = fs.createWriteStream(<span class="string">'文件名'</span>)</span><br><span class="line"><span class="comment">//读取文件流  写入文件流</span></span><br><span class="line">fileReadStream.pipe(fileWriteStream)</span><br><span class="line"><span class="comment">//pipe好像管道,可以把读取流接入写入流 效果类似write</span></span><br><span class="line"><span class="comment">//pipe可以链式使用</span></span><br><span class="line">fileReadStream.pipe(fileWriteStream).pipe(...)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">fileReadStream.on(<span class="string">'data'</span>,(chunk) =&gt; &#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;i++&#125;</span>接受到:<span class="subst">$&#123;chunk.length&#125;</span>`</span>)</span><br><span class="line">fileWriteStream.write(chunk) <span class="comment">//写入每次内容</span></span><br><span class="line">&#125;) <span class="comment">//读取次数,每次长度</span></span><br><span class="line"></span><br><span class="line">fileReadStream.on(<span class="string">'end'</span>,() =&gt; &#123;&#125;)</span><br><span class="line"><span class="comment">//读取结束事件</span></span><br><span class="line"></span><br><span class="line">fileReadStream.on(<span class="string">'error'</span>,(err) =&gt; &#123;&#125;)</span><br><span class="line"><span class="comment">//发生错误事件</span></span><br></pre></td></tr></table></figure>
+<h3 id="express-库用于后端开发"><a href="#express-库用于后端开发" class="headerlink" title="express 库用于后端开发"></a>express 库用于后端开发</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 express 并且创建一个 express 实例赋值给 app</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line">app.use(express.static(<span class="string">'static'</span>))</span><br><span class="line"><span class="comment">//封装一个函数</span></span><br><span class="line"><span class="keyword">var</span> sendHtml = <span class="function"><span class="keyword">function</span>(<span class="params">path, response</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>) <span class="comment">//   path是读取文件</span></span><br><span class="line">    <span class="keyword">var</span> options = &#123;</span><br><span class="line">        <span class="comment">//  options解码环境</span></span><br><span class="line">        encoding: <span class="string">'utf-8'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    fs.readFile(path, options, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`读取的html文件 <span class="subst">$&#123;path&#125;</span> 内容是`</span>, data)</span><br><span class="line">        response.send(data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 用 get 定义一个给用户访问的网址</span></span><br><span class="line"><span class="comment">// request 是浏览器发送的请求</span></span><br><span class="line"><span class="comment">// response 是我们要发给浏览器的响应</span></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> path = <span class="string">'index.html'</span></span><br><span class="line">    sendHtml(path, response)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/todo/all'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> todos = [</span><br><span class="line">        &#123;</span><br><span class="line">            id: <span class="number">1</span>,</span><br><span class="line">            task: <span class="string">'吃饭'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    ]</span><br><span class="line">    <span class="keyword">var</span> r = <span class="built_in">JSON</span>.stringify(todos)</span><br><span class="line">    response.send(r)</span><br><span class="line">&#125;)</span><br><span class="line">app.post(<span class="string">'/todo/add'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// request.body  这个函数可以获取前端post的数据</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//打开端口服务器</span></span><br><span class="line"><span class="comment">// listen 函数的第一个参数是我们要监听的端口</span></span><br><span class="line"><span class="comment">// 这个端口是要浏览器输入的</span></span><br><span class="line"><span class="comment">// 默认的端口是 80</span></span><br><span class="line"><span class="comment">// 所以如果你监听 80 端口的话，浏览器就不需要输入端口了</span></span><br><span class="line"><span class="comment">// 但是 1024 以下的端口是系统保留端口，需要管理员权限才能使用</span></span><br><span class="line"><span class="keyword">var</span> server = app.listen(<span class="number">8081</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> host = server.address().address</span><br><span class="line">    <span class="keyword">var</span> port = server.address().port</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'应用实例，访问地址为 http://%s:%s'</span>, host, port)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>###node 的一些库</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sync-request 用于下载网页</span></span><br><span class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">'sync-request'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//cheerio 用于解析网页数据</span></span><br><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//模块中函数输出</span></span><br><span class="line"><span class="built_in">module</span>.exports = 函数名</span><br></pre></td></tr></table></figure>
+<h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">git init   <span class="comment">//创建git仓库</span></span><br><span class="line">git add (文件名)   <span class="comment">//添加文件</span></span><br><span class="line">git commit -m <span class="string">"改动说明"</span>   <span class="comment">//上传改动</span></span><br><span class="line">git status           <span class="comment">//查询仓库状态</span></span><br><span class="line">git diff ()           <span class="comment">//查询文件变动</span></span><br><span class="line">git <span class="built_in">log</span>         <span class="comment">//查询版本改动</span></span><br><span class="line">git <span class="built_in">log</span> --pretty=oneline     <span class="comment">//格式化显示版本改动状态</span></span><br><span class="line">git reset --hard HEAD^    <span class="comment">//HEAD当前版本 ^上个版本 ^^上2个版本  HEAD-100  上100个版本</span></span><br><span class="line">git reset --hard (版本号(可只写几个开头))   <span class="comment">//回滚到指定版本</span></span><br><span class="line">git reflog                     <span class="comment">//记录每次操作</span></span><br><span class="line">git checkout -- （）          <span class="comment">//文件回滚到最后一次add或commit状态</span></span><br><span class="line">git reset HEAD （）     <span class="comment">//撤销最后一次的git add</span></span><br><span class="line">git rm ()    <span class="comment">//删除文件</span></span><br><span class="line">git checkout -b dev     <span class="comment">//创建并切换为dev分支</span></span><br><span class="line">git branch    <span class="comment">//查看所有分支</span></span><br><span class="line">git checkout master    <span class="comment">//切换分支到master</span></span><br><span class="line">git merge dev    <span class="comment">//合并指定分支（dev）到当前分支</span></span><br><span class="line">git branch -d（D） dev    <span class="comment">//删除（强制删除）dev分支</span></span><br><span class="line">git stash   git stash pop    <span class="comment">//储存目前工作现场，读取。。。</span></span><br><span class="line">git remote -v    <span class="comment">//显示远程仓库信息</span></span><br><span class="line">git push （origin branch-<span class="built_in">name</span>）    <span class="comment">//本地推送分支到远程仓库</span></span><br><span class="line">git branch --<span class="built_in">set</span>-upstream （branch-<span class="built_in">name</span> origin/branch-<span class="built_in">name</span>）</span><br><span class="line"><span class="comment">// 建立本地分支和远程分支的关联</span></span><br><span class="line">git tag （<span class="built_in">name</span>）   <span class="comment">//打标签</span></span><br><span class="line">git tag             <span class="comment">//查看所有标签</span></span><br><span class="line">git tag （v1.<span class="number">0</span>） (提交id)     <span class="comment">//打历史标签</span></span><br><span class="line">git show (<span class="built_in">name</span>)      <span class="comment">//显示对应标签说明</span></span><br><span class="line">git tag -a &lt;tagname&gt; -m <span class="string">"blablabla..."</span>   <span class="comment">//添加标签说明</span></span><br><span class="line">git tag -d （<span class="built_in">name</span>）     <span class="comment">//删除本地标签</span></span><br><span class="line">git push origin :refs/tags/&lt;tagname&gt;   <span class="comment">//删除一个远程标签</span></span><br><span class="line">git push origin &lt;tagname&gt;     <span class="comment">//推送一个本地标签</span></span><br><span class="line">git push origin --tags        <span class="comment">//推送全部未推送过的本地标签</span></span><br><span class="line"><span class="comment">//忽略某些文件时，需要编写.gitignore</span></span><br><span class="line">git config --global alias.（co） checkout   <span class="comment">//配置简化git命令checkout为co</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="gulp"><a href="#gulp" class="headerlink" title="gulp"></a>gulp</h1><p>创建 gulpfile.js 文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>)     <span class="comment">//引入gulp</span></span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'images'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'images/*.png'</span>).pipe(gulp.dest(<span class="string">'dist/images'</span>))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//创建images函数，将images下所有png格式图片复制到dist/images文件下</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sass = <span class="built_in">require</span>(<span class="string">'gulp-sass'</span>)  <span class="comment">//编译sass为css</span></span><br><span class="line"><span class="keyword">var</span> connect = <span class="built_in">require</span>(<span class="string">'gulp-connect'</span>)</span><br><span class="line">gulp.task(<span class="string">'server'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    connect.server(&#123;</span><br><span class="line">        root: <span class="string">'dist'</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//创建本地服务器监视dist文件下内容</span></span><br><span class="line"><span class="keyword">var</span> concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>);  <span class="comment">//合并</span></span><br><span class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);  <span class="comment">//压缩js文件</span></span><br><span class="line"><span class="keyword">var</span> rename = <span class="built_in">require</span>(<span class="string">'gulp-rename'</span>);  <span class="comment">//重命名文件</span></span><br><span class="line">gulp.task(<span class="string">'scripts'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> gulp.src([<span class="string">'javascripts/**/*.js'</span>,<span class="string">''</span>])</span><br><span class="line">.pipe(concat(<span class="string">'vendor.js'</span>))</span><br><span class="line">.pipe(uglify())</span><br><span class="line">.pipe(gulp.dest(<span class="string">'dist/js'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//合并文件，取名vendor.js压缩后放在dist/js下</span></span><br><span class="line"><span class="keyword">var</span> minifyCSS = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>);</span><br><span class="line"><span class="comment">// 压缩css文件  minifyCSS()</span></span><br><span class="line"><span class="keyword">var</span> imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>);</span><br><span class="line"><span class="comment">//压缩图片体积   imagemin()</span></span><br><span class="line"><span class="keyword">var</span> browserSync = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>).create();</span><br><span class="line"><span class="comment">// 游览器同步</span></span><br><span class="line"><span class="comment">// 静态服务器</span></span><br><span class="line">gulp.task(<span class="string">'browser-sync'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    browserSync.init(&#123;</span><br><span class="line">        server: &#123;</span><br><span class="line">            baseDir: <span class="string">"./"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 代理</span></span><br><span class="line">gulp.task(<span class="string">'browser-sync'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    browserSync.init(&#123;</span><br><span class="line">        proxy: <span class="string">"你的域名或IP"</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">npm install browser-sync --save-dev</span><br><span class="line"><span class="comment">//安装browser-sync</span></span><br><span class="line">browser-sync start --server forest --files <span class="string">"forest/index.html, forest/css/*.css"</span></span><br><span class="line"><span class="comment">//监视forest文件夹下文件</span></span><br><span class="line">--tunnel</span><br><span class="line"><span class="comment">//使外网也可以访问</span></span><br><span class="line">browser-sync start  --proxy localhost:<span class="number">9090</span></span><br><span class="line"><span class="comment">//监视指定代理服务器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接使用browser-sync</span></span><br><span class="line">browser-sync start --server --files <span class="string">"css/*.css, *.html"</span></span><br></pre></td></tr></table></figure>
+<h1 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">webpack (原.js) (处理后.js)</span><br><span class="line">module<span class="selector-class">.exports</span> = <span class="string">'zh is boss!'</span>   <span class="comment">//name.js</span></span><br><span class="line"><span class="selector-tag">var</span> name = require(<span class="string">'./name'</span>)    <span class="comment">//引入name.js</span></span><br><span class="line">npm install css-loader <span class="comment">// 处理css文件</span></span><br><span class="line">npm install style-loader <span class="comment">// 应用css文件</span></span><br><span class="line"><span class="function"><span class="title">require</span><span class="params">(<span class="string">'style!css!./css/*.css'</span>)</span></span>  <span class="comment">//引入css文件</span></span><br><span class="line">webpack --devtool source-map  <span class="comment">//生成可source调试的js</span></span><br><span class="line">npm install webpack-dev-serve    <span class="comment">//生成开发用服务器</span></span><br><span class="line">webpack-dev-server --inline --hot  <span class="comment">//模块热更新监控</span></span><br><span class="line"><span class="comment">//配置webpack文件</span></span><br><span class="line">新建一个名为webpack<span class="selector-class">.config</span><span class="selector-class">.js</span>的文件</span><br><span class="line">module<span class="selector-class">.exports</span> = &#123;</span><br><span class="line"> devtool: <span class="string">'eval-source-map'</span>,<span class="comment">//配置生成Source Maps</span></span><br><span class="line"> entry:  __dirname + <span class="string">"/app/main.js"</span>,<span class="comment">//已多次提及的唯一入口文件</span></span><br><span class="line">  output: &#123;</span><br><span class="line">    path: __dirname + <span class="string">"/public"</span>,<span class="comment">//打包后的文件存放的地方</span></span><br><span class="line">    filename: <span class="string">"bundle.js"</span><span class="comment">//打包后输出文件的文件名</span></span><br><span class="line">  &#125;</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: <span class="string">"./public"</span>,<span class="comment">//本地服务器所加载的页面所在的目录</span></span><br><span class="line">    colors: true,<span class="comment">//终端中输出结果为彩色</span></span><br><span class="line">    historyApiFallback: true,<span class="comment">//不跳转</span></span><br><span class="line">    inline: true<span class="comment">//实时刷新</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="一些常用函数-数据"><a href="#一些常用函数-数据" class="headerlink" title="一些常用函数/数据"></a>一些常用函数/数据</h1><h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; iterable.length; i++) &#123;</span><br><span class="line">    iterable[i]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> (i &lt; iterable.length) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span>语句</span></span><br><span class="line"><span class="function">    <span class="title">i</span> += 1</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span><span class="params">(iteam, <span class="keyword">index</span>, <span class="keyword">array</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">for</span> <span class="params">(i <span class="keyword">of</span> iterable)</span> <span class="comment">&#123; i &#125;</span>           <span class="comment">// i = 值</span></span></span><br><span class="line"><span class="function"><span class="title">for</span> <span class="params">(i <span class="keyword">in</span> iterable)</span> <span class="params">( iterable[i] &#125; <span class="comment">// i = 下标</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">break</span>  结束单次循环</span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">continue</span> 语句可以跳过单次循环</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> log = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log.apply(<span class="built_in">console</span>, <span class="built_in">arguments</span>)</span><br><span class="line">    <span class="comment">//alert( )</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//测试函数情况</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ensure = <span class="function"><span class="keyword">function</span>(<span class="params">def, result, message</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">JSON</span>.stringify(def) !== <span class="built_in">JSON</span>.stringify(result)) &#123;</span><br><span class="line">        log(<span class="string">'错误'</span>, message)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//测试函数正确</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> e = <span class="function"><span class="keyword">function</span>(<span class="params">selector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.querySelector(selector)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 绑定元素</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> appendHtml = <span class="function"><span class="keyword">function</span>(<span class="params">element, html</span>) </span>&#123;</span><br><span class="line">    element.insertAdjacentHTML(<span class="string">'beforeend'</span>, html)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//加入html字符串</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> toggleClass = <span class="function"><span class="keyword">function</span>(<span class="params">element, className</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (element.classList.contains(className)) &#123;</span><br><span class="line">        element.classList.remove(className)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        element.classList.add(className)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 开关(className)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> removeClassAll = <span class="function"><span class="keyword">function</span>(<span class="params">className</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> selector = <span class="string">'.'</span> + className</span><br><span class="line">    <span class="keyword">var</span> elements = <span class="built_in">document</span>.querySelectorAll(selector)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; elements.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> e = elements[i]</span><br><span class="line">        e.classList.remove(className)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//批量删除className</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bindEvent = <span class="function"><span class="keyword">function</span>(<span class="params">element, eventName, callback</span>) </span>&#123;</span><br><span class="line">    element.addEventListener(eventName, callback)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//绑定事件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bindAll = <span class="function"><span class="keyword">function</span>(<span class="params">selector, eventName, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> elements = <span class="built_in">document</span>.querySelectorAll(selector)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; elements.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> e = elements[i]</span><br><span class="line">        bindEvent(e, eventName, callback)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//批量绑定事件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> time = <span class="function"><span class="keyword">function</span>(<span class="params">z</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (z === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        z = <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> han = <span class="string">'日一二三四五六'</span></span><br><span class="line">    <span class="keyword">var</span> Year = z.getFullYear()</span><br><span class="line">    <span class="keyword">var</span> Month = z.getMonth() + <span class="number">1</span></span><br><span class="line">    <span class="keyword">var</span> Day = z.getDate()</span><br><span class="line">    <span class="keyword">var</span> Hour = z.getHours()</span><br><span class="line">    <span class="keyword">var</span> Minute = z.getMinutes()</span><br><span class="line">    <span class="keyword">var</span> Second = z.getSeconds()</span><br><span class="line">    <span class="keyword">var</span> Week = han[z.getDay()]</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">String</span>(Month).length === <span class="number">1</span>) &#123;</span><br><span class="line">        Month = <span class="string">'0'</span> + Month</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;Year&#125;</span>年<span class="subst">$&#123;Month&#125;</span>月<span class="subst">$&#123;Day&#125;</span>日 <span class="subst">$&#123;Hour&#125;</span>时<span class="subst">$&#123;Minute&#125;</span>分<span class="subst">$&#123;Second&#125;</span>秒 星期<span class="subst">$&#123;Week&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line">time()</span><br><span class="line"><span class="comment">//时间函数    括号里输入时间对象 否则为当前时间</span></span><br><span class="line"><span class="comment">// (new Date()).getTime()把时间转换为当前毫秒计算事件 常用于倒计时</span></span><br><span class="line"><span class="comment">//可通过new Date('2017/6/10,10:30:30')的格式来设置时间</span></span><br></pre></td></tr></table></figure>
+<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">秒懂释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">iterable</td>
+<td style="text-align:left">可迭代对象</td>
+</tr>
+<tr>
+<td style="text-align:left">path</td>
+<td style="text-align:left">路径</td>
+</tr>
+<tr>
+<td style="text-align:left">url</td>
+<td style="text-align:left">网址</td>
+</tr>
+<tr>
+<td style="text-align:left">src</td>
+<td style="text-align:left">需暂停加载(比如 script img) 引用的意思</td>
+</tr>
+<tr>
+<td style="text-align:left">href</td>
+<td style="text-align:left">不需暂停加载(比如 link a ) 跳转的意思</td>
+</tr>
+<tr>
+<td style="text-align:left">pattern</td>
+<td style="text-align:left"><a href="#regexp-正则表达式">正则表达式</a></td>
+</tr>
+<tr>
+<td style="text-align:left">property</td>
+<td style="text-align:left">属性</td>
+</tr>
+<tr>
+<td style="text-align:left">arguments</td>
+<td style="text-align:left">参数</td>
+</tr>
+<tr>
+<td style="text-align:left">event</td>
+<td style="text-align:left"><a href="#event">事件</a> event.target</td>
+</tr>
+<tr>
+<td style="text-align:left">clientX clientY</td>
+<td style="text-align:left">鼠标</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Math-数学"><a href="#Math-数学" class="headerlink" title="Math 数学"></a><strong>Math</strong> <a href="http://www.w3school.com.cn/jsref/jsref_obj_math.asp" target="_blank" rel="noopener">数学</a></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">举栗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">floor( x )</td>
+<td style="text-align:left">返回 &lt;= x 整数 向下取整</td>
+<td style="text-align:left">( -2.1 ) = -3</td>
+</tr>
+<tr>
+<td style="text-align:left">ceil( x )</td>
+<td style="text-align:left">返回 &gt;= x 整数 向上取整</td>
+<td style="text-align:left">( -2.1 ) = -2</td>
+</tr>
+<tr>
+<td style="text-align:left">round( x )</td>
+<td style="text-align:left">返回 x 四舍五入</td>
+<td style="text-align:left">( 5.4 ) = 5</td>
+</tr>
+<tr>
+<td style="text-align:left">abs( x )</td>
+<td style="text-align:left">返回 x 绝对值</td>
+</tr>
+<tr>
+<td style="text-align:left">random( )</td>
+<td style="text-align:left">生成 0 - 1 随机小数</td>
+<td style="text-align:left">随机取数主要操作</td>
+</tr>
+<tr>
+<td style="text-align:left">parseInt( )</td>
+<td style="text-align:left">取整数</td>
+</tr>
+</tbody>
+</table>
+<h4 id="逻辑符号"><a href="#逻辑符号" class="headerlink" title="逻辑符号"></a>逻辑符号</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">与</th>
+<th style="text-align:center">或</th>
+<th style="text-align:center">非</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&amp;&amp;</td>
+<td style="text-align:center">\</td>
+<td style="text-align:center">\</td>
+<td></td>
+<td>!!</td>
+</tr>
+<tr>
+<td style="text-align:center">and</td>
+<td style="text-align:center">or</td>
+<td style="text-align:center">not</td>
+</tr>
+</tbody>
+</table>
+<h4 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h4><blockquote>
+<p><strong>a 是执行函数 b 是时间（例如 1000）</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:right">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">setInterval</td>
+<td style="text-align:center">间隔型</td>
+<td style="text-align:right">b 秒执行一次 setInterval(a,b)</td>
+</tr>
+<tr>
+<td style="text-align:left">setTimeout</td>
+<td style="text-align:center">延时型</td>
+<td style="text-align:right">只执行一次</td>
+</tr>
+<tr>
+<td style="text-align:left">clearInterval</td>
+<td style="text-align:center">关闭间隔型</td>
+</tr>
+<tr>
+<td style="text-align:left">clearTimeout</td>
+<td style="text-align:center">关闭延时型</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>offsetLeft 距离左边的距离</strong> 用于做无缝滚动</p>
+</blockquote>
+<p>####类型</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">typeof( object )</td>
+<td style="text-align:left">判断 类型</td>
+</tr>
+<tr>
+<td style="text-align:left">String( number )</td>
+<td style="text-align:left">数字 转 字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">Number( string )</td>
+<td style="text-align:left">字符串 转 数字</td>
+</tr>
+</tbody>
+</table>
+<h4 id="RegExp-正则表达式"><a href="#RegExp-正则表达式" class="headerlink" title="RegExp 正则表达式"></a><strong>RegExp</strong> <a href="http://www.w3school.com.cn/jsref/jsref_obj_regexp.asp" target="_blank" rel="noopener">正则表达式</a></h4><ul>
+<li>语法：/<code>Pattern</code>/<code>Property</code><br>|Property|说明|<br>|:-:|:-:|<br>|/i|无视大小写|<br>|/g|全局匹配|<br>|/m|多行匹配 |<br>|/img|组合使用|</li>
+</ul>
+<ul>
+<li>常用</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">正则表达式</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">/[A-Z]\</td>
+<td style="text-align:center">[a-z]/img</td>
+<td>所有字母</td>
+</tr>
+<tr>
+<td style="text-align:center">/[0-9]/img</td>
+<td style="text-align:center">所有数字</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>编译：<strong>new RegExp</strong>( <code>Pattern</code>, <code>Property</code> )</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'馒头'</span></span><br><span class="line"><span class="keyword">var</span> re = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">`<span class="subst">$&#123;name&#125;</span>`</span>, <span class="string">'img'</span>) <span class="comment">//加变量</span></span><br></pre></td></tr></table></figure>
+<h4 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">转义符</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>\n</code></td>
+<td style="text-align:center">换行</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\t</code></td>
+<td style="text-align:center">TAB</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\</code></td>
+<td style="text-align:center">反斜杠</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\&#39;</code></td>
+<td style="text-align:center">单引号</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\&quot;</code></td>
+<td style="text-align:center">双引号</td>
+</tr>
+</tbody>
+</table>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">注释</th>
+<th style="text-align:center">快捷键 CTRL + /</th>
+<th style="text-align:center">单行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>//</code> JS</td>
+</tr>
+<tr>
+<td style="text-align:center">CSS</td>
+<td style="text-align:center"><code>/*</code> CSS <code>*/</code></td>
+</tr>
+<tr>
+<td style="text-align:center">HTML</td>
+<td style="text-align:center"><code>&lt;!--</code> HTML <code>--&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">Python</td>
+<td style="text-align:center"><code>``` </code> Python <code>``` </code></td>
+<td style="text-align:center"><code>#</code> Python</td>
+</tr>
+</tbody>
+</table>
+<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><blockquote>
+<p><strong>ASCII：2 进制 8 字节表示 Base64：2 进制 6 字节</strong><br>|ASCII - Unicode 编码|说明|<br>|:-: |:-: |<br>|<code>&#39;Aa&#39;</code>.charCodeAt( <code>0</code> ) === 65|<code>0</code> 下标|<br>|String.fromCharCode( <code>65</code> ) === “A”|<code>65</code> ASCII 码|<br>|( <code>10</code> ).toString( <code>2</code> ) === “1010”|进制转换|</p>
+</blockquote>
+<hr>
+<p>#参考资料：</p>
+<p>####书籍</p>
+<blockquote>
+<p>《Head First HTML 与 CSS》第 2 版 ;<br>《JavaScript 语言精粹》;<br>《JavaScript 高级程序设计》;</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>《编码》;《计算机程序的构造和解释》;<a href="http://sicp.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener">SICP 解题集</a><br>《深入理解计算机系统》;<br>《算法导论》;《编程珠玑》;《程序设计语言》;《代码大全》;</p>
+</blockquote>
+<p>####网络</p>
+<blockquote>
+<p>文档：<a href="https://developer.mozilla.org/cn/" target="_blank" rel="noopener">MDN</a> /<a href="http://www.w3school.com.cn" target="_blank" rel="noopener">w3school</a><br>教程：<a href="http://www.liaoxuefeng.com/" target="_blank" rel="noopener">廖雪峰</a>/<a href="http://ninghao.net/" target="_blank" rel="noopener">宁皓网</a>/<a href="http://www.imooc.com/" target="_blank" rel="noopener">慕课网</a></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>基础教程：<br><a href="http://www.xuetangx.com/courses/course-v1:MITx+6_00_1x+sp/about" target="_blank" rel="noopener">计算机科学和 Python 编程导论</a> &gt; <a href="http://open.163.com/special/opencourse/cs50.html" target="_blank" rel="noopener">计算机科学 cs50</a> &gt; <a href="https://cn.udacity.com/course/design-of-computer-programs--cs212" target="_blank" rel="noopener">计算机程序设计</a> &gt; <a href="http://open.163.com/special/opencourse/algorithms.html" target="_blank" rel="noopener">算法导论</a> &gt; <a href="https://cn.udacity.com/course/programming-languages--cs262" target="_blank" rel="noopener">编程语言</a> &gt; <a href="https://site.douban.com/221832/widget/notes/15633831/note/323327071/" target="_blank" rel="noopener">英语学习</a></p>
+</blockquote>
+</div><div class="tags"><a href="/tags/js/">js</a></div><div class="post-nav"><a href="/2018/04/27/关于前端优化/" class="pre">关于前端优化</a><a href="/2018/03/17/flex属性详解/" class="next">flex布局详解(转)</a></div><div id="container"></div><link rel="stylesheet" href="/css/default.css?v=0.0.2"><script src="/js/gitment.browser.js?v=0.0.2"></script><script>var gitment = new Gitment({
+  owner: 'blossom91',
+  repo: 'blossom91.github.io',
+  oauth: {
+    client_id: '7d6e0c7d1f3a71ae0658',
+    client_secret: '12bf717efd08498927437024badb4baa732e6bf7',
+  },
+})
+gitment.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂货铺/">杂货铺</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/variety/" style="font-size: 15px;">variety</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/go/" style="font-size: 15px;">go</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/02/关于http-tcp协议/">关于http/tcp协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/19/关于hybrid/">关于Hybrid</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/关于前端优化/">关于前端优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/我的程序员入门手册/">我的程序员入门手册</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/17/flex属性详解/">flex布局详解(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/关于nginx/">关于Nginx</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/JavaScript学习笔记/">JavaScript 学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/21/redis数据库与go中的使用/">redis数据库与go中的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/08/supervisor进程管理工具/">supervisor进程管理工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/23/jQuery与lodash($|_)/">jQuery与lodash($|_)</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.bilibili.com/" title="bilibili" target="_blank">bilibili</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">blossom |</a> 豫ICP备17040049号</div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.2" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.2" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.2"></script></div></body></html>

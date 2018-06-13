@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="blossom Html Css JavaScript Node Go Python Swift 全端 后端 Ios"><title>关于http/tcp协议 | blossom</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.2"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/7.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">关于http/tcp协议</h1><a id="logo" href="/.">blossom</a><p class="description">good good study and day day up</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">关于http/tcp协议</h1><div class="post-meta">Jun 2, 2018<span> | </span><span class="category"><a href="/categories/杂货铺/">杂货铺</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="clear"><div id="toc" class="toc-article"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#http-的发展"><span class="toc-number">1.</span> <span class="toc-text">http 的发展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http-相关特性"><span class="toc-number">2.</span> <span class="toc-text">http 相关特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache-Control"><span class="toc-number">3.</span> <span class="toc-text">Cache-Control:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http-长连接"><span class="toc-number">4.</span> <span class="toc-text">http 长连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据协商"><span class="toc-number">5.</span> <span class="toc-text">数据协商</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redirect-重定向"><span class="toc-number">6.</span> <span class="toc-text">Redirect: 重定向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSP-游览器安全限制"><span class="toc-number">7.</span> <span class="toc-text">CSP: 游览器安全限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http2"><span class="toc-number">8.</span> <span class="toc-text">http2</span></a></li></ol></div></div><div class="post-content"><p>http/tcp 协议是程序员必须知道的东西,目前先简单了解一下,后续还需要继续做功课…</p>
+<a id="more"></a>
+<h3 id="http-的发展"><a href="#http-的发展" class="headerlink" title="http 的发展"></a>http 的发展</h3><p>目前还在使用的版本是 http1.1 版本,有许多问题,比如请求按照顺序响应,造成了一些客户端优化(合并文件,减少请求数,img 放入 css 等)<br>未来的 http2 会很好的解决这个问题<br><br></p>
+<p>五层网络:</p>
+<ul>
+<li>tcp 用于传输层,http 用于应用层,至于还有的下三层,暂时不需要了解</li>
+</ul>
+<p>http 的连接需要 3 次握手,1.1 版本可以保持连接,直到一段时间不响应自动中断,免除了重复握手的性能消耗</p>
+<p><br><br>URI(url urn) 统一资源标志符:</p>
+<ul>
+<li>url: 平时我们见到的网址链接</li>
+<li>urn: 目前还没什么用</li>
+</ul>
+<p>http code</p>
+<ul>
+<li>1 开头 需要继续操作</li>
+<li>2 开头代表成功</li>
+<li>3 开头代表需要从定向从其他地方获取资源</li>
+<li>4 开头代表失败了</li>
+<li>5 服务端错误</li>
+</ul>
+<h3 id="http-相关特性"><a href="#http-相关特性" class="headerlink" title="http 相关特性"></a>http 相关特性</h3><p>跨域: 这个是游览器限制,请求已经发送了,内容也已经返回了,但是游览器限制了这个内容,服务端请求没有这个问题<br>解决跨域 1. jsonp 2. cors(推荐阮老师的博客相关文章)</p>
+<p>关于 cors:<br>默认只允许 post get head 方法 text/plain multipart/form-data application/x-www-form-urlencoded 请求格式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">response.writeHead(<span class="number">200</span>, &#123;</span><br><span class="line">    <span class="string">'Access-Control-Allow-Origin'</span>: <span class="string">'*'</span>, <span class="comment">// 允许请求域名</span></span><br><span class="line">    <span class="string">'Access-Control-Allow-Headers'</span>: <span class="string">'*'</span>, <span class="comment">// 允许的请求头</span></span><br><span class="line">    <span class="string">'Access-Control-Allow-Methods'</span>: <span class="string">'Post,PUT,Delete'</span>, <span class="comment">//允许跨域请求的方法</span></span><br><span class="line">    <span class="string">'Access-Control-Max-Age'</span>: <span class="string">'1000'</span>, <span class="comment">// 1000s内部不再需要预请求</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control:"></a>Cache-Control:</h3><ul>
+<li>public: 所有地方包括代理服务器都可以缓存</li>
+<li>private: 只有游览器可以缓存</li>
+<li>no-cache: (需要服务器验证才可以使用缓存)</li>
+<li>no-store: 不可以使用缓存</li>
+</ul>
+<p>到期:</p>
+<ul>
+<li>max-age = <seconds> 过期时间</seconds></li>
+<li>s-maxage= <seconds> 只在代理服务器生效</seconds></li>
+<li>max-stale = <seconds> 即使过期了也继续使用缓存</seconds></li>
+</ul>
+<p>验证:</p>
+<ul>
+<li>Last-Modified 服务端上次修改时间,游览器储存</li>
+<li>If-Modified-Since 游览器请求带上储存的上次修改时间去匹配</li>
+<li>Etag hash 计算文件内容,通过签名验证文件变动</li>
+<li>must-revalidate 过期了去原服务器拿数据</li>
+<li>proxy-revalidate 过期了去代理服务器拿数据</li>
+</ul>
+<p>Cookie:</p>
+<ul>
+<li>max-age 和 expires 设置过期时间</li>
+<li>Secure 只在 https 的时候发送</li>
+<li>HttpOnly 无法通过 document.cookie 访问</li>
+</ul>
+<h3 id="http-长连接"><a href="#http-长连接" class="headerlink" title="http 长连接"></a>http 长连接</h3><p>Connection: keep-alive / close<br>http1.1 同一个域名下一般最多 6 个 http 链接,后面可复用前面的链接不需要再次 3 次握手,默认是打开的,可设置 close 关闭<br>http2 可以并发的处理请求,就没有这个限制了</p>
+<h3 id="数据协商"><a href="#数据协商" class="headerlink" title="数据协商"></a>数据协商</h3><p>——- 客户端<br>Accept: 需要的数据类型<br>Accept-Encoding: 如何进行数据压缩<br>Accept-Language: 语言种类<br>User-Agent: 游览器种类,系统版本等相关信息</p>
+<p>—— 服务端<br>Content-Type 返回的数据类型<br>Content-Encoding: 压缩方式<br>Content-Language: 语言</p>
+<h3 id="Redirect-重定向"><a href="#Redirect-重定向" class="headerlink" title="Redirect: 重定向"></a>Redirect: 重定向</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 302 是临时跳转  301 是永久跳转  游览器会缓存 使用要慎重</span></span><br><span class="line">response.writeHead(<span class="number">302</span>, &#123;</span><br><span class="line">    Location: <span class="string">'/new'</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="CSP-游览器安全限制"><a href="#CSP-游览器安全限制" class="headerlink" title="CSP: 游览器安全限制"></a>CSP: 游览器安全限制</h3><p>服务端可以通过设置这个头限制 html 里面内联的 js 运行,防止注入攻击</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 302 是临时跳转  301 是永久跳转  游览器会缓存 使用要慎重</span></span><br><span class="line">response.writeHead(<span class="number">302</span>, &#123;</span><br><span class="line">      <span class="string">'Content-Security-Policy'</span>: <span class="string">'default-src http: https:'</span>,</span><br><span class="line">      <span class="string">'Content-Security-Policy'</span>: <span class="string">'default-src \'self\; form-action \'self\', // 也可以限制表单的提交范围</span></span><br><span class="line"><span class="string">      '</span>Content-Security-Policy<span class="string">': '</span><span class="keyword">default</span>-src \<span class="string">'self\' http://url'</span> <span class="comment">//限制外链链接 只能使用自己网站的  可以手动添加允许链接</span></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="http2"><a href="#http2" class="headerlink" title="http2"></a>http2</h3><p>信道复用:只需要一个 http 连接<br>分帧传输: 可以并发发送请求<br>Server Push: 服务端推送</p>
+<p>相较于 http1.1 http2 性能提升非常明显,所以有条件的话建议通过 nginx 配置 http2</p>
+<p>待续……</p>
+</div><div class="tags"><a href="/tags/http/">http</a></div><div class="post-nav"><a href="/2018/05/19/关于hybrid/" class="next">关于Hybrid</a></div><div id="container"></div><link rel="stylesheet" href="/css/default.css?v=0.0.2"><script src="/js/gitment.browser.js?v=0.0.2"></script><script>var gitment = new Gitment({
+  owner: 'blossom91',
+  repo: 'blossom91.github.io',
+  oauth: {
+    client_id: '7d6e0c7d1f3a71ae0658',
+    client_secret: '12bf717efd08498927437024badb4baa732e6bf7',
+  },
+})
+gitment.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂货铺/">杂货铺</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/variety/" style="font-size: 15px;">variety</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/go/" style="font-size: 15px;">go</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/02/关于http-tcp协议/">关于http/tcp协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/19/关于hybrid/">关于Hybrid</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/关于前端优化/">关于前端优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/我的程序员入门手册/">我的程序员入门手册</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/17/flex属性详解/">flex布局详解(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/关于nginx/">关于Nginx</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/JavaScript学习笔记/">JavaScript 学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/21/redis数据库与go中的使用/">redis数据库与go中的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/08/supervisor进程管理工具/">supervisor进程管理工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/23/jQuery与lodash($|_)/">jQuery与lodash($|_)</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.bilibili.com/" title="bilibili" target="_blank">bilibili</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">blossom |</a> 豫ICP备17040049号</div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.2" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.2" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.2"></script></div></body></html>

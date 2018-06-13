@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="blossom Html Css JavaScript Node Go Python Swift 全端 后端 Ios"><title>关于前端优化 | blossom</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.2"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/7.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">关于前端优化</h1><a id="logo" href="/.">blossom</a><p class="description">good good study and day day up</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/guestbook/"><i class="fa fa-comments"> 留言</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">关于前端优化</h1><div class="post-meta">Apr 27, 2018<span> | </span><span class="category"><a href="/categories/前端/">前端</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><p>身为强迫症,要对自己写的代码负责,所以了解一下前端优化是有必要的~~~</p>
+<a id="more"></a>
+<ol>
+<li><p>文件压缩与合并<br>html css js 压缩 文件合并 gzip 压缩(<code>webpack</code>构建工具了解一下)<br>主要减少 http 请求数,文件大小的方式优化</p>
+</li>
+<li><p>图片压缩<br>一种是雪碧图,核心也是减少 http 请求数<br>一种就是压缩图片大小,这里推荐一个压缩工具<a href="http://compressjpeg.com/zh/" target="_blank" rel="noopener">图片压缩</a></p>
+</li>
+<li><p>文件加载和懒加载和预加载<br>(注意:同一个 cdn 最大请求数有限制,所以有些情况会同时存在几个 cdn 用来分发资源文件)<br>css 阻塞页面渲染,所以放在 head 里面<br>如果 js 操作 dom,需要放在前面,方面 dom 操作<br>图片等资源如果数量巨大(常见电商网站),图片在进入可视区域以后再开始加载即懒加载<br>一些页面为了保证流畅度(比如用了大量图片的 h5 活动页),需要等资源全部加载结束后再开始渲染,即预加载</p>
+</li>
+</ol>
+<p>4)  重绘与回流<br>    回流: 触发页面重布局(消耗很大)<br>    重绘: 不改变布局,只改变样式,比如颜色(消耗小)<br>    优化点:</p>
+<ul>
+<li>尽量减少会引起回流的操作,限制回流在一个<strong>图层</strong>中</li>
+<li>使用 translate 替代 top 操作</li>
+<li>使用 opacity 替代 visibility</li>
+<li>不要一条条改变 css,而是封装成 className 整体替换</li>
+<li>复杂的操作先将 dom 结构 display:none 然后操作后显示</li>
+</ul>
+<ol>
+<li><p>游览器储存<br>cookie cdn 的域名和主站的域名要分开,避免请求 cdn 携带 cookie 的流量损耗<br>Worker 可以把非常耗费性能的操作放在 worker 里运行,防止 js 堵塞</p>
+</li>
+<li><p>游览器缓存(主要是通过服务端设置)<br>cache-control</p>
+<ul>
+<li>max-age 服务端设置最大有效时间(直接游览器缓存拿)</li>
+<li>s-maxage 最大有效时间(public private 公共还是私有 no-cache 不缓存 no-store)</li>
+<li>expores 等同于 max-age,权重低于它<br>缓存验证</li>
+<li>last-modified 与 if-midified-since 与服务端协商的一个过期时间(需要请求服务端确认是缓存还是新文件 304 缓存 200 新文件)</li>
+<li>eTag 文件 hash 值 等同于 last-modified 更准确的缓存策略</li>
+</ul>
+</li>
+<li><p>服务端优化<br>首屏加载问题通过服务端渲染 ssr 解决(要考量平衡服务端与客户端的计算能力)</p>
+</li>
+</ol>
+</div><div class="tags"><a href="/tags/js/">js</a></div><div class="post-nav"><a href="/2018/05/19/关于hybrid/" class="pre">关于Hybrid</a><a href="/2018/04/01/我的程序员入门手册/" class="next">我的程序员入门手册</a></div><div id="container"></div><link rel="stylesheet" href="/css/default.css?v=0.0.2"><script src="/js/gitment.browser.js?v=0.0.2"></script><script>var gitment = new Gitment({
+  owner: 'blossom91',
+  repo: 'blossom91.github.io',
+  oauth: {
+    client_id: '7d6e0c7d1f3a71ae0658',
+    client_secret: '12bf717efd08498927437024badb4baa732e6bf7',
+  },
+})
+gitment.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/">后端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂货铺/">杂货铺</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/variety/" style="font-size: 15px;">variety</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/go/" style="font-size: 15px;">go</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/02/关于http-tcp协议/">关于http/tcp协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/19/关于hybrid/">关于Hybrid</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/关于前端优化/">关于前端优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/01/我的程序员入门手册/">我的程序员入门手册</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/17/flex属性详解/">flex布局详解(转)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/关于nginx/">关于Nginx</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/JavaScript学习笔记/">JavaScript 学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/21/redis数据库与go中的使用/">redis数据库与go中的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/08/supervisor进程管理工具/">supervisor进程管理工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/23/jQuery与lodash($|_)/">jQuery与lodash($|_)</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.bilibili.com/" title="bilibili" target="_blank">bilibili</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">blossom |</a> 豫ICP备17040049号</div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.2" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.2" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.2"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.2"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.2"></script></div></body></html>
