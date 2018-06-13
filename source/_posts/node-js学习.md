@@ -17,11 +17,11 @@ categories: 后端
 
 ### CommonJS
 
-* 支持`js json node`扩展名,不写依次尝试
-* 不写路径则认为是`build-in`模块或各级`node_modules`内的第三方模块
-* `module`被加载的时候执行,加载后缓存
-* 一旦出现某个模块被循环加载,就只输出已经执行的部分,还未执行的部分不会输出
-* `const exports = module.exports`
+-   支持`js json node`扩展名,不写依次尝试
+-   不写路径则认为是`build-in`模块或各级`node_modules`内的第三方模块
+-   `module`被加载的时候执行,加载后缓存
+-   一旦出现某个模块被循环加载,就只输出已经执行的部分,还未执行的部分不会输出
+-   `const exports = module.exports`
 
 ### global
 
@@ -35,7 +35,7 @@ console.log(a) // 200
 
 #### global.process
 
-* 挂载在全局`global`下的方法,可以读取 node 命令参数
+-   挂载在全局`global`下的方法,可以读取 node 命令参数
 
 输出到控制台
 
@@ -64,7 +64,7 @@ process.nextTick(() => {})
 
 #### buffer
 
-* Buffer 类似于数组,挂载在全局`global`下的方法,操作二进制数据流
+-   Buffer 类似于数组,挂载在全局`global`下的方法,操作二进制数据流
 
 创建一个长度 10 且不可改变长度的 Buffer,默认用 0 填充
 
@@ -107,7 +107,7 @@ Buffer.isBuffer(Buffer.from([1, 2, 3])) // true
 const buf = Buffer.concat([Buffer.from('hello'), Buffer.from(' world')])
 ```
 
-* Buffer 类型的一些实例方法:
+-   Buffer 类型的一些实例方法:
 
 转换字符串类型,默认 utf-8 编码
 
@@ -186,8 +186,8 @@ console.log(__filename)
 
 `./`有两种情况:
 
-1. 当在`require`里面使用时,等同于`__dirname`(总是文件绝对路径)
-2. 当在其他地方使用时,等同于`process.cwd()`(相对于进程绝对路径)
+1.  当在`require`里面使用时,等同于`__dirname`(总是文件绝对路径)
+2.  当在其他地方使用时,等同于`process.cwd()`(相对于进程绝对路径)
 
 #### events
 
@@ -266,7 +266,7 @@ fs.stat('./main.js', (err, stats) => {
 fs.watch(
     './',
     {
-        recursive: true // 递归监视
+        recursive: true, // 递归监视
     },
     (eventType, filename) => {
         //事件类型   文件名

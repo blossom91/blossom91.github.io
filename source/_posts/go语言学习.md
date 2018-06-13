@@ -2,7 +2,7 @@
 title: go语言学习
 mathjax: true
 comments: true
-date: 2017-12-19 17:37:34
+date: 2017-12-9 17:37:34
 updated:
 tags: go
 categories: 后端
@@ -611,8 +611,8 @@ func main() {
 `interface`的变量里面可以存储任意类型的数值(该类型实现了`interface`)
 那么获取这个变量里面实际保存的对象类型可以使用下列方法
 
-* Comma-ok 断言
-  Go 语言里面有一个语法，可以直接判断是否是该类型的变量： value, ok = element.(T)，这里 value 就是变量的值，ok 是一个 bool 类型，element 是 interface 变量，T 是断言的类型。如果 element 里面确实存储了 T 类型的数值，那么 ok 返回 true，否则返回 false。
+-   Comma-ok 断言
+    Go 语言里面有一个语法，可以直接判断是否是该类型的变量： value, ok = element.(T)，这里 value 就是变量的值，ok 是一个 bool 类型，element 是 interface 变量，T 是断言的类型。如果 element 里面确实存储了 T 类型的数值，那么 ok 返回 true，否则返回 false。
 
 ```go
 type Element interface{}
@@ -648,7 +648,7 @@ func main() {
 }
 ```
 
-* switch 测试
+-   switch 测试
 
 因为用到了很多的 if 所以自然有`switch`
 这里有一点需要强调的是：`element.(type)`语法不能在 switch 外的任何逻辑里面使用，如果你要在 switch 外面判断一个类型就使用`comma-ok`。

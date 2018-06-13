@@ -13,20 +13,41 @@ categories: 前端
 
 <!-- more -->
 
+一些踩过的坑:
+
+1.  `html`是有嵌套关系的,原则上行内元素不能写块元素
+2.  使用新的标签最大的好处就是语义明显,利于阅读
+
 ### 移动端设置
 
-设置 `viewport`
-`viewport` 是 `html` 的父元素在手机上需要用下面的语句设置它的尺寸
+设置 viewport
+viewport 是 html 的父元素
+在手机上需要用下面的语句设置它的尺寸
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <script>
+// document.documentElement.style.fontSize      一般不会小于12px
 //设置rem
 document.documentElement.style.fontSize
 = document.documentElement.clientWidth / 7.5(iPhone6相对宽度) + 'px';
 //通过设计图宽度 / 100 来得出相对宽度 rem
 //比如iphone5 设计图宽度640 相对宽度 6.4
+</script>
+
+
+<script>
+// 还有一种方法是通过动态设置initial-scale 来达到响应式设置
+let dpr = window.devicePixelRatio
+let meta = document.createElement('meta')
+let initialScale = 1 / dpr
+let maximumScale = 1 / dpr
+let minimumScale = 1 / dpr
+meta.setAttribute('name', 'viewport')
+meta.setAttribute('content', `width=device-width, user-scalable=no, initial-scale=${initialScale}, maximum-scale=${maximumScale}, minimum-scale=${minimumScale}`)
+document.head.appendChild(meta)
+// 这样设置以后可以直接根据设计稿的尺寸写CSS样式 也可以解决1px问题
 </script>
 ```
 
@@ -53,7 +74,8 @@ document.documentElement.style.fontSize
 
 ### 视频音频标签
 
-带控制器的视频标签, 不同浏览器有不同的文件格式要求所以用 2 个 source 标签指定不同的视频格式
+带控制器的视频标签, 不同浏览器有不同的文件格式要求
+所以用 2 个 source 标签指定不同的视频格式
 
 ```html
 <video width="300" height="200" controls="controls">
@@ -62,7 +84,8 @@ document.documentElement.style.fontSize
 </video>
 ```
 
-带控制器的音频标签, 不同浏览器有不同的文件格式要求所以用 2 个 source 标签指定不同的音频格式
+带控制器的音频标签, 不同浏览器有不同的文件格式要求
+所以用 2 个 source 标签指定不同的音频格式
 
 ```html
 <audio id='id-audio-player' controls="controls">

@@ -17,10 +17,10 @@ categories: 杂货铺
 
 ### git 名词解释与命令说明
 
-* Workspace：工作区
-* Index / Stage：暂存区
-* Repository：仓库区（或本地仓库）
-* Remote：远程仓库
+-   Workspace：工作区
+-   Index / Stage：暂存区
+-   Repository：仓库区（或本地仓库）
+-   Remote：远程仓库
 
 ---
 
@@ -361,23 +361,23 @@ $ git stash pop
 
 关于分支的一些约定:
 
-* 默认 master 是对外主分支
-* dev 是公共开发分支
-* 修补 bug: 从 dev 创建 fixbug-0.1 分支,修补结束后 merge 回 dev 分支并删除 fixbug 分支
-* 添加功能: 从 dev 创建 feature-x 分支,开发结束后 merge 回 dev 分支并删除 fixbug 分支
-* 发布预览: 从 dev 创建 release-1.2 分支,结束后 merge 回 dev 分支并删除 fixbug 分支
+-   默认 master 是对外主分支
+-   dev 是公共开发分支
+-   修补 bug: 从 dev 创建 fixbug-0.1 分支,修补结束后 merge 回 dev 分支并删除 fixbug 分支
+-   添加功能: 从 dev 创建 feature-x 分支,开发结束后 merge 回 dev 分支并删除 fixbug 分支
+-   发布预览: 从 dev 创建 release-1.2 分支,结束后 merge 回 dev 分支并删除 fixbug 分支
 
 ---
 
 关于 commit 的一些约定:
 
-* feat：新功能（feature）
-* fix：修补 bug
-* docs：文档（documentation）
-* style： 格式（不影响代码运行的变动）
-* refactor：重构（即不是新增功能，也不是修改 bug 的代码变动）
-* test：增加测试
-* chore：构建过程或辅助工具的变动
+-   feat：新功能（feature）
+-   fix：修补 bug
+-   docs：文档（documentation）
+-   style： 格式（不影响代码运行的变动）
+-   refactor：重构（即不是新增功能，也不是修改 bug 的代码变动）
+-   test：增加测试
+-   chore：构建过程或辅助工具的变动
 
 [Commitizen](https://github.com/commitizen/cz-cli)是一个撰写合格 Commit message 的工具。
 
