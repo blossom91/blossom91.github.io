@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhaohang.site/"/>
-  <updated>2018-07-20T12:37:08.000Z</updated>
+  <updated>2018-10-26T01:24:47.215Z</updated>
   <id>http://zhaohang.site/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>更新停一段时间</title>
+    <link href="http://zhaohang.site/2018/09/20/%E6%BA%9C%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4/"/>
+    <id>http://zhaohang.site/2018/09/20/溜一段时间/</id>
+    <published>2018-09-20T15:30:11.000Z</published>
+    <updated>2018-10-26T01:24:47.215Z</updated>
+    
+    <content type="html"><![CDATA[<p>主力同事离职,再加上最近接连几个大项目,小黄人小应用(这个有空要好好说说,可要了我老命啊)附近的人(没错,我们 app 终于有添加陌生人的入口了)….<br>so,天天工作好累哦,回家就想睡觉觉,更新割一段时间.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;主力同事离职,再加上最近接连几个大项目,小黄人小应用(这个有空要好好说说,可要了我老命啊)附近的人(没错,我们 app 终于有添加陌生人的入口了)….&lt;br&gt;so,天天工作好累哦,回家就想睡觉觉,更新割一段时间.&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="杂货铺" scheme="http://zhaohang.site/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"/>
+    
+    
+      <category term="杂谈" scheme="http://zhaohang.site/tags/%E6%9D%82%E8%B0%88/"/>
+    
+  </entry>
   
   <entry>
     <title>html5直播</title>
@@ -424,28 +450,6 @@
     <summary type="html">
     
       &lt;p&gt;对于这个东西,我并不想多说,不求掌握,只求别人写的能看懂,本文参考了&lt;a href=&quot;http://www.runoob.com/regexp/regexp-tutorial.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;菜鸟教程&lt;/a&gt;与&lt;a href=&quot;http://www.imooc.com/learn/706&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;慕课网&lt;/a&gt;,感谢分享&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="杂货铺" scheme="http://zhaohang.site/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"/>
-    
-    
-      <category term="variety" scheme="http://zhaohang.site/tags/variety/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>photoshop简单学习</title>
-    <link href="http://zhaohang.site/2017/09/26/photoshop%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://zhaohang.site/2017/09/26/photoshop简单学习/</id>
-    <published>2017-09-26T06:12:18.000Z</published>
-    <updated>2018-06-13T02:19:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><code>photoshop</code>一直觉得是一门十分实用的技能,了解一下很有必要随着深入学习,此篇文章持续更新…</p><a id="more"></a><h3 id="初始化设置"><a href="#初始化设置" class="headerlink" title="初始化设置"></a>初始化设置</h3><ul><li>web 常用格式一般是<code>高度不固定,宽度1920</code>等按需设置,背景为<code>透明</code></li><li>首选项-<code>单位与标尺</code>-全部改为<code>像素</code></li><li>视图里面 显示-<code>智能参考线</code> 打钩 <code>标尺</code> 打钩</li><li>右边界面 4 大功能 上面<code>字符信息</code> 下面<code>图层历史记录</code></li><li>信息界面面板选项改为<code>rpg</code>颜色模式 标尺为<code>像素</code> <code>文档尺寸</code>勾选</li></ul><h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><ul><li>Windows 系统：Ctrl + Shift + Alt + E</li><li>Mac OS 系统：Cmd + Shift + Opt + E</li></ul><table><thead><tr><th style="text-align:left">功能介绍</th><th style="text-align:left">快捷键</th></tr></thead><tbody><tr><td style="text-align:left">新建文件</td><td style="text-align:left">Ctrl + N</td></tr><tr><td style="text-align:left">新建图层</td><td style="text-align:left">Ctrl + Shift + N（按住 Alt 可避免对话框)</td></tr><tr><td style="text-align:left">复制图层</td><td style="text-align:left">Ctrl + J</td></tr><tr><td style="text-align:left">选中多个图层</td><td style="text-align:left">Shift + 单击鼠标左键</td></tr><tr><td style="text-align:left">合并选中图层</td><td style="text-align:left">Ctrl + E</td></tr><tr><td style="text-align:left">合并所有可见图层</td><td style="text-align:left">Ctrl + Shift + Alt + E</td></tr><tr><td style="text-align:left">对选中图层编组</td><td style="text-align:left">Ctrl + G/双击可改名字</td></tr><tr><td style="text-align:left">载入选区</td><td style="text-align:left">Ctrl + 左键点击(元素或图层缩略图)</td></tr><tr><td style="text-align:left">取消选区</td><td style="text-align:left">Ctrl + D</td></tr><tr><td style="text-align:left">选择全部</td><td style="text-align:left">Ctrl + A</td></tr><tr><td style="text-align:left">重做最后一项选择</td><td style="text-align:left">Ctrl + Shift + D</td></tr><tr><td style="text-align:left">加选取框,减选取框</td><td style="text-align:left"><code>M</code>,Shift,Alt</td></tr><tr><td style="text-align:left">正选取框,同心选取框</td><td style="text-align:left"><code>M</code>选取后 Shift(正)Alt(同)</td></tr><tr><td style="text-align:left">选择反选</td><td style="text-align:left">Ctrl + Shift + I</td></tr><tr><td style="text-align:left">删除所选元素</td><td style="text-align:left"><code>delete</code></td></tr><tr><td style="text-align:left">自由变换（缩放、斜切）</td><td style="text-align:left">Ctrl + T</td></tr><tr><td style="text-align:left">约束比例或从中心变换</td><td style="text-align:left"><code>Shift</code>=约束 或 <code>Alt</code>=中心</td></tr><tr><td style="text-align:left">添加到选区或从选区减去</td><td style="text-align:left">拖动时按住 Shift 或者 Alt</td></tr><tr><td style="text-align:left">填充图层/选区颜色</td><td style="text-align:left">Alt + Delete</td></tr><tr><td style="text-align:left">设置画笔颜色</td><td style="text-align:left">Alt + 单击左键选取示例色</td></tr><tr><td style="text-align:left">扩大/减小选框大小</td><td style="text-align:left"><code>[</code> = 缩小大小 <code>]</code> = 扩大大小</td></tr><tr><td style="text-align:left">撤销上一步/后退一步</td><td style="text-align:left">Ctrl + Z，Ctrl + Alt + Z</td></tr><tr><td style="text-align:left">放大/缩小</td><td style="text-align:left">Ctrl + “+” 或 Ctrl + “-“</td></tr><tr><td style="text-align:left">按屏幕大小缩放</td><td style="text-align:left">Ctrl + 0</td></tr><tr><td style="text-align:left">默认前景/背景色</td><td style="text-align:left">D</td></tr><tr><td style="text-align:left">对调前景/背景色</td><td style="text-align:left">X</td></tr><tr><td style="text-align:left">显示/隐藏 网格、参考线</td><td style="text-align:left">Ctrl + <code>&#39;</code>,Ctrl + <code>;</code></td></tr><tr><td style="text-align:left">复制该选区为新图层</td><td style="text-align:left">按住 Alt 同时拖动选区</td></tr><tr><td style="text-align:left">文件输出为 web 格式</td><td style="text-align:left">Ctrl + Shift + Alt + S</td></tr><tr><td style="text-align:left">文件存储为</td><td style="text-align:left">Ctrl + Shift + S</td></tr><tr><td style="text-align:left">关闭当前文档</td><td style="text-align:left">Ctrl + W</td></tr></tbody></table><h3 id="切图"><a href="#切图" class="headerlink" title="切图"></a>切图</h3><ul><li>一般方法:<br>可通过把整张图裁剪成一张张模块化小图,然后设置参考线,基于参考线自动切图,导出后可选择导出单张切图和所有切图</li></ul><ul><li>脚本方法:<br>文件-导出-将图层导出到文件选择 PNG-24(8)勾选全部 自动切图导出</li></ul><ul><li>简化方法:<br>首选项-增效工具-启用生成器文件-生成-图像资源(勾选)<br>设置之后会多一个同名文件夹,将想要使用的图层图像命名为相应格式(jpg,png)以后,可以在这个文件夹中看到保存的相应格式文件。通过命名可以更改保存文件的样式,例如命名 200%-像素大小扩大一倍<br>jpg8 就保存品质 80%(只有 jpg 有品质选项)<br>png8 就保存 png-8</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;code&gt;photoshop&lt;/code&gt;一直觉得是一门十分实用的技能,了解一下很有必要随着深入学习,此篇文章持续更新…&lt;/p&gt;
     
     </summary>
     
