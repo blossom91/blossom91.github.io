@@ -8,7 +8,7 @@ subtitle: good good study and day day up
 description: blossom Html Css JavaScript Node Go Python Swift 全端 后端 Ios
 author: blossom
 language: zh-CN
-timezone: 
+timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -39,10 +39,10 @@ relative_link: false
 future: true
 mathjax: true
 highlight:
-  enable: true
-  line_number: true
-  auto_detect: true
-  tab_replace: 
+    enable: true
+    line_number: true
+    auto_detect: true
+    tab_replace:
 
 # Category & Tag
 default_category: uncategorized
@@ -69,6 +69,6 @@ theme: maupassant
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repository: https://github.com/blossom91/blossom91.github.io.git
-  branch: master
+    type: git
+    repository: https://github.com/blossom91/blossom91.github.io.git
+    branch: master
